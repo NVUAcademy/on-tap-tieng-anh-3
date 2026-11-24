@@ -5,6 +5,12 @@ const TEACHER_ADMIN_EMAIL = "leviethoainam287@gmail.com";
 const TEACHER_ADMIN_EMAIL_2 = "leviethoainam297@gmail.com";
 const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1UW4oQ2lOoFybHKO3FTMFOpGxQFy4dGAlJAu8Wj_YDTQ/edit";
 
+function isTeacherEmail(email) {
+  if (!email) return false;
+  const clean = email.trim().toLowerCase();
+  return clean === TEACHER_ADMIN_EMAIL.toLowerCase() || clean === TEACHER_ADMIN_EMAIL_2.toLowerCase();
+}
+
 let cloudConfig = {
   appsScriptUrl: "",
   googleClientId: "",
@@ -48,7 +54,7 @@ function loadConfigAndAuth() {
     if (savedCfg) {
       const parsed = JSON.parse(savedCfg);
       cloudConfig = { ...cloudConfig, ...parsed };
-      if (!cloudConfig.localWhitelist.some(u => u.email === TEACHER_ADMIN_EMAIL)) {
+      if (!cloudConfig.localWhitelist.some(u => isTeacherEmail(u.email))) {
         cloudConfig.localWhitelist.unshift({
           email: TEACHER_ADMIN_EMAIL,
           name: "Giảng viên Lê Viết Hoài Nam",
@@ -108,21 +114,42 @@ function updateAuthUI() {
   const emailDisp = document.getElementById("user-email-display");
   const fbBanner = document.getElementById("teacher-feedback-banner");
   const fbContent = document.getElementById("teacher-feedback-content");
+  const topbarTeacherBtn = document.getElementById("topbar-teacher-portal-btn");
 
   if (!currentUser || !currentUser.email) {
     overlay.style.display = "flex";
     initGoogleGsiButton();
+    if (topbarTeacherBtn) {
+      topbarTeacherBtn.innerHTML = `👨‍🏫 <span>Cổng Giảng Viên</span>`;
+      topbarTeacherBtn.style.background = "transparent";
+      topbarTeacherBtn.style.color = "var(--gold)";
+    }
     return;
   }
 
   overlay.style.display = "none";
-  const isTeacher = currentUser.email.toLowerCase() === TEACHER_ADMIN_EMAIL;
+  const isTeacher = isTeacherEmail(currentUser.email);
   currentUser.role = isTeacher ? "teacher" : "student";
 
   nameDisp.textContent = currentUser.name || currentUser.email;
   emailDisp.textContent = `(${currentUser.email})`;
   roleBadge.textContent = isTeacher ? "GIẢNG VIÊN QUẢN TRỊ" : "HỌC VIÊN CHÍNH THỨC";
+  roleBadge.style.color = isTeacher ? "var(--gold)" : "var(--ink-2)";
   navTeacher.style.display = isTeacher ? "inline-flex" : "none";
+
+  if (topbarTeacherBtn) {
+    if (isTeacher) {
+      topbarTeacherBtn.innerHTML = `<span>📊 Trang Quản Trị GV</span>`;
+      topbarTeacherBtn.style.background = "var(--butter)";
+      topbarTeacherBtn.style.color = "var(--gold)";
+      topbarTeacherBtn.style.border = "1px solid var(--gold)";
+    } else {
+      topbarTeacherBtn.innerHTML = `<span>👨‍🏫 Cổng Giảng Viên</span>`;
+      topbarTeacherBtn.style.background = "transparent";
+      topbarTeacherBtn.style.color = "var(--gold)";
+      topbarTeacherBtn.style.border = "1px solid var(--gold)";
+    }
+  }
 
   if (state.teacherComment || state.teacherGrade) {
     fbBanner.classList.add("show");
@@ -134,6 +161,73 @@ function updateAuthUI() {
     fbBanner.classList.remove("show");
   }
 }
+
+window.switchAuthTab = function(tab) {
+  const studentBtn = document.getElementById("auth-tab-student");
+  const teacherBtn = document.getElementById("auth-tab-teacher");
+  const studentPanel = document.getElementById("auth-panel-student");
+  const teacherPanel = document.getElementById("auth-panel-teacher");
+  const errEl = document.getElementById("auth-error-msg");
+  if (errEl) errEl.classList.remove("show");
+
+  if (tab === "teacher") {
+    if (studentBtn) {
+      studentBtn.style.background = "transparent";
+      studentBtn.style.color = "var(--ink)";
+    }
+    if (teacherBtn) {
+      teacherBtn.style.background = "var(--gold)";
+      teacherBtn.style.color = "#FFFFFF";
+    }
+    if (studentPanel) studentPanel.style.display = "none";
+    if (teacherPanel) teacherPanel.style.display = "block";
+  } else {
+    if (studentBtn) {
+      studentBtn.style.background = "var(--ink)";
+      studentBtn.style.color = "#FFFFFF";
+    }
+    if (teacherBtn) {
+      teacherBtn.style.background = "transparent";
+      teacherBtn.style.color = "var(--ink)";
+    }
+    if (studentPanel) studentPanel.style.display = "block";
+    if (teacherPanel) teacherPanel.style.display = "none";
+  }
+};
+
+window.closeAuthModal = function() {
+  const overlay = document.getElementById("auth-overlay");
+  if (overlay) overlay.style.display = "none";
+};
+
+window.openTeacherLoginModal = function() {
+  if (currentUser && isTeacherEmail(currentUser.email)) {
+    switchTab('teacher');
+    showToast("Đã chuyển sang Trang Quản Trị Lớp Học");
+    return;
+  }
+  const overlay = document.getElementById("auth-overlay");
+  if (overlay) overlay.style.display = "flex";
+  switchAuthTab('teacher');
+};
+
+window.quickTeacherLogin = function(email) {
+  verifyAndLoginUser(email, "Giảng viên Lê Viết Hoài Nam", "Giảng viên", "");
+};
+
+window.handleTeacherLogin = function() {
+  const emailInp = document.getElementById("teacher-email-input");
+  const email = (emailInp ? emailInp.value : "").trim().toLowerCase();
+  if (!email || !email.includes("@")) {
+    showAuthError("Vui lòng nhập đúng địa chỉ Gmail của Giảng viên.");
+    return;
+  }
+  if (!isTeacherEmail(email)) {
+    showAuthError(`Địa chỉ <b>${email}</b> không thuộc danh sách Giảng viên quản trị (<b>${TEACHER_ADMIN_EMAIL}</b> hoặc <b>${TEACHER_ADMIN_EMAIL_2}</b>).`);
+    return;
+  }
+  verifyAndLoginUser(email, "Giảng viên Lê Viết Hoài Nam", "Giảng viên", "");
+};
 
 function initGoogleGsiButton() {
   if (cloudConfig.googleClientId && window.google && window.google.accounts) {
@@ -187,7 +281,7 @@ function showAuthError(msg) {
 
 async function verifyAndLoginUser(email, name, studentClass = "", phone = "") {
   const cleanEmail = email.trim().toLowerCase();
-  const isTeacher = cleanEmail === TEACHER_ADMIN_EMAIL || cleanEmail === TEACHER_ADMIN_EMAIL_2;
+  const isTeacher = isTeacherEmail(cleanEmail);
 
   // 1. Tự động đồng bộ lên Google Sheets nếu có link Apps Script
   if (cloudConfig.appsScriptUrl) {
@@ -632,7 +726,7 @@ function renderTeacherDashboard() {
       <td><span class="eyebrow" style="font-size:10px;">${u.role === 'teacher' ? 'GIẢNG VIÊN' : 'HỌC VIÊN'}</span></td>
       <td><span style="color:var(--ok); font-weight:600;">Đang hoạt động</span></td>
       <td>
-        ${u.email !== TEACHER_ADMIN_EMAIL
+        ${!isTeacherEmail(u.email)
           ? `<button class="btn danger sm" onclick="removeStudentEmail('${u.email}')">Thu hồi quyền</button>`
           : `<span style="font-size:12px; color:var(--ink-2);">Quản trị viên</span>`}
       </td>
@@ -767,7 +861,7 @@ function renderTeacherDashboard() {
       <span class="eyebrow">CẤU HÌNH KẾT NỐI</span>
       <h2 class="card-title">Liên kết <em>Google Trang tính</em> (Google Sheets)</h2>
       <p style="font-size:14px; color:var(--ink-2); margin-bottom:14px;">
-        Kết nối trang web với tệp Google Trang tính trên tài khoản <b>${TEACHER_ADMIN_EMAIL}</b> để lưu trữ danh sách lớp và bài làm từ xa:
+        Kết nối trang web với tệp Google Trang tính trên tài khoản <b>${(currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL}</b> để lưu trữ danh sách lớp và bài làm từ xa:
       </p>
       <div class="passage-box" style="font-size:13.8px;">
         <div style="margin-bottom:10px; padding:10px 14px; background:var(--butter); border:1px solid rgba(154,116,50,0.4); border-radius:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -833,7 +927,7 @@ window.addStudentEmail = async function() {
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           action: "manage_whitelist",
-          email: TEACHER_ADMIN_EMAIL,
+          email: (currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL,
           subAction: "add",
           targetEmail,
           targetName
@@ -860,7 +954,7 @@ window.removeStudentEmail = async function(targetEmail) {
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           action: "manage_whitelist",
-          email: TEACHER_ADMIN_EMAIL,
+          email: (currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL,
           subAction: "remove",
           targetEmail
         })
@@ -889,7 +983,7 @@ window.refreshFromGoogleSheets = async function() {
     return;
   }
   try {
-    const url = `${cloudConfig.appsScriptUrl}?action=check_user&email=${encodeURIComponent(TEACHER_ADMIN_EMAIL)}`;
+    const url = `${cloudConfig.appsScriptUrl}?action=check_user&email=${encodeURIComponent((currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL)}`;
     const res = await fetch(url);
     const data = await res.json();
     if (data.allAllowed) cloudConfig.localWhitelist = data.allAllowed;
@@ -920,7 +1014,7 @@ window.saveTeacherGrade = async function(studentEmail, idx) {
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           action: "grade_student",
-          email: TEACHER_ADMIN_EMAIL,
+          email: (currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL,
           studentEmail,
           teacherGrade: grade,
           teacherComment: comment
@@ -1001,7 +1095,7 @@ function renderCurrentTab() {
   const eyeEl = document.getElementById("section-eyebrow");
 
   if (state.currentTab === "teacher") {
-    if (!currentUser || currentUser.email.toLowerCase() !== TEACHER_ADMIN_EMAIL) {
+    if (!currentUser || !isTeacherEmail(currentUser.email)) {
       state.currentTab = "theory";
       return renderCurrentTab();
     }

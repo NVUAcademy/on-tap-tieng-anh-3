@@ -813,43 +813,100 @@
 <body>
   <!-- CỔNG ĐĂNG NHẬP TÀI KHOẢN GOOGLE (QUIET LUXURY ATELIER MODAL) -->
   <div class="auth-overlay" id="auth-overlay" style="display:none;">
-    <div class="auth-box">
-      <div class="logo-circle" style="margin:0 auto 14px; width:46px; height:46px; font-size:24px;">N</div>
+    <div class="auth-box" style="position:relative; max-width:520px; width:92%;">
+      <!-- Nút đóng tạm để xem bài giảng -->
+      <button onclick="closeAuthModal()" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:22px; cursor:pointer; color:var(--ink-2); line-height:1;" title="Xem trước tài liệu">✕</button>
+
+      <div class="logo-circle" style="margin:0 auto 12px; width:46px; height:46px; font-size:24px;">N</div>
       <span class="eyebrow">HỌC VIỆN HỌC THUẬT • ĐẠI HỌC HỒNG ĐỨC</span>
-      <h2 style="font-size:32px; margin:6px 0 8px;">Phòng Ôn Luyện <em>Tiếng Anh 3</em></h2>
-      <p style="font-size:13.8px; color:var(--ink-2); margin-bottom:20px;">
+      <h2 style="font-size:30px; margin:4px 0 6px;">Phòng Ôn Luyện <em>Tiếng Anh 3</em></h2>
+      <p style="font-size:13.5px; color:var(--ink-2); margin-bottom:16px;">
         Mã học phần: 133033 • Speakout Pre-Intermediate B1<br/>
-        Giảng viên phụ trách: <b>leviethoainam287@gmail.com</b>
+        Giảng viên phụ trách: <b>Thầy Lê Viết Hoài Nam</b>
       </p>
 
-      <div id="google-gsi-container" style="display:flex; justify-content:center; margin-bottom:12px;"></div>
-
-      <div style="text-align:left; background:var(--surface); padding:18px; border-radius:16px; border:1px solid rgba(154,116,50,0.25); margin-bottom:14px;">
-        <label class="field-label">ĐỊA CHỈ GMAIL CỦA BẠN <span style="color:var(--warn);">*</span></label>
-        <input type="email" id="login-email-input" class="text-input" style="width:100%; margin-bottom:10px;" placeholder="Ví dụ: hocvien@gmail.com" />
-        <label class="field-label">HỌ VÀ TÊN HỌC VIÊN <span style="color:var(--warn);">*</span></label>
-        <input type="text" id="login-name-input" class="text-input" style="width:100%; margin-bottom:10px;" placeholder="Nhập họ và tên đầy đủ của em..." />
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
-          <div>
-            <label class="field-label">LỚP / MÃ SINH VIÊN</label>
-            <input type="text" id="login-class-input" class="text-input" style="width:100%;" placeholder="Vd: GDTHK26VH" />
-          </div>
-          <div>
-            <label class="field-label">SỐ ĐIỆN THOẠI / ZALO</label>
-            <input type="text" id="login-phone-input" class="text-input" style="width:100%;" placeholder="Vd: 0987xxxxxx" />
-          </div>
-        </div>
-        <button class="btn primary" style="width:100%; justify-content:center; padding:11px 20px;" onclick="handleEmailLogin()">
-          <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          <span>Đăng Nhập / Tự Động Kích Hoạt Phòng Học</span>
+      <!-- TABS CHUYỂN ĐỔI: HỌC VIÊN vs GIẢNG VIÊN -->
+      <div style="display:flex; gap:6px; margin-bottom:16px; padding:4px; background:var(--surface); border:1px solid var(--line); border-radius:12px;">
+        <button id="auth-tab-student" class="btn sm" style="flex:1; border-radius:8px; justify-content:center; background:var(--ink); color:#FFFFFF; font-weight:600; padding:10px 12px;" onclick="switchAuthTab('student')">
+          🎓 Học Viên Vào Học
+        </button>
+        <button id="auth-tab-teacher" class="btn sm" style="flex:1; border-radius:8px; justify-content:center; background:transparent; color:var(--ink); font-weight:600; padding:10px 12px;" onclick="switchAuthTab('teacher')">
+          👨‍🏫 Cổng Giảng Viên (Admin)
         </button>
       </div>
 
-      <div id="auth-error-msg" class="notice" style="margin-top:10px; text-align:left;"></div>
+      <div id="google-gsi-container" style="display:flex; justify-content:center; margin-bottom:12px;"></div>
 
-      <p style="font-size:12.5px; color:var(--ink-2); margin-top:12px; line-height:1.5;">
-        ✨ <b>Tự động cấp quyền:</b> Học viên chỉ cần nhập đúng Gmail và Họ tên, hệ thống sẽ tự động kích hoạt tài khoản và cho vào phòng học ngay lập tức.
-      </p>
+      <!-- PANEL 1: DÀNH CHO HỌC VIÊN -->
+      <div id="auth-panel-student">
+        <div style="text-align:left; background:var(--surface); padding:16px 18px; border-radius:16px; border:1px solid rgba(154,116,50,0.25); margin-bottom:12px;">
+          <label class="field-label">ĐỊA CHỈ GMAIL CỦA BẠN <span style="color:var(--warn);">*</span></label>
+          <input type="email" id="login-email-input" class="text-input" style="width:100%; margin-bottom:10px;" placeholder="Ví dụ: hocvien@gmail.com" />
+          <label class="field-label">HỌ VÀ TÊN HỌC VIÊN <span style="color:var(--warn);">*</span></label>
+          <input type="text" id="login-name-input" class="text-input" style="width:100%; margin-bottom:10px;" placeholder="Nhập họ và tên đầy đủ của em..." />
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+            <div>
+              <label class="field-label">LỚP / MÃ SINH VIÊN</label>
+              <input type="text" id="login-class-input" class="text-input" style="width:100%;" placeholder="Vd: GDTHK26VH" />
+            </div>
+            <div>
+              <label class="field-label">SỐ ĐIỆN THOẠI / ZALO</label>
+              <input type="text" id="login-phone-input" class="text-input" style="width:100%;" placeholder="Vd: 0987xxxxxx" />
+            </div>
+          </div>
+          <button class="btn primary" style="width:100%; justify-content:center; padding:11px 20px;" onclick="handleEmailLogin()">
+            <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            <span>Đăng Nhập / Tự Động Kích Hoạt Phòng Học</span>
+          </button>
+        </div>
+        <p style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">
+          ✨ <b>Tự động cấp quyền:</b> Học viên chỉ cần nhập đúng Gmail và Họ tên, hệ thống sẽ tự động kích hoạt tài khoản và cho vào phòng học ngay lập tức.
+        </p>
+      </div>
+
+      <!-- PANEL 2: DÀNH RIÊNG CHO GIẢNG VIÊN (ADMIN PORTAL) -->
+      <div id="auth-panel-teacher" style="display:none; text-align:left;">
+        <div style="background:var(--surface); padding:18px 20px; border-radius:16px; border:1px solid var(--gold); margin-bottom:12px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span class="eyebrow" style="color:var(--gold); font-size:11px;">CỔNG QUẢN TRỊ VIÊN DÀNH CHO GIẢNG VIÊN</span>
+          </div>
+          <p style="font-size:13.5px; color:var(--ink-2); margin-bottom:14px; line-height:1.5;">
+            Thầy chọn nhanh tài khoản Gmail Giảng viên bên dưới để đăng nhập ngay vào <b>Trang Quản trị Lớp học</b> (xem bảng điểm, danh sách học sinh, bài viết luận và kết nối Google Sheets):
+          </p>
+
+          <div style="display:flex; flex-direction:column; gap:9px; margin-bottom:14px;">
+            <button class="btn primary" style="width:100%; justify-content:flex-start; padding:12px 16px; background:linear-gradient(135deg, #141E30, #243B55); color:#fff; border:1px solid var(--gold);" onclick="quickTeacherLogin('leviethoainam287@gmail.com')">
+              <span style="font-size:20px; margin-right:10px;">👨‍🏫</span>
+              <div style="text-align:left;">
+                <div style="font-weight:700; font-size:14px; color:#FFFFFF;">Đăng nhập: leviethoainam287@gmail.com</div>
+                <div style="font-size:11.5px; opacity:0.85; color:#F5F2EB;">Giảng viên Lê Viết Hoài Nam (Tài khoản chính)</div>
+              </div>
+            </button>
+
+            <button class="btn" style="width:100%; justify-content:flex-start; padding:12px 16px; background:var(--surface); border:1px solid var(--line);" onclick="quickTeacherLogin('leviethoainam297@gmail.com')">
+              <span style="font-size:20px; margin-right:10px;">🔑</span>
+              <div style="text-align:left;">
+                <div style="font-weight:700; font-size:14px; color:var(--ink);">Đăng nhập: leviethoainam297@gmail.com</div>
+                <div style="font-size:11.5px; color:var(--ink-2);">Giảng viên Lê Viết Hoài Nam (Tài khoản phụ)</div>
+              </div>
+            </button>
+          </div>
+
+          <div class="rule" style="margin:12px 0;"><span>HOẶC NHẬP GMAIL KHÁC</span></div>
+
+          <label class="field-label">GMAIL GIẢNG VIÊN</label>
+          <div style="display:flex; gap:8px;">
+            <input type="email" id="teacher-email-input" class="text-input" style="flex:1;" placeholder="Nhập gmail giảng viên..." />
+            <button class="btn primary" onclick="handleTeacherLogin()">Đăng nhập</button>
+          </div>
+        </div>
+
+        <div style="padding:10px 14px; background:var(--butter); border:1px solid rgba(154,116,50,0.3); border-radius:12px; font-size:12.5px;">
+          📊 <b>Quản lý qua Google Sheets:</b> Thầy có thể <a href="https://docs.google.com/spreadsheets/d/1UW4oQ2lOoFybHKO3FTMFOpGxQFy4dGAlJAu8Wj_YDTQ/edit" target="_blank" style="color:var(--gold); font-weight:700; text-decoration:underline;">Bấm vào đây để mở trực tiếp Bảng Google Trang Tính</a>.
+        </div>
+      </div>
+
+      <div id="auth-error-msg" class="notice" style="margin-top:10px; text-align:left;"></div>
     </div>
   </div>
 
@@ -865,6 +922,11 @@
       </a>
 
       <div class="topbar-actions">
+        <!-- Nút Cổng Giảng Viên luôn nổi bật -->
+        <button class="btn sm" id="topbar-teacher-portal-btn" onclick="openTeacherLoginModal()" style="border-color:var(--gold); color:var(--gold); font-weight:700; display:inline-flex; align-items:center; gap:6px;">
+          👨‍🏫 <span>Cổng Giảng Viên</span>
+        </button>
+
         <div style="text-align:right; margin-right:6px;">
           <div style="display:flex; align-items:center; gap:6px; justify-content:flex-end;">
             <span id="user-role-badge" class="eyebrow" style="font-size:9.5px; letter-spacing:0.18em;">HỌC VIÊN</span>
@@ -4075,6 +4137,12 @@ const TEACHER_ADMIN_EMAIL = "leviethoainam287@gmail.com";
 const TEACHER_ADMIN_EMAIL_2 = "leviethoainam297@gmail.com";
 const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1UW4oQ2lOoFybHKO3FTMFOpGxQFy4dGAlJAu8Wj_YDTQ/edit";
 
+function isTeacherEmail(email) {
+  if (!email) return false;
+  const clean = email.trim().toLowerCase();
+  return clean === TEACHER_ADMIN_EMAIL.toLowerCase() || clean === TEACHER_ADMIN_EMAIL_2.toLowerCase();
+}
+
 let cloudConfig = {
   appsScriptUrl: "",
   googleClientId: "",
@@ -4118,7 +4186,7 @@ function loadConfigAndAuth() {
     if (savedCfg) {
       const parsed = JSON.parse(savedCfg);
       cloudConfig = { ...cloudConfig, ...parsed };
-      if (!cloudConfig.localWhitelist.some(u => u.email === TEACHER_ADMIN_EMAIL)) {
+      if (!cloudConfig.localWhitelist.some(u => isTeacherEmail(u.email))) {
         cloudConfig.localWhitelist.unshift({
           email: TEACHER_ADMIN_EMAIL,
           name: "Giảng viên Lê Viết Hoài Nam",
@@ -4178,21 +4246,42 @@ function updateAuthUI() {
   const emailDisp = document.getElementById("user-email-display");
   const fbBanner = document.getElementById("teacher-feedback-banner");
   const fbContent = document.getElementById("teacher-feedback-content");
+  const topbarTeacherBtn = document.getElementById("topbar-teacher-portal-btn");
 
   if (!currentUser || !currentUser.email) {
     overlay.style.display = "flex";
     initGoogleGsiButton();
+    if (topbarTeacherBtn) {
+      topbarTeacherBtn.innerHTML = `👨‍🏫 <span>Cổng Giảng Viên</span>`;
+      topbarTeacherBtn.style.background = "transparent";
+      topbarTeacherBtn.style.color = "var(--gold)";
+    }
     return;
   }
 
   overlay.style.display = "none";
-  const isTeacher = currentUser.email.toLowerCase() === TEACHER_ADMIN_EMAIL;
+  const isTeacher = isTeacherEmail(currentUser.email);
   currentUser.role = isTeacher ? "teacher" : "student";
 
   nameDisp.textContent = currentUser.name || currentUser.email;
   emailDisp.textContent = `(${currentUser.email})`;
   roleBadge.textContent = isTeacher ? "GIẢNG VIÊN QUẢN TRỊ" : "HỌC VIÊN CHÍNH THỨC";
+  roleBadge.style.color = isTeacher ? "var(--gold)" : "var(--ink-2)";
   navTeacher.style.display = isTeacher ? "inline-flex" : "none";
+
+  if (topbarTeacherBtn) {
+    if (isTeacher) {
+      topbarTeacherBtn.innerHTML = `<span>📊 Trang Quản Trị GV</span>`;
+      topbarTeacherBtn.style.background = "var(--butter)";
+      topbarTeacherBtn.style.color = "var(--gold)";
+      topbarTeacherBtn.style.border = "1px solid var(--gold)";
+    } else {
+      topbarTeacherBtn.innerHTML = `<span>👨‍🏫 Cổng Giảng Viên</span>`;
+      topbarTeacherBtn.style.background = "transparent";
+      topbarTeacherBtn.style.color = "var(--gold)";
+      topbarTeacherBtn.style.border = "1px solid var(--gold)";
+    }
+  }
 
   if (state.teacherComment || state.teacherGrade) {
     fbBanner.classList.add("show");
@@ -4204,6 +4293,73 @@ function updateAuthUI() {
     fbBanner.classList.remove("show");
   }
 }
+
+window.switchAuthTab = function(tab) {
+  const studentBtn = document.getElementById("auth-tab-student");
+  const teacherBtn = document.getElementById("auth-tab-teacher");
+  const studentPanel = document.getElementById("auth-panel-student");
+  const teacherPanel = document.getElementById("auth-panel-teacher");
+  const errEl = document.getElementById("auth-error-msg");
+  if (errEl) errEl.classList.remove("show");
+
+  if (tab === "teacher") {
+    if (studentBtn) {
+      studentBtn.style.background = "transparent";
+      studentBtn.style.color = "var(--ink)";
+    }
+    if (teacherBtn) {
+      teacherBtn.style.background = "var(--gold)";
+      teacherBtn.style.color = "#FFFFFF";
+    }
+    if (studentPanel) studentPanel.style.display = "none";
+    if (teacherPanel) teacherPanel.style.display = "block";
+  } else {
+    if (studentBtn) {
+      studentBtn.style.background = "var(--ink)";
+      studentBtn.style.color = "#FFFFFF";
+    }
+    if (teacherBtn) {
+      teacherBtn.style.background = "transparent";
+      teacherBtn.style.color = "var(--ink)";
+    }
+    if (studentPanel) studentPanel.style.display = "block";
+    if (teacherPanel) teacherPanel.style.display = "none";
+  }
+};
+
+window.closeAuthModal = function() {
+  const overlay = document.getElementById("auth-overlay");
+  if (overlay) overlay.style.display = "none";
+};
+
+window.openTeacherLoginModal = function() {
+  if (currentUser && isTeacherEmail(currentUser.email)) {
+    switchTab('teacher');
+    showToast("Đã chuyển sang Trang Quản Trị Lớp Học");
+    return;
+  }
+  const overlay = document.getElementById("auth-overlay");
+  if (overlay) overlay.style.display = "flex";
+  switchAuthTab('teacher');
+};
+
+window.quickTeacherLogin = function(email) {
+  verifyAndLoginUser(email, "Giảng viên Lê Viết Hoài Nam", "Giảng viên", "");
+};
+
+window.handleTeacherLogin = function() {
+  const emailInp = document.getElementById("teacher-email-input");
+  const email = (emailInp ? emailInp.value : "").trim().toLowerCase();
+  if (!email || !email.includes("@")) {
+    showAuthError("Vui lòng nhập đúng địa chỉ Gmail của Giảng viên.");
+    return;
+  }
+  if (!isTeacherEmail(email)) {
+    showAuthError(`Địa chỉ <b>${email}</b> không thuộc danh sách Giảng viên quản trị (<b>${TEACHER_ADMIN_EMAIL}</b> hoặc <b>${TEACHER_ADMIN_EMAIL_2}</b>).`);
+    return;
+  }
+  verifyAndLoginUser(email, "Giảng viên Lê Viết Hoài Nam", "Giảng viên", "");
+};
 
 function initGoogleGsiButton() {
   if (cloudConfig.googleClientId && window.google && window.google.accounts) {
@@ -4257,7 +4413,7 @@ function showAuthError(msg) {
 
 async function verifyAndLoginUser(email, name, studentClass = "", phone = "") {
   const cleanEmail = email.trim().toLowerCase();
-  const isTeacher = cleanEmail === TEACHER_ADMIN_EMAIL || cleanEmail === TEACHER_ADMIN_EMAIL_2;
+  const isTeacher = isTeacherEmail(cleanEmail);
 
   // 1. Tự động đồng bộ lên Google Sheets nếu có link Apps Script
   if (cloudConfig.appsScriptUrl) {
@@ -4702,7 +4858,7 @@ function renderTeacherDashboard() {
       <td><span class="eyebrow" style="font-size:10px;">${u.role === 'teacher' ? 'GIẢNG VIÊN' : 'HỌC VIÊN'}</span></td>
       <td><span style="color:var(--ok); font-weight:600;">Đang hoạt động</span></td>
       <td>
-        ${u.email !== TEACHER_ADMIN_EMAIL
+        ${!isTeacherEmail(u.email)
           ? `<button class="btn danger sm" onclick="removeStudentEmail('${u.email}')">Thu hồi quyền</button>`
           : `<span style="font-size:12px; color:var(--ink-2);">Quản trị viên</span>`}
       </td>
@@ -4837,7 +4993,7 @@ function renderTeacherDashboard() {
       <span class="eyebrow">CẤU HÌNH KẾT NỐI</span>
       <h2 class="card-title">Liên kết <em>Google Trang tính</em> (Google Sheets)</h2>
       <p style="font-size:14px; color:var(--ink-2); margin-bottom:14px;">
-        Kết nối trang web với tệp Google Trang tính trên tài khoản <b>${TEACHER_ADMIN_EMAIL}</b> để lưu trữ danh sách lớp và bài làm từ xa:
+        Kết nối trang web với tệp Google Trang tính trên tài khoản <b>${(currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL}</b> để lưu trữ danh sách lớp và bài làm từ xa:
       </p>
       <div class="passage-box" style="font-size:13.8px;">
         <div style="margin-bottom:10px; padding:10px 14px; background:var(--butter); border:1px solid rgba(154,116,50,0.4); border-radius:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -4903,7 +5059,7 @@ window.addStudentEmail = async function() {
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           action: "manage_whitelist",
-          email: TEACHER_ADMIN_EMAIL,
+          email: (currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL,
           subAction: "add",
           targetEmail,
           targetName
@@ -4930,7 +5086,7 @@ window.removeStudentEmail = async function(targetEmail) {
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           action: "manage_whitelist",
-          email: TEACHER_ADMIN_EMAIL,
+          email: (currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL,
           subAction: "remove",
           targetEmail
         })
@@ -4959,7 +5115,7 @@ window.refreshFromGoogleSheets = async function() {
     return;
   }
   try {
-    const url = `${cloudConfig.appsScriptUrl}?action=check_user&email=${encodeURIComponent(TEACHER_ADMIN_EMAIL)}`;
+    const url = `${cloudConfig.appsScriptUrl}?action=check_user&email=${encodeURIComponent((currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL)}`;
     const res = await fetch(url);
     const data = await res.json();
     if (data.allAllowed) cloudConfig.localWhitelist = data.allAllowed;
@@ -4990,7 +5146,7 @@ window.saveTeacherGrade = async function(studentEmail, idx) {
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           action: "grade_student",
-          email: TEACHER_ADMIN_EMAIL,
+          email: (currentUser && currentUser.email) || TEACHER_ADMIN_EMAIL,
           studentEmail,
           teacherGrade: grade,
           teacherComment: comment
@@ -5071,7 +5227,7 @@ function renderCurrentTab() {
   const eyeEl = document.getElementById("section-eyebrow");
 
   if (state.currentTab === "teacher") {
-    if (!currentUser || currentUser.email.toLowerCase() !== TEACHER_ADMIN_EMAIL) {
+    if (!currentUser || !isTeacherEmail(currentUser.email)) {
       state.currentTab = "theory";
       return renderCurrentTab();
     }
