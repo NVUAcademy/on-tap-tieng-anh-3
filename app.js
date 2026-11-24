@@ -160,14 +160,23 @@ function handleGoogleCredentialResponse(response) {
 window.handleEmailLogin = function() {
   const emailInp = document.getElementById("login-email-input");
   const nameInp = document.getElementById("login-name-input");
+  const classInp = document.getElementById("login-class-input");
+  const phoneInp = document.getElementById("login-phone-input");
+
   const email = (emailInp.value || "").trim().toLowerCase();
   const name = (nameInp.value || "").trim() || email.split("@")[0];
+  const sClass = classInp ? (classInp.value || "").trim() : "";
+  const sPhone = phoneInp ? (phoneInp.value || "").trim() : "";
 
   if (!email || !email.includes("@")) {
     showAuthError("Vui lòng nhập đúng địa chỉ Gmail của bạn.");
     return;
   }
-  verifyAndLoginUser(email, name);
+  if (!nameInp.value || !nameInp.value.trim()) {
+    showAuthError("Vui lòng nhập họ và tên của bạn để hệ thống ghi danh.");
+    return;
+  }
+  verifyAndLoginUser(email, name, sClass, sPhone);
 };
 
 function showAuthError(msg) {
@@ -176,33 +185,21 @@ function showAuthError(msg) {
   el.innerHTML = msg;
 }
 
-async function verifyAndLoginUser(email, name) {
+async function verifyAndLoginUser(email, name, studentClass = "", phone = "") {
   const cleanEmail = email.trim().toLowerCase();
-  const isTeacher = cleanEmail === TEACHER_ADMIN_EMAIL;
+  const isTeacher = cleanEmail === TEACHER_ADMIN_EMAIL || cleanEmail === TEACHER_ADMIN_EMAIL_2;
 
+  // 1. Tự động đồng bộ lên Google Sheets nếu có link Apps Script
   if (cloudConfig.appsScriptUrl) {
     try {
-      showAuthError("<span style='color:var(--ink);'>Đang xác thực quyền truy cập trên Google Trang tính của Giảng viên...</span>");
-      const url = `${cloudConfig.appsScriptUrl}?action=check_user&email=${encodeURIComponent(cleanEmail)}`;
+      showToast("Đang đồng bộ tài khoản...");
+      const url = `${cloudConfig.appsScriptUrl}?action=auto_register&email=${encodeURIComponent(cleanEmail)}&name=${encodeURIComponent(name)}&studentClass=${encodeURIComponent(studentClass)}&phone=${encodeURIComponent(phone)}`;
       const res = await fetch(url);
       const data = await res.json();
-
-      if (!data.authorized && !isTeacher) {
-        showAuthError(`Tài khoản <b>${cleanEmail}</b> chưa được Giảng viên (<b>${TEACHER_ADMIN_EMAIL}</b>) cấp quyền trong danh sách lớp. Vui lòng liên hệ thầy Nam để được cấp quyền.`);
-        return;
-      }
 
       if (data.allAllowed) cloudConfig.localWhitelist = data.allAllowed;
       if (data.allProgress) cloudConfig.cloudStudentsProgress = data.allProgress;
       saveCloudConfig();
-
-      currentUser = {
-        email: cleanEmail,
-        name: (data.user && data.user.name) || name,
-        role: isTeacher ? "teacher" : "student"
-      };
-      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(currentUser));
-      loadState();
 
       if (data.progress && data.progress.state && Object.keys(data.progress.state).length > 0) {
         state = { ...state, ...data.progress.state };
@@ -210,26 +207,38 @@ async function verifyAndLoginUser(email, name) {
         state.teacherGrade = data.progress.teacherGrade || "";
         saveState();
       }
-
-      document.getElementById("auth-error-msg").classList.remove("show");
-      if (isTeacher) state.currentTab = "teacher";
-      updateAuthUI();
-      updateProgressUI();
-      renderCurrentTab();
-      showToast(`Xin chào, ${currentUser.name}`);
-      return;
-    } catch (err) {}
+    } catch (err) {
+      console.warn("Cloud auto-register error:", err);
+    }
   }
 
-  const allowedUser = cloudConfig.localWhitelist.find(u => u.email.toLowerCase() === cleanEmail && u.status !== "blocked");
-  if (!isTeacher && !allowedUser) {
-    showAuthError(`Tài khoản <b>${cleanEmail}</b> chưa nằm trong danh sách được Giảng viên (<b>${TEACHER_ADMIN_EMAIL}</b>) cấp quyền.<br/>Vui lòng báo Giảng viên thêm Gmail này vào danh sách lớp học.`);
-    return;
+  // 2. Tự động tạo và kích hoạt tài khoản trong Whitelist cục bộ
+  let allowedUser = cloudConfig.localWhitelist.find(u => u.email.toLowerCase() === cleanEmail);
+  const nowStr = new Date().toLocaleString("vi-VN");
+  if (!allowedUser) {
+    allowedUser = {
+      email: cleanEmail,
+      name: name,
+      studentClass: studentClass,
+      phone: phone,
+      role: isTeacher ? "teacher" : "student",
+      status: "active",
+      createdAt: nowStr
+    };
+    cloudConfig.localWhitelist.push(allowedUser);
+    saveCloudConfig();
+  } else {
+    if (name) allowedUser.name = name;
+    if (studentClass) allowedUser.studentClass = studentClass;
+    if (phone) allowedUser.phone = phone;
+    saveCloudConfig();
   }
 
   currentUser = {
     email: cleanEmail,
     name: isTeacher ? "Giảng viên Lê Viết Hoài Nam" : (allowedUser ? allowedUser.name : name),
+    studentClass: studentClass || (allowedUser ? allowedUser.studentClass : ""),
+    phone: phone || (allowedUser ? allowedUser.phone : ""),
     role: isTeacher ? "teacher" : "student"
   };
   localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(currentUser));
@@ -239,7 +248,12 @@ async function verifyAndLoginUser(email, name) {
   updateAuthUI();
   updateProgressUI();
   renderCurrentTab();
-  showToast(`Đã đăng nhập: ${currentUser.name}`);
+
+  if (isTeacher) {
+    showToast(`Xin chào thầy Nam! Đã đăng nhập trang quản trị.`);
+  } else {
+    showToast(`Chào mừng em ${currentUser.name}! Tài khoản đã được kích hoạt tự động.`);
+  }
 }
 
 window.logoutUser = function() {

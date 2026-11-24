@@ -16,6 +16,12 @@
  */
 
 const ADMIN_EMAIL = "leviethoainam287@gmail.com";
+const ADMIN_EMAIL_2 = "leviethoainam297@gmail.com";
+
+function isAdmin(email) {
+  const clean = String(email || "").trim().toLowerCase();
+  return clean === ADMIN_EMAIL || clean === ADMIN_EMAIL_2;
+}
 
 function initSheets() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -116,11 +122,45 @@ function doGet(e) {
   const { wsAllowed, wsProgress } = initSheets();
   const action = (e.parameter.action || "ping").toLowerCase();
   const email = (e.parameter.email || "").trim().toLowerCase();
+  const name = (e.parameter.name || "").trim() || email.split("@")[0];
+  const studentClass = (e.parameter.studentClass || "").trim();
+  const phone = (e.parameter.phone || "").trim();
+
+  // 1. Tự động ghi danh & kích hoạt học viên mới
+  if (action === "auto_register") {
+    if (!email) return jsonResponse({ ok: false, error: "Thiếu email" });
+    const nowStr = new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
+    const rows = wsAllowed.getDataRange().getValues();
+    let existingIndex = -1;
+    for (let i = 1; i < rows.length; i++) {
+      if (String(rows[i][0] || "").trim().toLowerCase() === email) {
+        existingIndex = i + 1;
+        break;
+      }
+    }
+    const role = isAdmin(email) ? "teacher" : "student";
+    if (existingIndex === -1) {
+      wsAllowed.appendRow([email, name, role, "active", nowStr, studentClass, phone]);
+    }
+    const allProg = getAllStudentProgress(wsProgress);
+    const myProg = allProg.find(p => p.email === email) || null;
+    const allowed = getAllowedList(wsAllowed);
+
+    return jsonResponse({
+      ok: true,
+      authorized: true,
+      role: role,
+      user: { email, name, role, studentClass, phone },
+      progress: myProg,
+      allAllowed: isAdmin(email) ? allowed : undefined,
+      allProgress: isAdmin(email) ? allProg : undefined
+    });
+  }
 
   if (action === "check_user") {
     const allowed = getAllowedList(wsAllowed);
     const user = allowed.find(u => u.email === email && u.status === "active");
-    if (!user && email !== ADMIN_EMAIL) {
+    if (!user && !isAdmin(email)) {
       return jsonResponse({ ok: false, authorized: false, message: "Email chưa được giảng viên cấp quyền." });
     }
     const allProg = getAllStudentProgress(wsProgress);
@@ -128,11 +168,11 @@ function doGet(e) {
     return jsonResponse({
       ok: true,
       authorized: true,
-      role: email === ADMIN_EMAIL ? "teacher" : (user ? user.role : "student"),
-      user: user || { email: ADMIN_EMAIL, name: "Giảng viên", role: "teacher" },
+      role: isAdmin(email) ? "teacher" : (user ? user.role : "student"),
+      user: user || { email: email, name: name || "Giảng viên", role: "teacher" },
       progress: myProg,
-      allAllowed: email === ADMIN_EMAIL ? allowed : undefined,
-      allProgress: email === ADMIN_EMAIL ? allProg : undefined
+      allAllowed: isAdmin(email) ? allowed : undefined,
+      allProgress: isAdmin(email) ? allProg : undefined
     });
   }
 

@@ -825,25 +825,30 @@
       <div id="google-gsi-container" style="display:flex; justify-content:center; margin-bottom:12px;"></div>
 
       <div style="text-align:left; background:var(--surface); padding:18px; border-radius:16px; border:1px solid rgba(154,116,50,0.25); margin-bottom:14px;">
-        <label class="field-label">ĐỊA CHỈ GMAIL ĐƯỢC CẤP QUYỀN</label>
-        <input type="email" id="login-email-input" class="text-input" style="width:100%; margin-bottom:12px;" placeholder="Ví dụ: hocvien@gmail.com" />
-        <label class="field-label">HỌ VÀ TÊN HỌC VIÊN</label>
-        <input type="text" id="login-name-input" class="text-input" style="width:100%; margin-bottom:16px;" placeholder="Nhập họ và tên của bạn..." />
+        <label class="field-label">ĐỊA CHỈ GMAIL CỦA BẠN <span style="color:var(--warn);">*</span></label>
+        <input type="email" id="login-email-input" class="text-input" style="width:100%; margin-bottom:10px;" placeholder="Ví dụ: hocvien@gmail.com" />
+        <label class="field-label">HỌ VÀ TÊN HỌC VIÊN <span style="color:var(--warn);">*</span></label>
+        <input type="text" id="login-name-input" class="text-input" style="width:100%; margin-bottom:10px;" placeholder="Nhập họ và tên đầy đủ của em..." />
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+          <div>
+            <label class="field-label">LỚP / MÃ SINH VIÊN</label>
+            <input type="text" id="login-class-input" class="text-input" style="width:100%;" placeholder="Vd: GDTHK26VH" />
+          </div>
+          <div>
+            <label class="field-label">SỐ ĐIỆN THOẠI / ZALO</label>
+            <input type="text" id="login-phone-input" class="text-input" style="width:100%;" placeholder="Vd: 0987xxxxxx" />
+          </div>
+        </div>
         <button class="btn primary" style="width:100%; justify-content:center; padding:11px 20px;" onclick="handleEmailLogin()">
           <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          <span>Xác Thực Tài Khoản Google & Vào Học</span>
+          <span>Đăng Nhập / Tự Động Kích Hoạt Phòng Học</span>
         </button>
       </div>
 
       <div id="auth-error-msg" class="notice" style="margin-top:10px; text-align:left;"></div>
 
-      <div style="margin-top:14px; padding:12px 14px; background:var(--butter); border:1px solid rgba(154,116,50,0.35); border-radius:14px; font-size:13px;">
-        <b>Chưa có trong danh sách lớp?</b><br/>
-        <a href="https://docs.google.com/spreadsheets/d/1UW4oQ2lOoFybHKO3FTMFOpGxQFy4dGAlJAu8Wj_YDTQ/edit" target="_blank" style="color:var(--gold); font-weight:700; text-decoration:underline;">👉 Bấm vào Bảng Google Sheets này để điền Gmail đăng ký học</a>
-      </div>
-
-      <p style="font-size:12px; color:var(--ink-2); margin-top:12px;">
-        Chỉ những tài khoản Google nằm trong danh sách lớp của thầy Nam mới có thể truy cập và đồng bộ tiến độ.
+      <p style="font-size:12.5px; color:var(--ink-2); margin-top:12px; line-height:1.5;">
+        ✨ <b>Tự động cấp quyền:</b> Học viên chỉ cần nhập đúng Gmail và Họ tên, hệ thống sẽ tự động kích hoạt tài khoản và cho vào phòng học ngay lập tức.
       </p>
     </div>
   </div>
@@ -4225,14 +4230,23 @@ function handleGoogleCredentialResponse(response) {
 window.handleEmailLogin = function() {
   const emailInp = document.getElementById("login-email-input");
   const nameInp = document.getElementById("login-name-input");
+  const classInp = document.getElementById("login-class-input");
+  const phoneInp = document.getElementById("login-phone-input");
+
   const email = (emailInp.value || "").trim().toLowerCase();
   const name = (nameInp.value || "").trim() || email.split("@")[0];
+  const sClass = classInp ? (classInp.value || "").trim() : "";
+  const sPhone = phoneInp ? (phoneInp.value || "").trim() : "";
 
   if (!email || !email.includes("@")) {
     showAuthError("Vui lòng nhập đúng địa chỉ Gmail của bạn.");
     return;
   }
-  verifyAndLoginUser(email, name);
+  if (!nameInp.value || !nameInp.value.trim()) {
+    showAuthError("Vui lòng nhập họ và tên của bạn để hệ thống ghi danh.");
+    return;
+  }
+  verifyAndLoginUser(email, name, sClass, sPhone);
 };
 
 function showAuthError(msg) {
@@ -4241,33 +4255,21 @@ function showAuthError(msg) {
   el.innerHTML = msg;
 }
 
-async function verifyAndLoginUser(email, name) {
+async function verifyAndLoginUser(email, name, studentClass = "", phone = "") {
   const cleanEmail = email.trim().toLowerCase();
-  const isTeacher = cleanEmail === TEACHER_ADMIN_EMAIL;
+  const isTeacher = cleanEmail === TEACHER_ADMIN_EMAIL || cleanEmail === TEACHER_ADMIN_EMAIL_2;
 
+  // 1. Tự động đồng bộ lên Google Sheets nếu có link Apps Script
   if (cloudConfig.appsScriptUrl) {
     try {
-      showAuthError("<span style='color:var(--ink);'>Đang xác thực quyền truy cập trên Google Trang tính của Giảng viên...</span>");
-      const url = `${cloudConfig.appsScriptUrl}?action=check_user&email=${encodeURIComponent(cleanEmail)}`;
+      showToast("Đang đồng bộ tài khoản...");
+      const url = `${cloudConfig.appsScriptUrl}?action=auto_register&email=${encodeURIComponent(cleanEmail)}&name=${encodeURIComponent(name)}&studentClass=${encodeURIComponent(studentClass)}&phone=${encodeURIComponent(phone)}`;
       const res = await fetch(url);
       const data = await res.json();
-
-      if (!data.authorized && !isTeacher) {
-        showAuthError(`Tài khoản <b>${cleanEmail}</b> chưa được Giảng viên (<b>${TEACHER_ADMIN_EMAIL}</b>) cấp quyền trong danh sách lớp. Vui lòng liên hệ thầy Nam để được cấp quyền.`);
-        return;
-      }
 
       if (data.allAllowed) cloudConfig.localWhitelist = data.allAllowed;
       if (data.allProgress) cloudConfig.cloudStudentsProgress = data.allProgress;
       saveCloudConfig();
-
-      currentUser = {
-        email: cleanEmail,
-        name: (data.user && data.user.name) || name,
-        role: isTeacher ? "teacher" : "student"
-      };
-      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(currentUser));
-      loadState();
 
       if (data.progress && data.progress.state && Object.keys(data.progress.state).length > 0) {
         state = { ...state, ...data.progress.state };
@@ -4275,26 +4277,38 @@ async function verifyAndLoginUser(email, name) {
         state.teacherGrade = data.progress.teacherGrade || "";
         saveState();
       }
-
-      document.getElementById("auth-error-msg").classList.remove("show");
-      if (isTeacher) state.currentTab = "teacher";
-      updateAuthUI();
-      updateProgressUI();
-      renderCurrentTab();
-      showToast(`Xin chào, ${currentUser.name}`);
-      return;
-    } catch (err) {}
+    } catch (err) {
+      console.warn("Cloud auto-register error:", err);
+    }
   }
 
-  const allowedUser = cloudConfig.localWhitelist.find(u => u.email.toLowerCase() === cleanEmail && u.status !== "blocked");
-  if (!isTeacher && !allowedUser) {
-    showAuthError(`Tài khoản <b>${cleanEmail}</b> chưa nằm trong danh sách được Giảng viên (<b>${TEACHER_ADMIN_EMAIL}</b>) cấp quyền.<br/>Vui lòng báo Giảng viên thêm Gmail này vào danh sách lớp học.`);
-    return;
+  // 2. Tự động tạo và kích hoạt tài khoản trong Whitelist cục bộ
+  let allowedUser = cloudConfig.localWhitelist.find(u => u.email.toLowerCase() === cleanEmail);
+  const nowStr = new Date().toLocaleString("vi-VN");
+  if (!allowedUser) {
+    allowedUser = {
+      email: cleanEmail,
+      name: name,
+      studentClass: studentClass,
+      phone: phone,
+      role: isTeacher ? "teacher" : "student",
+      status: "active",
+      createdAt: nowStr
+    };
+    cloudConfig.localWhitelist.push(allowedUser);
+    saveCloudConfig();
+  } else {
+    if (name) allowedUser.name = name;
+    if (studentClass) allowedUser.studentClass = studentClass;
+    if (phone) allowedUser.phone = phone;
+    saveCloudConfig();
   }
 
   currentUser = {
     email: cleanEmail,
     name: isTeacher ? "Giảng viên Lê Viết Hoài Nam" : (allowedUser ? allowedUser.name : name),
+    studentClass: studentClass || (allowedUser ? allowedUser.studentClass : ""),
+    phone: phone || (allowedUser ? allowedUser.phone : ""),
     role: isTeacher ? "teacher" : "student"
   };
   localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(currentUser));
@@ -4304,7 +4318,12 @@ async function verifyAndLoginUser(email, name) {
   updateAuthUI();
   updateProgressUI();
   renderCurrentTab();
-  showToast(`Đã đăng nhập: ${currentUser.name}`);
+
+  if (isTeacher) {
+    showToast(`Xin chào thầy Nam! Đã đăng nhập trang quản trị.`);
+  } else {
+    showToast(`Chào mừng em ${currentUser.name}! Tài khoản đã được kích hoạt tự động.`);
+  }
 }
 
 window.logoutUser = function() {
