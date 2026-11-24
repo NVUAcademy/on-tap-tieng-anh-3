@@ -837,7 +837,12 @@
 
       <div id="auth-error-msg" class="notice" style="margin-top:10px; text-align:left;"></div>
 
-      <p style="font-size:12px; color:var(--ink-2); margin-top:14px;">
+      <div style="margin-top:14px; padding:12px 14px; background:var(--butter); border:1px solid rgba(154,116,50,0.35); border-radius:14px; font-size:13px;">
+        <b>Chưa có trong danh sách lớp?</b><br/>
+        <a href="https://docs.google.com/spreadsheets/d/1UW4oQ2lOoFybHKO3FTMFOpGxQFy4dGAlJAu8Wj_YDTQ/edit" target="_blank" style="color:var(--gold); font-weight:700; text-decoration:underline;">👉 Bấm vào Bảng Google Sheets này để điền Gmail đăng ký học</a>
+      </div>
+
+      <p style="font-size:12px; color:var(--ink-2); margin-top:12px;">
         Chỉ những tài khoản Google nằm trong danh sách lớp của thầy Nam mới có thể truy cập và đồng bộ tiến độ.
       </p>
     </div>
@@ -4062,12 +4067,15 @@ const STORAGE_KEY = "hdu_english3_133033_progress_v2";
 const AUTH_STORAGE_KEY = "hdu_english3_133033_auth_v2";
 const CONFIG_STORAGE_KEY = "hdu_english3_133033_cloud_config_v2";
 const TEACHER_ADMIN_EMAIL = "leviethoainam287@gmail.com";
+const TEACHER_ADMIN_EMAIL_2 = "leviethoainam297@gmail.com";
+const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1UW4oQ2lOoFybHKO3FTMFOpGxQFy4dGAlJAu8Wj_YDTQ/edit";
 
 let cloudConfig = {
   appsScriptUrl: "",
   googleClientId: "",
   localWhitelist: [
-    { email: "leviethoainam287@gmail.com", name: "Giảng viên Lê Viết Hoài Nam", role: "teacher", status: "active" }
+    { email: "leviethoainam287@gmail.com", name: "Giảng viên Lê Viết Hoài Nam", role: "teacher", status: "active" },
+    { email: "leviethoainam297@gmail.com", name: "Giảng viên Lê Viết Hoài Nam", role: "teacher", status: "active" }
   ],
   cloudStudentsProgress: []
 };
@@ -4809,10 +4817,17 @@ function renderTeacherDashboard() {
         Kết nối trang web với tệp Google Trang tính trên tài khoản <b>${TEACHER_ADMIN_EMAIL}</b> để lưu trữ danh sách lớp và bài làm từ xa:
       </p>
       <div class="passage-box" style="font-size:13.8px;">
-        <b>Hướng dẫn kết nối nhanh (chỉ thực hiện 1 lần):</b>
+        <div style="margin-bottom:10px; padding:10px 14px; background:var(--butter); border:1px solid rgba(154,116,50,0.4); border-radius:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <b>📊 Bảng Google Sheets chính thức đã tạo trên tài khoản của thầy:</b><br/>
+            <span style="font-size:12.5px; color:var(--ink-2);">Gồm 3 trang tính: <code>Dang_Ky_Hoc_Vien</code>, <code>Danh_Sach_Hoc_Vien</code>, <code>Tien_Do_Hoc_Vien</code></span>
+          </div>
+          <a href="https://docs.google.com/spreadsheets/d/1UW4oQ2lOoFybHKO3FTMFOpGxQFy4dGAlJAu8Wj_YDTQ/edit" target="_blank" class="btn primary sm">Mở Bảng Google Sheets ↗</a>
+        </div>
+        <b>Hướng dẫn bật đồng bộ tự động 2 chiều (chỉ thực hiện 1 lần trên bảng trên):</b>
         <ol style="padding-left:20px; margin-top:6px;">
-          <li>Mở một bảng tính mới tại <a href="https://sheets.new" target="_blank" style="color:var(--gold); font-weight:600;">sheets.new</a> bằng Gmail <b>${TEACHER_ADMIN_EMAIL}</b>.</li>
-          <li>Chọn <b>Tiện ích mở rộng (Extensions)</b> → <b>Apps Script</b>. Bấm nút <b>"Sao chép mã Apps Script"</b> bên dưới và dán đè vào trình soạn thảo, sau đó bấm Lưu.</li>
+          <li>Bấm nút <b>"Mở Bảng Google Sheets ↗"</b> ở trên.</li>
+          <li>Trên thanh menu bảng tính chọn <b>Tiện ích mở rộng (Extensions)</b> → <b>Apps Script</b>. Bấm nút <b>"Sao chép mã Apps Script"</b> bên dưới và dán đè vào trình soạn thảo, sau đó bấm Lưu.</li>
           <li>Bấm <b>Triển khai (Deploy)</b> → <b>Tùy chọn triển khai mới</b> → Loại: <b>Ứng dụng web (Web app)</b> → Ai có quyền truy cập: chọn <b>"Bất kỳ ai" (Anyone)</b> → Sao chép <b>URL ứng dụng web (<code>.../exec</code>)</b> dán vào ô bên dưới:</li>
         </ol>
         <div style="margin-top:12px;">
