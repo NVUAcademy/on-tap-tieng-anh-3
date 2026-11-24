@@ -1,0 +1,4179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ôn Tập Cuối Kỳ Tiếng Anh 3 (133033) - ĐH Hồng Đức</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #2563eb;
+      --primary-bg: #eff6ff;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --danger: #b91c1c;
+      --danger-bg: #fee2e2;
+      --warning: #b45309;
+      --warning-bg: #fef3c7;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --card: #ffffff;
+      --bg: #f8fafc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 100;
+      overflow-y: auto;
+    }
+    .brand {
+      padding: 20px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .brand h1 { font-size: 1.1rem; font-weight: 700; line-height: 1.35; }
+    .brand p { font-size: 0.8rem; opacity: 0.85; margin-top: 4px; }
+    .progress-box {
+      padding: 14px 18px;
+      background: rgba(0,0,0,0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .progress-bar-bg {
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: #38bdf8;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .nav-list { list-style: none; padding: 10px 0; flex: 1; }
+    .nav-item {
+      padding: 11px 18px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-left: 4px solid transparent;
+      transition: all 0.15s;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.1); }
+    .nav-item.active {
+      background: rgba(255,255,255,0.18);
+      border-left-color: #38bdf8;
+      font-weight: 600;
+    }
+    .nav-badge {
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.2);
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+    .sidebar-footer {
+      padding: 14px 18px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .btn-side {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .btn-side:hover { background: rgba(255,255,255,0.25); }
+    /* Main Content */
+    .main {
+      margin-left: 280px;
+      flex: 1;
+      padding: 28px 36px;
+      max-width: 1080px;
+    }
+    .top-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .stats-grid {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--primary-bg);
+      color: var(--primary);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin: 14px 0 8px;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .filter-btn {
+      padding: 7px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .filter-btn.active {
+      background: var(--primary-light);
+      color: #fff;
+      border-color: var(--primary-light);
+    }
+    /* Question item */
+    .q-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+    .q-card.correct { border-left: 5px solid var(--success); }
+    .q-card.wrong { border-left: 5px solid var(--danger); }
+    .q-prompt { font-size: 0.98rem; margin-bottom: 12px; }
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .opt-btn {
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .opt-btn:hover { background: var(--primary-bg); border-color: var(--primary-light); }
+    .opt-btn.selected-correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: var(--success);
+      font-weight: 600;
+    }
+    .opt-btn.selected-wrong {
+      background: var(--danger-bg);
+      border-color: var(--danger);
+      color: var(--danger);
+      font-weight: 600;
+    }
+    .opt-btn.show-answer {
+      border: 2px dashed var(--success);
+      background: #f0fdf4;
+    }
+    .feedback-box {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      display: none;
+    }
+    .feedback-box.show { display: block; }
+    .feedback-box.ok { background: var(--success-bg); color: var(--success); }
+    .feedback-box.err { background: var(--danger-bg); color: var(--danger); }
+    /* Written input */
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .text-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+    .btn {
+      padding: 9px 16px;
+      border-radius: 8px;
+      border: none;
+      background: var(--primary-light);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.92; }
+    .btn-outline {
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    /* Audio / Passage boxes */
+    .audio-panel {
+      background: var(--primary-bg);
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .passage-box {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      font-size: 0.96rem;
+      line-height: 1.7;
+    }
+    .notice-box {
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary-light);
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      font-size: 0.92rem;
+    }
+    .writing-area {
+      width: 100%;
+      min-height: 170px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+    .word-count-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .timer-badge {
+      background: var(--warning-bg);
+      color: var(--warning);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    @media (max-width: 820px) {
+      body { flex-direction: column; }
+      .sidebar { position: relative; width: 100%; }
+      .main { margin-left: 0; padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <h1>TIẾNG ANH 3 (133033)</h1>
+      <p>Speakout Pre-Intermediate B1 • ĐH Hồng Đức (Version 2.0)</p>
+    </div>
+    <div class="progress-box">
+      <div class="progress-label">
+        <span>Tiến độ hoàn thành</span>
+        <span id="overall-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="overall-bar"></div>
+      </div>
+      <div style="font-size:0.76rem; margin-top:6px; opacity:0.85;" id="overall-detail">
+        Đã làm: 0 / 0 câu • Đúng: 0
+      </div>
+    </div>
+    <ul class="nav-list" id="nav-list">
+      <li class="nav-item active" data-tab="theory">
+        <span>1. Lý thuyết 6 Bài (U7–U12)</span>
+        <span class="nav-badge">6 Units</span>
+      </li>
+      <li class="nav-item" data-tab="pron">
+        <span>2. Ngữ âm & Trọng âm</span>
+        <span class="nav-badge" id="badge-pron">0/30</span>
+      </li>
+      <li class="nav-item" data-tab="unit_mcq">
+        <span>3. Trắc nghiệm Units 7–12</span>
+        <span class="nav-badge" id="badge-unit_mcq">0/60</span>
+      </li>
+      <li class="nav-item" data-tab="b_gram">
+        <span>4. Ngữ pháp Trình độ B</span>
+        <span class="nav-badge" id="badge-b_gram">0/30</span>
+      </li>
+      <li class="nav-item" data-tab="written">
+        <span>5. Tự luận & Viết lại câu</span>
+        <span class="nav-badge" id="badge-written">0/55</span>
+      </li>
+      <li class="nav-item" data-tab="listening">
+        <span>6. Luyện Nghe (Có Audio)</span>
+        <span class="nav-badge" id="badge-listening">0/15</span>
+      </li>
+      <li class="nav-item" data-tab="reading">
+        <span>7. Luyện Đọc (Chuẩn PET B1)</span>
+        <span class="nav-badge" id="badge-reading">0/23</span>
+      </li>
+      <li class="nav-item" data-tab="writing">
+        <span>8. Luyện Viết 120–150 từ</span>
+        <span class="nav-badge" id="badge-writing">0/6</span>
+      </li>
+      <li class="nav-item" data-tab="mock">
+        <span>9. Đề Thi Thử Cuối Kỳ (10đ)</span>
+        <span class="nav-badge" id="badge-mock">0/39</span>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <button class="btn-side" onclick="exportProgress()">⬇ Lưu File Tiến Độ (.json)</button>
+      <label class="btn-side" style="cursor:pointer;">
+        ⬆ Khôi Phục Tiến Độ
+        <input type="file" id="import-file" accept=".json" style="display:none" onchange="importProgress(event)" />
+      </label>
+      <button class="btn-side" style="color:#fca5a5; border-color:rgba(252,165,165,0.4);" onclick="resetAllProgress()">↺ Xóa Làm Lại Từ Đầu</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="top-banner">
+      <div>
+        <h2 id="section-title" style="color:var(--primary); font-size:1.35rem;">1. Hệ Thống Lý Thuyết Trọng Tâm (Units 7 – 12)</h2>
+        <p id="section-sub" style="color:var(--muted); font-size:0.88rem;">Tự động lưu tiến độ học viên trên trình duyệt (LocalStorage)</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-pill" id="stat-done">Đã hoàn thành: 0 câu</div>
+        <div class="stat-pill" id="stat-acc" style="background:var(--success-bg); color:var(--success);">Tỷ lệ đúng: 0%</div>
+      </div>
+    </div>
+
+    <div id="content-area"></div>
+  </main>
+
+  <script>
+window.COURSE_DATA = {
+  "courseInfo": {
+    "title": "Hệ Thống Ôn Tập Cuối Kỳ: Tiếng Anh 3 (Speakout Pre-Intermediate B1)",
+    "code": "133033",
+    "school": "Trường Đại học Hồng Đức – Khoa Ngoại ngữ",
+    "credits": 3
+  },
+  "unitsTheory": [
+    {
+      "id": "u7",
+      "title": "Unit 7: Changes (Living the dream / The great impostor / Can you tell me?)",
+      "grammar": [
+        "<b>1. used to + V (nguyên thể):</b> Thói quen/trạng thái trong quá khứ nay đã chấm dứt.<br/>• (+) S + used to + V | (-) S + didn't use to + V | (?) Did + S + use to + V?",
+        "<b>2. be used to + V-ing / Noun:</b> Đã quen với việc gì ở hiện tại.",
+        "<b>3. get used to + V-ing / Noun:</b> Đang dần quen với việc gì (quá trình thích nghi).",
+        "<b>4. Purpose, Cause & Result (Mục đích, Nguyên nhân, Kết quả):</b><br/>• <i>Mục đích:</i> to + V = in order (not) to + V = so as (not) to + V; so that + S + can/could/will/would + V.<br/>• <i>Nguyên nhân:</i> because/as/since + S + V; because of/due to + Noun/V-ing.<br/>• <i>Kết quả:</i> so + S + V; therefore / as a result, S + V; so + adj/adv + that + S + V; such + (a/an) + adj + N + that + S + V.",
+        "<b>5. Subjunctives (Thể giả định - Trọng tâm trình độ B):</b><br/>• suggest / recommend / insist / demand / require / advise + (that) + S + (should) + <b>V (nguyên thể không chia)</b>.<br/>• It is important / essential / necessary / vital + (that) + S + (should) + <b>V (nguyên thể)</b>.<br/>• <i>Lưu ý:</i> Nếu không có <i>that + S</i> thì dùng <i>suggest / recommend + V-ing</i>.",
+        "<b>6. The Passive (Câu bị động):</b> S + be + V3/ed (+ by O)."
+      ],
+      "vocab": [
+        "<b>Verbs + prepositions:</b> dream about, think about, travel around, move to, go back to, look for, wait for, give up, rely on, succeed in, apply for, believe in.",
+        "<b>Collocations:</b> tell a lie / tell the truth, make a decision, do a favour, fake a qualification, cure an illness, save somebody's life, pretend to be.",
+        "<b>Facilities (Cơ sở vật chất):</b> library, cafeteria, lecture theatre, study centre, registration desk, accommodation/welfare office, photocopy room, stationery shop."
+      ],
+      "pronunciation": "<b>Weak form of 'used to':</b> /ˈjuːstə/ | <b>Intonation:</b> Lên giọng (↗) cuối câu khi kiểm tra/xác nhận thông tin | <b>Indirect questions:</b> Could you tell me where the library is? (không đảo ngữ)."
+    },
+    {
+      "id": "u8",
+      "title": "Unit 8: Money (Treasure hunt / Pay me more / I'm just looking)",
+      "grammar": [
+        "<b>1. Defining Relative Clauses (MĐQH xác định):</b> Không có dấu phẩy. Dùng <i>who/that</i> (người), <i>which/that</i> (vật), <i>where</i> (nơi chốn), <i>when</i> (thời gian), <i>whose + N</i> (sở hữu).",
+        "<b>2. Non-defining Relative Clauses (MĐQH không xác định):</b> Có dấu phẩy (,) ngăn cách, đứng sau tên riêng hoặc danh từ đã xác định. <b>Tuyệt đối KHÔNG dùng 'that'</b>.",
+        "<b>3. Quantifiers (too much, too many, enough, very):</b><br/>• <b>too many</b> + N đếm được số nhiều | <b>too much</b> + N không đếm được<br/>• <b>adj/adv + enough</b> (+ for sb) (+ to V) | <b>enough + Noun</b> (+ to V)<br/>• <b>too + adj/adv</b> (+ for sb) + to V (quá ... không thể làm gì) | <b>very + adj/adv</b> (nhấn mạnh mức độ)."
+      ],
+      "vocab": [
+        "<b>Money:</b> borrow (from), lend (to), earn (a salary), win (a prize/lottery), invest in, be worth, cash, credit card, coin, note, bill (hóa đơn thanh toán), receipt (biên lai đã trả tiền), tip, loan, scholarship.",
+        "<b>Multi-word verbs:</b> give up (từ bỏ), give back (trả lại), take over (tiếp quản), take up (bắt đầu sở thích), turn down (từ chối), turn into (biến thành), look after (chăm sóc), look into (điều tra/xem xét).",
+        "<b>Shopping:</b> fitting room (phòng thử đồ), checkout (quầy thu ngân), on sale, bargain (món hời), discount, refund (hoàn tiền), exchange (đổi hàng), try on, fit (vừa cỡ)."
+      ],
+      "pronunciation": "<b>Letter 's':</b> /s/ (shops, promise), /z/ (coins, easy), /ʃ/ (sugar, sure), /ʒ/ (treasure, decision, usual), âm câm (island, aisle).<br/><b>Multi-word verb stress:</b> Nhấn trọng âm chính vào tiểu từ (give <b>UP</b>, turn <b>DOWN</b>)."
+    },
+    {
+      "id": "u9",
+      "title": "Unit 9: Nature (Green living / Into the wild / It could be because…)",
+      "grammar": [
+        "<b>1. Comparatives & Superlatives (So sánh hơn, nhất, bằng):</b><br/>• So sánh bằng: (not) as + adj/adv + as.<br/>• So sánh hơn: adj-er + than / more + adj + than (Nhấn mạnh: much / far / a lot + so sánh hơn).<br/>• So sánh nhất: the + adj-est / the most + adj.<br/>• Bất quy tắc: good → better → the best; bad → worse → the worst; far → further/farther → the furthest/farthest.",
+        "<b>2. Articles (Mạo từ a, an, the, Ø):</b><br/>• <b>a/an:</b> N đếm được số ít nhắc lần đầu, nghề nghiệp.<br/>• <b>the:</b> Vật xác định, duy nhất (the sun, the earth, the environment, the world), so sánh nhất, sông/biển/đại dương/sa mạc/dãy núi (the Pacific, the Himalayas).<br/>• <b>Ø (Zero article):</b> N số nhiều/không đếm được nói chung, châu lục, quốc gia đơn, thành phố, hồ, ngọn núi đơn lẻ (Mount Everest, Lake Baikal).",
+        "<b>3. Gerunds (V-ing) & Infinitives (to V):</b><br/>• <b>V + V-ing:</b> enjoy, avoid, mind, finish, suggest, keep, consider, imagine, miss, practise, look forward to, be/get used to + V-ing.<br/>• <b>V + to V:</b> want, decide, hope, plan, expect, promise, refuse, afford, agree, seem, manage, learn + to V (và sau tính từ: easy/hard/important + to V)."
+      ],
+      "vocab": [
+        "<b>Nature & Outdoors:</b> pollution, recycling, climate change, renewable energy, solar power, rainforest, wildlife, mountain range, waterfall, coastline, glacier, valley, national park, rural area.",
+        "<b>Making guesses:</b> It could be / might be... | Perhaps / Maybe it's... | It must be... | It can't be / It's definitely not..."
+      ],
+      "pronunciation": "<b>Silent letters (Âm câm):</b> whale/hour/honest (h), climb/lamb/doubt (b), knee/knife/know (k), island/aisle (s), castle/listen/christmas (t), write/wrong/wrist/sword (w), salmon/calm (l), autumn (n)."
+    },
+    {
+      "id": "u10",
+      "title": "Unit 10: Society (Top cities / Crime and punishment / There's a problem)",
+      "grammar": [
+        "<b>1. Uses of 'like':</b><br/>• <i>What + be + S + like?</i> (Hỏi tính cách/đặc điểm tổng quan - câu trả lời không có like).<br/>• <i>What + do/does + S + look like?</i> (Hỏi ngoại hình).<br/>• <i>What + do/does + S + like (+ doing)?</i> (Hỏi sở thích).",
+        "<b>2. Prefer, Would rather, Had better, It's high time (Trọng tâm trình độ B):</b><br/>• <b>prefer + N/V-ing + to + N/V-ing</b> | <b>prefer + to V + rather than + V(bare)</b>.<br/>• <b>Cùng chủ ngữ:</b> S + would rather + V(bare) (+ than + V(bare)) | Phủ định: would rather NOT + V(bare).<br/>• <b>Khác chủ ngữ:</b> S1 + would rather + S2 + <b>V2/ed (quá khứ giả định)</b> | Phủ định: would rather + S2 + <b>didn't + V(bare)</b>.<br/>• <b>had better ('d better) + (not) + V(bare)</b> (Nên làm gì - cảnh báo).<br/>• <b>It's (high/about) time + S + V2/ed</b> (Đã đến lúc ai đó phải làm gì).",
+        "<b>3. Present & Past Passive (Bị động hiện tại & quá khứ):</b><br/>• Hiện tại đơn: S + am/is/are + V3/ed | Quá khứ đơn: S + was/were + V3/ed."
+      ],
+      "vocab": [
+        "<b>Describing a city:</b> traffic congestion, public transport system, nightlife, architecture, crime rate, green spaces, polluted, crowded, cosmopolitan.",
+        "<b>Crime & Punishment:</b> thief/theft/steal, robber/robbery/rob, burglar/burglary/break into, shoplifter/shoplifting, vandal/vandalism, graffiti, fraud, pay a fine, prison sentence, community service, arrest, victim, judge.",
+        "<b>Problems & Complaining:</b> out of order (hỏng), keep crashing (treo máy), delayed, faulty, broken, litter."
+      ],
+      "pronunciation": "<b>Weak forms of was/were:</b> /wəz/ và /wə/ trong câu bị động khẳng định | <b>Sentence stress:</b> Nhấn vào từ mang nội dung (content words)."
+    },
+    {
+      "id": "u11",
+      "title": "Unit 11: Technology (Keeping in touch / Make a difference / I totally disagree)",
+      "grammar": [
+        "<b>1. Present Perfect vs. Past Simple:</b><br/>• <i>Present Perfect (have/has + V3/ed):</i> đi với just, already, yet, ever, never, recently, so far, since + mốc thời gian, for + khoảng thời gian, This is the first time...<br/>• <i>Chuyển đổi:</i> The last time + S + V2/ed + was + [time] ago ↔ S + haven't/hasn't + V3/ed + for + [time] ↔ It is/has been + [time] + since + S + (last) + V2/ed.",
+        "<b>2. Real Conditionals (Câu điều kiện loại 1 & mệnh đề thời gian):</b><br/>• If / When / As soon as / Unless + S + V (Hiện tại đơn), S + will / can / may + V(bare). (Unless = If... not).",
+        "<b>3. Time adverbs (still, yet, already, no longer, any longer):</b><br/>• <b>still:</b> vẫn còn (trước V thường, sau to be) | <b>yet:</b> chưa (cuối câu phủ định/nghi vấn).<br/>• <b>no longer:</b> không còn nữa (dùng trong câu <b>khẳng định</b>, trước V thường: <i>He no longer lives here</i>).<br/>• <b>not ... any longer / anymore:</b> đứng cuối câu <b>phủ định</b> (<i>He doesn't live here any longer</i>).",
+        "<b>4. Improve your use of pronouns (Lesson 11.1):</b> Dùng he, she, it, they, them, his, her, their, this, which, where để thay thế danh từ tránh lặp từ."
+      ],
+      "vocab": [
+        "<b>Communication:</b> post a message, send a text/SMS, write a blog, use social media, make a video call, lose touch, keep in touch, face-to-face.",
+        "<b>Feelings:</b> nervous, excited, confused, lonely, disappointed, uncomfortable, amazed, worried, embarrassed, proud.",
+        "<b>Internet terms & Opinions:</b> search engine, social networking site, photo sharing site, travel website, cyberbullying, computer virus. | <i>Polite disagreement:</i> I see what you mean, but... / That's true, however... / I'm afraid I don't agree."
+      ],
+      "pronunciation": "<b>Weak form of will ('ll)</b> | <b>Polite intonation</b> khi đồng ý hoặc phản biện ý kiến."
+    },
+    {
+      "id": "u12",
+      "title": "Unit 12: Fame (Caught on film / A lucky break / What can I do for you?)",
+      "grammar": [
+        "<b>1. Reported Speech (Câu tường thuật):</b><br/>• Lùi 1 thì: HTĐ → QKĐ; HTTD → QKTD; HTHT/QKĐ → QKHT (had + V3/ed); will → would; can → could; may → might; must/have to → had to.<br/>• Đổi trạng từ: now → then; today → that day; yesterday → the day before / the previous day; tomorrow → the next/following day; last week → the previous week; here → there; this → that.<br/>• <b>Reported Questions (Câu hỏi tường thuật):</b> S + asked (+ O) + if/whether (hoặc Wh-word) + S + V (lùi thì, <b>KHÔNG đảo ngữ</b>).",
+        "<b>2. Hypothetical Conditionals (Câu điều kiện giả định loại 2 - Present/Future):</b><br/>• Công thức: <b>If + S + V2/ed (to be dùng were cho mọi ngôi), S + would / could / might + V(bare)</b>.<br/>• Diễn tả giả định trái với hiện tại hoặc khó xảy ra ở tương lai (<i>If I were you, I would...</i>)."
+      ],
+      "vocab": [
+        "<b>Film:</b> blockbuster (phim bom tấn), director, producer, star/actor, extra (diễn viên quần chúng), scene, plot (cốt truyện), special effects (kỹ xảo), soundtrack, biopic, horror, thriller, sci-fi, comedy, documentary.",
+        "<b>Word Building with Suffixes (Hậu tố):</b><br/>• Danh từ: -ion/-tion (invention, celebration), -ment (achievement, advertisement), -ness (happiness), -ity (celebrity, popularity), -er/-or/-ist/-ian (director, actor, politician, musician).<br/>• Tính từ: -ful (helpful, successful), -less (careless, homeless), -ous (famous, dangerous), -able (comfortable), -ive (creative).",
+        "<b>Concierge Requests & Offers:</b> book a table, recommend a restaurant, organize a private tour. | <i>Requests:</i> Could you...? / Would you mind + V-ing...? | <i>Offers:</i> Would you like me to + V...? / Shall I + V...?"
+      ],
+      "pronunciation": "<b>Contrastive stress (Trọng âm tương phản)</b> | <b>Word stress với hậu tố</b> (-ity, -ion nhấn vào âm tiết ngay trước nó)."
+    }
+  ],
+  "pronunciationQuestions": [
+    {
+      "id": "pron_1",
+      "num": 1,
+      "prompt": "<b>Câu 1 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "<b>s</b>ugar",
+        "<b>s</b>oon",
+        "<b>s</b>ale",
+        "<b>s</b>end"
+      ],
+      "answer": "A",
+      "explanation": "'sugar' phát âm là /ʃ/, các từ còn lại phát âm là /s/."
+    },
+    {
+      "id": "pron_2",
+      "num": 2,
+      "prompt": "<b>Câu 2 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "i<b>s</b>land",
+        "<b>s</b>mart",
+        "<b>s</b>pend",
+        "<b>s</b>alary"
+      ],
+      "answer": "A",
+      "explanation": "'island' có âm 's' câm (/ˈaɪ.lənd/), các từ còn lại phát âm /s/."
+    },
+    {
+      "id": "pron_3",
+      "num": 3,
+      "prompt": "<b>Câu 3 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "trea<b>s</b>ure",
+        "deci<b>s</b>ion",
+        "u<b>s</b>ual",
+        "promi<b>s</b>e"
+      ],
+      "answer": "D",
+      "explanation": "'promise' phát âm là /s/, các từ treasure, decision, usual phát âm là /ʒ/."
+    },
+    {
+      "id": "pron_4",
+      "num": 4,
+      "prompt": "<b>Câu 4 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "coin<b>s</b>",
+        "bill<b>s</b>",
+        "shop<b>s</b>",
+        "loan<b>s</b>"
+      ],
+      "answer": "C",
+      "explanation": "'shops' tận cùng là âm vô thanh /p/ nên 's' phát âm là /s/, các từ còn lại phát âm là /z/."
+    },
+    {
+      "id": "pron_5",
+      "num": 5,
+      "prompt": "<b>Câu 5 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "watch<b>es</b>",
+        "chang<b>es</b>",
+        "box<b>es</b>",
+        "tak<b>es</b>"
+      ],
+      "answer": "D",
+      "explanation": "'takes' phát âm là /s/, các từ còn lại phát âm là /ɪz/."
+    },
+    {
+      "id": "pron_6",
+      "num": 6,
+      "prompt": "<b>Câu 6 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "<b>wh</b>ale",
+        "<b>wh</b>o",
+        "<b>wh</b>ere",
+        "<b>wh</b>ite"
+      ],
+      "answer": "B",
+      "explanation": "'who' có âm 'w' câm (/huː/), các từ còn lại có âm 'h' câm (/w/)."
+    },
+    {
+      "id": "pron_7",
+      "num": 7,
+      "prompt": "<b>Câu 7 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "clim<b>b</b>",
+        "dou<b>b</b>t",
+        "<b>b</b>ank",
+        "lam<b>b</b>"
+      ],
+      "answer": "C",
+      "explanation": "'bank' phát âm âm /b/, các từ climb, doubt, lamb có âm 'b' câm."
+    },
+    {
+      "id": "pron_8",
+      "num": 8,
+      "prompt": "<b>Câu 8 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "<b>k</b>now",
+        "<b>k</b>nee",
+        "<b>k</b>nife",
+        "<b>k</b>eep"
+      ],
+      "answer": "D",
+      "explanation": "'keep' phát âm âm /k/, các từ know, knee, knife có âm 'k' câm."
+    },
+    {
+      "id": "pron_9",
+      "num": 9,
+      "prompt": "<b>Câu 9 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "cas<b>t</b>le",
+        "lis<b>t</b>en",
+        "fas<b>t</b>er",
+        "chris<b>t</b>mas"
+      ],
+      "answer": "C",
+      "explanation": "'faster' phát âm âm /t/, các từ castle, listen, christmas có âm 't' câm."
+    },
+    {
+      "id": "pron_10",
+      "num": 10,
+      "prompt": "<b>Câu 10 (Ngữ âm (Pronunciation)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "<b>h</b>onest",
+        "<b>h</b>our",
+        "<b>h</b>otel",
+        "<b>h</b>eir"
+      ],
+      "answer": "C",
+      "explanation": "'hotel' phát âm âm /h/, các từ honest, hour, heir có âm 'h' câm."
+    },
+    {
+      "id": "pron_11",
+      "num": 11,
+      "prompt": "<b>Câu 11 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "library",
+        "cinema",
+        "pollution",
+        "restaurant"
+      ],
+      "answer": "C",
+      "explanation": "po'llution nhấn âm 2; 'library, 'cinema, 'restaurant nhấn âm 1."
+    },
+    {
+      "id": "pron_12",
+      "num": 12,
+      "prompt": "<b>Câu 12 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "facility",
+        "cafeteria",
+        "environment",
+        "celebrity"
+      ],
+      "answer": "B",
+      "explanation": "cafe'teria nhấn âm 3; fa'cility, en'vironment, ce'lebrity nhấn âm 2."
+    },
+    {
+      "id": "pron_13",
+      "num": 13,
+      "prompt": "<b>Câu 13 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "bargain",
+        "receipt",
+        "discount",
+        "salary"
+      ],
+      "answer": "B",
+      "explanation": "re'ceipt nhấn âm 2; 'bargain, 'discount, 'salary nhấn âm 1."
+    },
+    {
+      "id": "pron_14",
+      "num": 14,
+      "prompt": "<b>Câu 14 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "helpful",
+        "famous",
+        "homeless",
+        "polite"
+      ],
+      "answer": "D",
+      "explanation": "po'lite nhấn âm 2; 'helpful, 'famous, 'homeless nhấn âm 1."
+    },
+    {
+      "id": "pron_15",
+      "num": 15,
+      "prompt": "<b>Câu 15 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "invention",
+        "director",
+        "politics",
+        "musician"
+      ],
+      "answer": "C",
+      "explanation": "'politics nhấn âm 1; in'vention, di'rector, mu'sician nhấn âm 2."
+    },
+    {
+      "id": "pron_16",
+      "num": 16,
+      "prompt": "<b>Câu 16 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "comfortable",
+        "successful",
+        "dangerous",
+        "natural"
+      ],
+      "answer": "B",
+      "explanation": "suc'cessful nhấn âm 2; 'comfortable, 'dangerous, 'natural nhấn âm 1."
+    },
+    {
+      "id": "pron_17",
+      "num": 17,
+      "prompt": "<b>Câu 17 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "burglar",
+        "graffiti",
+        "victim",
+        "shoplifter"
+      ],
+      "answer": "B",
+      "explanation": "graf'fiti nhấn âm 2; 'burglar, 'victim, 'shoplifter nhấn âm 1."
+    },
+    {
+      "id": "pron_18",
+      "num": 18,
+      "prompt": "<b>Câu 18 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "excited",
+        "confused",
+        "nervous",
+        "amazed"
+      ],
+      "answer": "C",
+      "explanation": "'nervous nhấn âm 1; ex'cited, con'fused, a'mazed nhấn âm 2."
+    },
+    {
+      "id": "pron_19",
+      "num": 19,
+      "prompt": "<b>Câu 19 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "blockbuster",
+        "thriller",
+        "comedy",
+        "fantastic"
+      ],
+      "answer": "D",
+      "explanation": "fan'tastic nhấn âm 2; 'blockbuster, 'thriller, 'comedy nhấn âm 1."
+    },
+    {
+      "id": "pron_20",
+      "num": 20,
+      "prompt": "<b>Câu 20 (Trọng âm (Word Stress)):</b> Chọn từ có cách phát âm / vị trí trọng âm khác với các từ còn lại:",
+      "options": [
+        "waterfall",
+        "rainforest",
+        "recycle",
+        "coastline"
+      ],
+      "answer": "C",
+      "explanation": "re'cycle nhấn âm 2; 'waterfall, 'rainforest, 'coastline nhấn âm 1."
+    },
+    {
+      "id": "pron_21",
+      "num": 21,
+      "prompt": "<b>Câu 21:</b> Which of the following words does <b>NOT</b> contain a silent letter?",
+      "options": [
+        "wrist     B. salmon     C. autumn     D. member"
+      ],
+      "answer": "D",
+      "explanation": "'member' phát âm đầy đủ; wrist (câm w), salmon (câm l), autumn (câm n)."
+    },
+    {
+      "id": "pron_22",
+      "num": 22,
+      "prompt": "<b>Câu 22:</b> In spoken English, how is the phrase <b>\"used to\"</b> in <i>\"I used to live in a small village\"</i> normally pronounced in its weak form?",
+      "options": [
+        "<code>/ˈjuːzd tuː/</code>     B. <code>/ˈjuːstə/</code>     C. <code>/ˈjuːzɪd tə/</code>     D. <code>/ˈjuːst tuː/</code>"
+      ],
+      "answer": "B",
+      "explanation": "Dạng yếu (weak form) của 'used to' trong giao tiếp tự nhiên là /ˈjuːstə/."
+    },
+    {
+      "id": "pron_23",
+      "num": 23,
+      "prompt": "<b>Câu 23:</b> In multi-word verbs (phrasal verbs) such as <i>\"She <b>gave up</b> her job\"</i> or <i>\"He <b>turned down</b> the offer\"</i>, which word normally receives the stronger stress?",
+      "options": [
+        "The main verb (<i>gave / turned</i>)",
+        "The particle (<i>up / down</i>)",
+        "The pronoun (<i>She / He</i>)",
+        "The article (<i>the</i>)"
+      ],
+      "answer": "B",
+      "explanation": "Trong cụm động từ (multi-word verbs), trọng âm chính thường rơi vào tiểu từ/giới từ (particle: UP, DOWN)."
+    },
+    {
+      "id": "pron_24",
+      "num": 24,
+      "prompt": "<b>Câu 24:</b> In which of the following sentences is <b>\"was\"</b> pronounced in its <b>weak form</b> <code>/wəz/</code>?",
+      "options": [
+        "Yes, I <i>was</i>!",
+        "Who <i>was</i> that man at the door?",
+        "The stolen painting <i>was</i> found by the police yesterday.",
+        "He wasn't ready, but I <i>was</i>."
+      ],
+      "answer": "C",
+      "explanation": "Trong câu bị động khẳng định thông thường, trợ động từ 'was' đọc ở dạng yếu /wəz/."
+    },
+    {
+      "id": "pron_25",
+      "num": 25,
+      "prompt": "<b>Câu 25:</b> When checking and confirming information (e.g., <i>\"So the registration desk is on the second floor, right?\"</i>), what intonation pattern should the speaker use at the end of the question?",
+      "options": [
+        "Rising intonation (↗)",
+        "Flat, robotic intonation (→)",
+        "Very low falling intonation (↘)",
+        "Whispering without intonation"
+      ],
+      "answer": "A",
+      "explanation": "Khi kiểm tra và xác nhận thông tin (checking information), người nói lên giọng (Rising intonation ↗) ở cuối câu."
+    },
+    {
+      "id": "pron_26",
+      "num": 26,
+      "prompt": "<b>Câu 26:</b> In the polite customer question <i>\"Excuse me, <b>do you</b> have this jacket in a medium?\"</i>, how is <b>\"do you\"</b> typically pronounced in fast, natural speech (weak form)?",
+      "options": [
+        "<code>/duː juː/</code>     B. <code>/djə/</code> (or <code>/dʒə/</code>)     C. <code>/dɒ jɔː/</code>     D. <code>/daʊ juː/</code>"
+      ],
+      "answer": "B",
+      "explanation": "Trong câu hỏi giao tiếp nhanh, 'do you' được phát âm ở dạng yếu là /djə/ hoặc /dʒə/."
+    },
+    {
+      "id": "pron_27",
+      "num": 27,
+      "prompt": "<b>Câu 27:</b> Look at the sentence: <i>\"I'd <b>RATHER</b> travel by <b>TRAIN</b> than take a <b>BUS</b>.\"</i> Why are the words <i>RATHER, TRAIN,</i> and <i>BUS</i> stressed?",
+      "options": [
+        "Because they are grammar function words (prepositions and articles).",
+        "Because they are content words carrying the key meaning and contrast in the sentence.",
+        "Because they all contain silent letters.",
+        "Because they are always pronounced in weak forms."
+      ],
+      "answer": "B",
+      "explanation": "Trọng âm câu (Sentence stress) nhấn vào các từ mang nội dung chính (content words) và từ thể hiện sự đối lập."
+    },
+    {
+      "id": "pron_28",
+      "num": 28,
+      "prompt": "<b>Câu 28:</b> Look at the dialogue using <b>contrastive stress</b> (Lesson 12.1):<br/><b>Speaker A:</b> <i>\"Did you say the movie was directed by Steven Spielberg in <b>2020</b>?\"</i><br/><b>Speaker B:</b> <i>\"No, it was directed by him in <b>2022</b>!\"</i><br/>Which word in Speaker B's reply receives the strongest contrastive stress?",
+      "options": [
+        "it     B. was     C. him     D. 2022"
+      ],
+      "answer": "D",
+      "explanation": "Trọng âm tương phản (Contrastive stress) rơi vào '2022' để đính chính thông tin '2020' trước đó."
+    },
+    {
+      "id": "pron_29",
+      "num": 29,
+      "prompt": "<b>Câu 29:</b> When you add the suffix <b>\"-ity\"</b> to the adjective <b>\"popular\"</b> to make the noun <b>\"popularity\"</b>, where does the primary word stress fall?",
+      "options": [
+        "On the first syllable (<i>'popularity</i>)",
+        "On the second syllable (<i>po'pularity</i>)",
+        "On the third syllable—the syllable right before <i>-ity</i> (<i>popu'larity</i>)",
+        "On the last syllable (<i>populari'ty</i>)"
+      ],
+      "answer": "C",
+      "explanation": "Các danh từ có hậu tố '-ity' luôn nhận trọng âm chính ở âm tiết ngay trước '-ity' (popu'larity)."
+    },
+    {
+      "id": "pron_30",
+      "num": 30,
+      "prompt": "<b>Câu 30:</b> Which of the following words has a silent <b>\"w\"</b>?<br/>---",
+      "options": [
+        "award     B. sword     C. between     D. wildlife"
+      ],
+      "answer": "B",
+      "explanation": "'sword' (thanh kiếm) có âm 'w' câm (/sɔːd/)."
+    }
+  ],
+  "unitMcqQuestions": [
+    {
+      "id": "u_mcq_1",
+      "num": 1,
+      "prompt": "<b>Câu 1:</b> When I was a child, I ________ live in a small village near the river, but my family moved to the city five years ago.",
+      "options": [
+        "use to    B. used to    C. am used to    D. got used to"
+      ],
+      "answer": "B",
+      "explanation": "Thói quen trong quá khứ nay không còn nữa: used to + V(nguyên thể).",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_2",
+      "num": 2,
+      "prompt": "<b>Câu 2:</b> Moving to London was difficult for Nam at first, but he is slowly ________ driving on the left side of the road.",
+      "options": [
+        "used to    B. use to    C. getting used to    D. get used to"
+      ],
+      "answer": "C",
+      "explanation": "Đang dần quen với việc gì: be getting used to + V-ing.",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_3",
+      "num": 3,
+      "prompt": "<b>Câu 3:</b> My sister has worked as an emergency nurse for eight years, so she ________ working night shifts now.",
+      "options": [
+        "used to    B. is used to    C. use to    D. get used to"
+      ],
+      "answer": "B",
+      "explanation": "Đã quen với việc gì ở hiện tại: be (is) used to + V-ing.",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_4",
+      "num": 4,
+      "prompt": "<b>Câu 4:</b> Did your parents ________ travel by bicycle when they were university students?",
+      "options": [
+        "used to    B. use to    C. be used to    D. accustomed to"
+      ],
+      "answer": "B",
+      "explanation": "Câu hỏi với used to: Did + S + use to + V(nguyên thể)?",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_5",
+      "num": 5,
+      "prompt": "<b>Câu 5:</b> Many final-year students are planning to apply ________ a government scholarship to study abroad.",
+      "options": [
+        "to    B. with    C. for    D. on"
+      ],
+      "answer": "C",
+      "explanation": "Cụm động từ đi với giới từ: apply for (a scholarship/a job) = nộp đơn xin.",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_6",
+      "num": 6,
+      "prompt": "<b>Câu 6:</b> After working in a noisy bank for ten years, he decided to give ________ his job and open a small bookshop.",
+      "options": [
+        "in    B. on    C. back    D. up"
+      ],
+      "answer": "D",
+      "explanation": "give up = từ bỏ (công việc/thói quen).",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_7",
+      "num": 7,
+      "prompt": "<b>Câu 7:</b> The impostor faked his medical qualifications ________ get a high-paying job as a hospital doctor.",
+      "options": [
+        "so that    B. because of    C. in order to    D. therefore"
+      ],
+      "answer": "C",
+      "explanation": "Chỉ mục đích: in order to + V(nguyên thể) = để làm gì.",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_8",
+      "num": 8,
+      "prompt": "<b>Câu 8:</b> The flight was cancelled ________ the terrible snowstorm, so all passengers had to stay at the airport hotel.",
+      "options": [
+        "because    B. because of    C. so that    D. in order to"
+      ],
+      "answer": "B",
+      "explanation": "Chỉ nguyên nhân trước cụm danh từ (the terrible snowstorm): dùng because of.",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_9",
+      "num": 9,
+      "prompt": "<b>Câu 9:</b> If you need help finding a room to rent or solving personal problems at university, you should visit the ________ office.",
+      "options": [
+        "stationery    B. student welfare    C. photocopy    D. cafeteria"
+      ],
+      "answer": "B",
+      "explanation": "student welfare office = văn phòng hỗ trợ đời sống sinh viên.",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_10",
+      "num": 10,
+      "prompt": "<b>Câu 10:</b> <b>New Student:</b> \"Excuse me, could you tell me where the main lecture theatre is?\"<br/><b>Campus Officer:</b> \"________________\"",
+      "options": [
+        "Yes, it's in Building B, on the second floor, opposite the library.",
+        "It closes at 9:00 p.m. every Friday.",
+        "No, thank you, I'm just looking around.",
+        "I'm afraid I totally disagree with you."
+      ],
+      "answer": "A",
+      "explanation": "Câu hỏi đường/vị trí giảng đường chính (where the main lecture theatre is) → Chỉ vị trí cụ thể.",
+      "unit": "Unit 7"
+    },
+    {
+      "id": "u_mcq_11",
+      "num": 11,
+      "prompt": "<b>Câu 11:</b> A shoplifter is a person ________ steals items from a shop while pretending to be an ordinary customer.",
+      "options": [
+        "which    B. where    C. who    D. whose"
+      ],
+      "answer": "C",
+      "explanation": "MĐQH chỉ người (a person) làm chủ ngữ → dùng who.",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_12",
+      "num": 12,
+      "prompt": "<b>Câu 12:</b> That is the historic museum ________ the ancient gold treasure discovered in 1995 is displayed.",
+      "options": [
+        "which    B. where    C. who    D. whom"
+      ],
+      "answer": "B",
+      "explanation": "MĐQH chỉ nơi chốn (the historic museum nơi kho báu được trưng bày) → dùng where.",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_13",
+      "num": 13,
+      "prompt": "<b>Câu 13:</b> My uncle, ________ works as a financial adviser in Ho Chi Minh City, advised me to invest in green energy.",
+      "options": [
+        "that    B. which    C. who    D. whose"
+      ],
+      "answer": "C",
+      "explanation": "MĐQH không xác định (có dấu phẩy) chỉ người (My uncle) → dùng who (không được dùng that).",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_14",
+      "num": 14,
+      "prompt": "<b>Câu 14:</b> Many teachers and nurses believe they do not earn ________ for the hard work they do every day.",
+      "options": [
+        "money enough    B. too many money    C. enough money    D. very money"
+      ],
+      "answer": "C",
+      "explanation": "enough đứng trước danh từ: enough money (đủ tiền).",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_15",
+      "num": 15,
+      "prompt": "<b>Câu 15:</b> I hate driving into the city centre on Monday mornings because there is ________ traffic on the roads.",
+      "options": [
+        "too many    B. too much    C. enough    D. very"
+      ],
+      "answer": "B",
+      "explanation": "traffic (giao thông) là danh từ không đếm được → dùng too much traffic.",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_16",
+      "num": 16,
+      "prompt": "<b>Câu 16:</b> She was offered a managerial job at a factory, but she turned it ________ because she didn't want to relocate.",
+      "options": [
+        "up    B. over    C. into    D. down"
+      ],
+      "answer": "D",
+      "explanation": "turn down (an offer/a job) = từ chối lời đề nghị.",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_17",
+      "num": 17,
+      "prompt": "<b>Câu 17:</b> Waiter, could we have the ________, please? And can we pay by credit card?",
+      "options": [
+        "receipt    B. bill    C. loan    D. coin"
+      ],
+      "answer": "B",
+      "explanation": "Khi yêu cầu thanh toán tại nhà hàng: ask for the bill (hóa đơn tính tiền).",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_18",
+      "num": 18,
+      "prompt": "<b>Câu 18:</b> You should always keep your ________ when you buy clothes in case they don't fit and you want a refund.",
+      "options": [
+        "discount    B. bargain    C. receipt    D. tip"
+      ],
+      "answer": "C",
+      "explanation": "Giữ lại biên lai sau khi mua hàng để đổi/trả hoàn tiền: keep your receipt.",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_19",
+      "num": 19,
+      "prompt": "<b>Câu 19:</b> How much do doctors ________ in your country compared to professional football players?",
+      "options": [
+        "win    B. earn    C. borrow    D. lend"
+      ],
+      "answer": "B",
+      "explanation": "Kiếm tiền/hưởng lương từ sức lao động: earn (money/a salary).",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_20",
+      "num": 20,
+      "prompt": "<b>Câu 20:</b> <b>Shop Assistant:</b> \"Hello! Can I help you find a specific size?\"<br/><b>Customer:</b> \"________________\"",
+      "options": [
+        "I'm just looking right now, thank you.",
+        "Yes, you had better not be late.",
+        "Sorry, the cash machine is out of order.",
+        "I totally agree with your opinion."
+      ],
+      "answer": "A",
+      "explanation": "Khi nhân viên bán hàng hỏi cần giúp không và khách chỉ đang xem đồ: 'I'm just looking, thank you.'",
+      "unit": "Unit 8"
+    },
+    {
+      "id": "u_mcq_21",
+      "num": 21,
+      "prompt": "<b>Câu 21:</b> Travelling by high-speed train is much ________ for the environment than flying by domestic aeroplane.",
+      "options": [
+        "good    B. better    C. best    D. more good"
+      ],
+      "answer": "B",
+      "explanation": "So sánh hơn của good là better (much better ... than).",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_22",
+      "num": 22,
+      "prompt": "<b>Câu 22:</b> Global warming is one of ________ environmental challenges that humanity has ever faced.",
+      "options": [
+        "serious    B. more serious    C. the most serious    D. as serious"
+      ],
+      "answer": "C",
+      "explanation": "So sánh nhất với tính từ dài: one of the most serious...",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_23",
+      "num": 23,
+      "prompt": "<b>Câu 23:</b> Everyone has a responsibility to protect ________ environment by saving electricity and reducing waste.",
+      "options": [
+        "a    B. an    C. the    D. Ø (no article)"
+      ],
+      "answer": "C",
+      "explanation": "Danh từ chỉ môi trường nói chung luôn dùng mạo từ 'the': protect the environment.",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_24",
+      "num": 24,
+      "prompt": "<b>Câu 24:</b> ________ Lake Baikal in Russia is the deepest lake in ________ world.",
+      "options": [
+        "Ø / the    B. The / the    C. A / a    D. The / Ø"
+      ],
+      "answer": "A",
+      "explanation": "Tên hồ đơn lẻ không dùng mạo từ (Ø Lake Baikal); cụm 'in the world' dùng 'the'.",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_25",
+      "num": 25,
+      "prompt": "<b>Câu 25:</b> My roommates really enjoy ________ in the national park whenever the weather is sunny and cool.",
+      "options": [
+        "hike    B. to hike    C. hiking    D. hiked"
+      ],
+      "answer": "C",
+      "explanation": "enjoy + V-ing (enjoy hiking).",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_26",
+      "num": 26,
+      "prompt": "<b>Câu 26:</b> Several supermarkets have decided ________ charging customers for plastic carrier bags.",
+      "options": [
+        "start    B. starting    C. to start    D. started"
+      ],
+      "answer": "C",
+      "explanation": "decide + to V (decided to start).",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_27",
+      "num": 27,
+      "prompt": "<b>Câu 27:</b> To reduce air pollution in urban areas, citizens should avoid ________ private cars for short trips.",
+      "options": [
+        "use    B. to use    C. using    D. used"
+      ],
+      "answer": "C",
+      "explanation": "avoid + V-ing (avoid using).",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_28",
+      "num": 28,
+      "prompt": "<b>Câu 28:</b> The Amazon ________ covers a huge part of South America and is home to thousands of rare wildlife species.",
+      "options": [
+        "glacier    B. rainforest    C. desert    D. coastline"
+      ],
+      "answer": "B",
+      "explanation": "the Amazon rainforest (rừng nhiệt đới Amazon).",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_29",
+      "num": 29,
+      "prompt": "<b>Câu 29:</b> <b>Quiz Host:</b> \"This large sea mammal can weigh over 150 tonnes and sings underwater. What is it?\"<br/><b>Contestant:</b> \"________________\"",
+      "options": [
+        "I'm afraid I have a complaint.",
+        "It could be a blue whale!",
+        "I'd rather live in the countryside.",
+        "Shall I book a table for you?"
+      ],
+      "answer": "B",
+      "explanation": "Đưa ra dự đoán (Making guesses) về loài động vật biển nặng 150 tấn: 'It could be a blue whale!'",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_30",
+      "num": 30,
+      "prompt": "<b>Câu 30:</b> If we install solar panels on our roof, we will use more ________ energy and save money on electricity bills.",
+      "options": [
+        "polluted    B. renewable    C. endangered    D. artificial"
+      ],
+      "answer": "B",
+      "explanation": "renewable energy = năng lượng tái tạo (như năng lượng mặt trời).",
+      "unit": "Unit 9"
+    },
+    {
+      "id": "u_mcq_31",
+      "num": 31,
+      "prompt": "<b>Câu 31:</b> <b>Laura:</b> \"What is the public transport system in Singapore ________?\"<br/><b>Kevin:</b> \"It's extremely efficient, clean, and safe.\"",
+      "options": [
+        "look like    B. like    C. likes    D. would like"
+      ],
+      "answer": "B",
+      "explanation": "Hỏi đặc điểm/chất lượng của hệ thống giao thông: What is ... like?",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_32",
+      "num": 32,
+      "prompt": "<b>Câu 32:</b> Thousands of smartphones ________ on buses and underground trains in big cities every year.",
+      "options": [
+        "lose or steal    B. are lost or stolen    C. lost or stole    D. were losing"
+      ],
+      "answer": "B",
+      "explanation": "Câu bị động ở hiện tại đơn (every year) với chủ ngữ số nhiều (Thousands of smartphones): are lost or stolen.",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_33",
+      "num": 33,
+      "prompt": "<b>Câu 33:</b> The two men who broke into the jewellery shop ________ by the local police two hours ago.",
+      "options": [
+        "arrested    B. are arrested    C. were arrested    D. have arrested"
+      ],
+      "answer": "C",
+      "explanation": "Câu bị động ở quá khứ đơn (two hours ago) với chủ ngữ số nhiều (The two men): were arrested.",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_34",
+      "num": 34,
+      "prompt": "<b>Câu 34:</b> Instead of receiving a prison sentence, the young offender was ordered to do 80 hours of ________ cleaning up city parks.",
+      "options": [
+        "shoplifting    B. community service    C. burglary    D. fraud"
+      ],
+      "answer": "B",
+      "explanation": "community service = lao động công ích (hình phạt thay thế án tù cho tội nhẹ).",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_35",
+      "num": 35,
+      "prompt": "<b>Câu 35:</b> Spraying ________ on historic walls and public buses without permission is an act of vandalism.",
+      "options": [
+        "architecture    B. graffiti    C. litter    D. traffic"
+      ],
+      "answer": "B",
+      "explanation": "Spraying graffiti = xịt sơn vẽ bậy lên tường công cộng.",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_36",
+      "num": 36,
+      "prompt": "<b>Câu 36:</b> A person who illegally enters a house at night through a window to steal things is called a ________.",
+      "options": [
+        "shoplifter    B. burglar    C. judge    D. victim"
+      ],
+      "answer": "B",
+      "explanation": "Kẻ đột nhập vào nhà ban đêm để trộm đồ: burglar.",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_37",
+      "num": 37,
+      "prompt": "<b>Câu 37:</b> We couldn't print our English assignment this morning because the machine in the photocopy room was ________.",
+      "options": [
+        "out of order    B. in order to    C. on sale    D. well-organized"
+      ],
+      "answer": "A",
+      "explanation": "Máy móc bị hỏng/ngừng hoạt động: out of order.",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_38",
+      "num": 38,
+      "prompt": "<b>Câu 38:</b> My laptop keeps ________ whenever I open more than three programs at the same time.",
+      "options": [
+        "delaying    B. crashing    C. stealing    D. littering"
+      ],
+      "answer": "B",
+      "explanation": "Máy tính liên tục bị treo/sập nguồn: keeps crashing.",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_39",
+      "num": 39,
+      "prompt": "<b>Câu 39:</b> If you ride a motorbike without wearing a helmet, the traffic police will make you pay a ________.",
+      "options": [
+        "fine    B. refund    C. bargain    D. salary"
+      ],
+      "answer": "A",
+      "explanation": "Nộp tiền phạt vi phạm giao thông: pay a fine.",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_40",
+      "num": 40,
+      "prompt": "<b>Câu 40:</b> <b>Customer:</b> \"Excuse me, I've been waiting for my main course for over forty minutes!\"<br/><b>Restaurant Manager:</b> \"________________\"",
+      "options": [
+        "I'm terribly sorry about the delay. I'll check with the kitchen right away.",
+        "Yes, the food here is very delicious.",
+        "No, I haven't tried it yet.",
+        "You'd better not eat too much fast food."
+      ],
+      "answer": "A",
+      "explanation": "Khách phàn nàn đồ ăn ra trễ 40 phút → Quản lý xin lỗi vì sự chậm trễ và kiểm tra ngay.",
+      "unit": "Unit 10"
+    },
+    {
+      "id": "u_mcq_41",
+      "num": 41,
+      "prompt": "<b>Câu 41:</b> We ________ each other face-to-face since we graduated from Hong Duc University four years ago.",
+      "options": [
+        "didn't see    B. haven't seen    C. don't see    D. weren't seeing"
+      ],
+      "answer": "B",
+      "explanation": "Mệnh đề trước 'since + mốc quá khứ' dùng thì Hiện tại hoàn thành: haven't seen.",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_42",
+      "num": 42,
+      "prompt": "<b>Câu 42:</b> Has the IT department fixed the wireless internet connection in the library ________?",
+      "options": [
+        "still    B. already    C. yet    D. no longer"
+      ],
+      "answer": "C",
+      "explanation": "Cuối câu hỏi ở thì Hiện tại hoàn thành dùng 'yet' (đã ... chưa?).",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_43",
+      "num": 43,
+      "prompt": "<b>Câu 43:</b> Many teenagers ________ watch traditional television because they prefer streaming videos on their smartphones.",
+      "options": [
+        "any longer    B. no longer    C. yet    D. already"
+      ],
+      "answer": "B",
+      "explanation": "Trong câu khẳng định, đứng trước động từ thường (watch) dùng 'no longer' (không còn ... nữa).",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_44",
+      "num": 44,
+      "prompt": "<b>Câu 44:</b> If children ________ too many hours playing online games, their school results will suffer.",
+      "options": [
+        "spent    B. spend    C. will spend    D. would spend"
+      ],
+      "answer": "B",
+      "explanation": "Câu điều kiện có thật loại 1: If + S + V(hiện tại đơn - spend), S + will + V.",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_45",
+      "num": 45,
+      "prompt": "<b>Câu 45:</b> Please send me a text message as soon as your plane ________ at Noi Bai Airport tomorrow.",
+      "options": [
+        "lands    B. will land    C. landed    D. has landed"
+      ],
+      "answer": "A",
+      "explanation": "Mệnh đề chỉ thời gian ở tương lai sau 'as soon as' dùng thì Hiện tại đơn: lands.",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_46",
+      "num": 46,
+      "prompt": "<b>Câu 46:</b> Social networking sites help me ________ in touch with friends who live in different parts of the world.",
+      "options": [
+        "lose    B. keep    C. make    D. take"
+      ],
+      "answer": "B",
+      "explanation": "keep in touch with = giữ liên lạc với ai.",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_47",
+      "num": 47,
+      "prompt": "<b>Câu 47:</b> Everything on the new software looked different, so the elderly man felt very ________ and didn't know which button to click.",
+      "options": [
+        "confused    B. proud    C. excited    D. helpful"
+      ],
+      "answer": "A",
+      "explanation": "Cảm thấy bối rối, không biết bấm nút nào trên phần mềm mới: confused.",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_48",
+      "num": 48,
+      "prompt": "<b>Câu 48:</b> Before you click on a link in an unknown email, be careful—it might contain a computer ________ that steals your personal data.",
+      "options": [
+        "search engine    B. blog    C. virus    D. travel website"
+      ],
+      "answer": "C",
+      "explanation": "computer virus = vi-rút máy tính đánh cắp dữ liệu.",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_49",
+      "num": 49,
+      "prompt": "<b>Câu 49:</b> Read the text: <i>\"Social media platforms are useful for communication, but <b>they</b> can also waste a lot of our study time.\"</i> What does the pronoun <b>\"they\"</b> refer to?",
+      "options": [
+        "communication skills    B. social media platforms    C. our teachers    D. study hours"
+      ],
+      "answer": "B",
+      "explanation": "Đại từ 'they' thay thế cho danh từ số nhiều đứng trước: 'Social media platforms'.",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_50",
+      "num": 50,
+      "prompt": "<b>Câu 50:</b> <b>David:</b> \"Personally, I think working from home is much more productive than working in an office.\"<br/><b>Anna:</b> \"________________ It saves commuting time, but people can easily feel lonely and distracted at home.\"",
+      "options": [
+        "I see what you mean, but I don't completely agree.",
+        "Could you tell me where the office is?",
+        "I'd like to pay in cash, please.",
+        "It must be a wild animal."
+      ],
+      "answer": "A",
+      "explanation": "Phản biện lịch sự (Lesson 11.3): 'I see what you mean, but I don't completely agree.'",
+      "unit": "Unit 11"
+    },
+    {
+      "id": "u_mcq_51",
+      "num": 51,
+      "prompt": "<b>Câu 51:</b> The director said that his film crew ________ a historical movie in Ninh Binh the previous month.",
+      "options": [
+        "has filmed    B. had filmed    C. will film    D. is filming"
+      ],
+      "answer": "B",
+      "explanation": "Câu tường thuật có 'the previous month' (lùi từ last month) → dùng Quá khứ hoàn thành: had filmed.",
+      "unit": "Unit 12"
+    },
+    {
+      "id": "u_mcq_52",
+      "num": 52,
+      "prompt": "<b>Câu 52:</b> Minh told his classmates that he ________ for the English speaking contest the following week.",
+      "options": [
+        "will register    B. would register    C. registers    D. has registered"
+      ],
+      "answer": "B",
+      "explanation": "Câu tường thuật có 'the following week' (lùi từ next week) → will lùi thành would register.",
+      "unit": "Unit 12"
+    },
+    {
+      "id": "u_mcq_53",
+      "num": 53,
+      "prompt": "<b>Câu 53:</b> The receptionist ________ the guests that breakfast was served between 6:30 and 9:30 a.m.",
+      "options": [
+        "said    B. told    C. spoke    D. talked"
+      ],
+      "answer": "B",
+      "explanation": "Có tân ngữ chỉ người (the guests) ngay sau động từ tường thuật → dùng told.",
+      "unit": "Unit 12"
+    },
+    {
+      "id": "u_mcq_54",
+      "num": 54,
+      "prompt": "<b>Câu 54:</b> If I ________ a famous film star, I would use my influence to raise money for homeless children.",
+      "options": [
+        "am    B. were    C. will be    D. have been"
+      ],
+      "answer": "B",
+      "explanation": "Câu điều kiện giả định loại 2 ở hiện tại: If I were...",
+      "unit": "Unit 12"
+    },
+    {
+      "id": "u_mcq_55",
+      "num": 55,
+      "prompt": "<b>Câu 55:</b> How would you feel if a video of you singing suddenly ________ viral on TikTok with ten million views?",
+      "options": [
+        "go    B. goes    C. went    D. will go"
+      ],
+      "answer": "C",
+      "explanation": "Câu điều kiện loại 2: Mệnh đề If chia quá khứ đơn (went viral).",
+      "unit": "Unit 12"
+    },
+    {
+      "id": "u_mcq_56",
+      "num": 56,
+      "prompt": "<b>Câu 56:</b> I didn't enjoy the action movie very much; the special ________ were impressive, but the plot was boring and predictable.",
+      "options": [
+        "effects    B. extras    C. biopics    D. soundtracks"
+      ],
+      "answer": "A",
+      "explanation": "special effects = kỹ xảo điện ảnh.",
+      "unit": "Unit 12"
+    },
+    {
+      "id": "u_mcq_57",
+      "num": 57,
+      "prompt": "<b>Câu 57:</b> During his summer holiday, he worked as an ________ in a crowd scene of a Hollywood blockbuster.",
+      "options": [
+        "extra    B. invention    C. advertisement    D. achievement"
+      ],
+      "answer": "A",
+      "explanation": "extra = diễn viên quần chúng trong cảnh đám đông.",
+      "unit": "Unit 12"
+    },
+    {
+      "id": "u_mcq_58",
+      "num": 58,
+      "prompt": "<b>Câu 58:</b> Thanks to her hard work and natural talent, she became a highly ________ businesswoman before the age of thirty.",
+      "options": [
+        "succeed    B. success    C. successful    D. successfully"
+      ],
+      "answer": "C",
+      "explanation": "Trước danh từ (businesswoman) cần một tính từ → dùng hậu tố -ful: successful.",
+      "unit": "Unit 12"
+    },
+    {
+      "id": "u_mcq_59",
+      "num": 59,
+      "prompt": "<b>Câu 59:</b> Could you ________ a good quiet restaurant near here where we can discuss our group project over dinner?",
+      "options": [
+        "recommend    B. rent    C. invite    D. act"
+      ],
+      "answer": "A",
+      "explanation": "recommend a restaurant = gợi ý/giới thiệu một nhà hàng ngon.",
+      "unit": "Unit 12"
+    },
+    {
+      "id": "u_mcq_60",
+      "num": 60,
+      "prompt": "<b>Câu 60:</b> <b>Guest:</b> \"Excuse me, we'd love to see the city museums today. Could you organize a private guide for us?\"<br/><b>Hotel Concierge:</b> \"________________\"<br/>---",
+      "options": [
+        "Certainly, sir. I'll call our tour agency and arrange that for you right away.",
+        "No, I used to work at a museum when I was young.",
+        "That's true, but I prefer watching sci-fi movies.",
+        "I'm sorry, it doesn't fit me."
+      ],
+      "answer": "A",
+      "explanation": "Khách yêu cầu concierge sắp xếp hướng dẫn viên riêng → Đáp lại lịch sự: 'Certainly, sir. I'll...'",
+      "unit": "Unit 12"
+    }
+  ],
+  "bGrammarQuestions": [
+    {
+      "id": "b_gram_1",
+      "num": 1,
+      "prompt": "<b>Câu 1:</b> The university regulations require that every student ________ their student ID card when entering the examination hall.",
+      "options": [
+        "wears    B. wear    C. wore    D. wearing"
+      ],
+      "answer": "B",
+      "explanation": "Thể giả định (Subjunctive): require that + S + (should) + V(nguyên thể không chia) → wear."
+    },
+    {
+      "id": "b_gram_2",
+      "num": 2,
+      "prompt": "<b>Câu 2:</b> The doctor strongly advised that Mr. Smith ________ smoking and eat less salt immediately.",
+      "options": [
+        "stops    B. stopped    C. stop    D. to stop"
+      ],
+      "answer": "C",
+      "explanation": "Thể giả định: advise that + S + (should) + V(nguyên thể) → stop."
+    },
+    {
+      "id": "b_gram_3",
+      "num": 3,
+      "prompt": "<b>Câu 3:</b> It is vital that the government ________ strict measures to protect endangered wildlife from illegal hunting.",
+      "options": [
+        "take    B. takes    C. took    D. taking"
+      ],
+      "answer": "A",
+      "explanation": "Thể giả định sau tính từ cấp thiết: It is vital that + S + (should) + V(nguyên thể) → take."
+    },
+    {
+      "id": "b_gram_4",
+      "num": 4,
+      "prompt": "<b>Câu 4:</b> The local guide suggested that the tourists ________ drink water directly from the river.",
+      "options": [
+        "don't    B. didn't    C. not    D. not to"
+      ],
+      "answer": "C",
+      "explanation": "Thể giả định phủ định: suggest that + S + (should) + not + V(nguyên thể) → not drink."
+    },
+    {
+      "id": "b_gram_5",
+      "num": 5,
+      "prompt": "<b>Câu 5:</b> Since the weather is stormy today, I suggested ________ inside and watching a documentary at home.",
+      "options": [
+        "stay    B. to stay    C. staying    D. stayed"
+      ],
+      "answer": "C",
+      "explanation": "Khi sau 'suggest' KHÔNG có 'that + S', ta dùng suggest + V-ing → staying."
+    },
+    {
+      "id": "b_gram_6",
+      "num": 6,
+      "prompt": "<b>Câu 6:</b> I would rather ________ a quiet evening reading at home than go to a crowded, noisy party.",
+      "options": [
+        "spend    B. to spend    C. spending    D. spent"
+      ],
+      "answer": "A",
+      "explanation": "Cùng chủ ngữ ở hiện tại: would rather + V(nguyên thể) + than + V(nguyên thể) → spend."
+    },
+    {
+      "id": "b_gram_7",
+      "num": 7,
+      "prompt": "<b>Câu 7:</b> I'd rather you ________ my laptop without asking me first; I have important work files on it.",
+      "options": [
+        "don't use    B. not use    C. didn't use    D. haven't used"
+      ],
+      "answer": "C",
+      "explanation": "Khác chủ ngữ (mong muốn ai đừng làm gì ở hiện tại): would rather + S2 + didn't + V(nguyên thể)."
+    },
+    {
+      "id": "b_gram_8",
+      "num": 8,
+      "prompt": "<b>Câu 8:</b> My parents would rather I ________ medicine or teaching instead of becoming an actor.",
+      "options": [
+        "study    B. studied    C. will study    D. to study"
+      ],
+      "answer": "B",
+      "explanation": "Khác chủ ngữ ở hiện tại: would rather + S2 + V2/ed (quá khứ giả định) → studied."
+    },
+    {
+      "id": "b_gram_9",
+      "num": 9,
+      "prompt": "<b>Câu 9:</b> Most young people nowadays prefer communicating via instant messages ________ making phone calls.",
+      "options": [
+        "than    B. rather than    C. to    D. from"
+      ],
+      "answer": "C",
+      "explanation": "Cấu trúc: prefer + V-ing + TO + V-ing."
+    },
+    {
+      "id": "b_gram_10",
+      "num": 10,
+      "prompt": "<b>Câu 10:</b> She prefers to cook her own healthy meals at home rather than ________ fast food at the cafeteria.",
+      "options": [
+        "eat    B. eating    C. to eat    D. ate"
+      ],
+      "answer": "A",
+      "explanation": "Cấu trúc: prefer + to V + rather than + V(nguyên thể) → eat."
+    },
+    {
+      "id": "b_gram_11",
+      "num": 11,
+      "prompt": "<b>Câu 11:</b> You had better ________ your application form before 5:00 p.m. today, or it will not be accepted.",
+      "options": [
+        "submitting    B. to submit    C. submit    D. submitted"
+      ],
+      "answer": "C",
+      "explanation": "Cấu trúc lời khuyên mạnh: had better + V(nguyên thể) → submit."
+    },
+    {
+      "id": "b_gram_12",
+      "num": 12,
+      "prompt": "<b>Câu 12:</b> You'd better ________ anyone your bank password, even if they claim to be a bank employee.",
+      "options": [
+        "not tell    B. not to tell    C. don't tell    D. not telling"
+      ],
+      "answer": "A",
+      "explanation": "Phủ định của had better: had better + NOT + V(nguyên thể) → not tell."
+    },
+    {
+      "id": "b_gram_13",
+      "num": 13,
+      "prompt": "<b>Câu 13:</b> It's almost midnight! It's high time we ________ off the computer and went to sleep.",
+      "options": [
+        "turn    B. turned    C. to turn    D. have turned"
+      ],
+      "answer": "B",
+      "explanation": "Cấu trúc: It's high time + S + V2/ed (quá khứ giả định) → turned."
+    },
+    {
+      "id": "b_gram_14",
+      "num": 14,
+      "prompt": "<b>Câu 14:</b> It's about time the local authorities ________ the broken street lights in our neighborhood.",
+      "options": [
+        "repair    B. to repair    C. repaired    D. repairing"
+      ],
+      "answer": "C",
+      "explanation": "Cấu trúc: It's about time + S + V2/ed → repaired."
+    },
+    {
+      "id": "b_gram_15",
+      "num": 15,
+      "prompt": "<b>Câu 15:</b> When I first moved to Tokyo, I wasn't used to ________ the crowded underground trains every morning.",
+      "options": [
+        "take    B. taking    C. took    D. taken"
+      ],
+      "answer": "B",
+      "explanation": "be used to + V-ing = quen với việc làm gì."
+    },
+    {
+      "id": "b_gram_16",
+      "num": 16,
+      "prompt": "<b>Câu 16:</b> This sharp kitchen knife is used to ________ meat and vegetables, not to open tin cans!",
+      "options": [
+        "cut    B. cutting    C. cuts    D. be cut"
+      ],
+      "answer": "A",
+      "explanation": "Bị động của use: be used to + V(nguyên thể) = được dùng để làm gì (con dao được dùng để thái thịt)."
+    },
+    {
+      "id": "b_gram_17",
+      "num": 17,
+      "prompt": "<b>Câu 17:</b> The interviewer asked Lan how long she ________ English at Hong Duc University.",
+      "options": [
+        "has studied    B. had studied    C. did she study    D. was she studying"
+      ],
+      "answer": "B",
+      "explanation": "Câu hỏi tường thuật (Reported Question): Lùi thì sang QKHT (had studied) và KHÔNG đảo ngữ."
+    },
+    {
+      "id": "b_gram_18",
+      "num": 18,
+      "prompt": "<b>Câu 18:</b> My roommate wanted to know ________ I could lend him some cash until Friday.",
+      "options": [
+        "that    B. what    C. whether    D. which"
+      ],
+      "answer": "C",
+      "explanation": "Tường thuật câu hỏi Yes/No: dùng if hoặc whether."
+    },
+    {
+      "id": "b_gram_19",
+      "num": 19,
+      "prompt": "<b>Câu 19:</b> The police officer ordered the driver ________ his car at the side of the road immediately.",
+      "options": [
+        "stop    B. stopping    C. to stop    D. stopped"
+      ],
+      "answer": "C",
+      "explanation": "Tường thuật câu mệnh lệnh: order + O + to V → to stop."
+    },
+    {
+      "id": "b_gram_20",
+      "num": 20,
+      "prompt": "<b>Câu 20:</b> The movie was ________ boring that half of the audience left the cinema before the end.",
+      "options": [
+        "such    B. too    C. so    D. enough"
+      ],
+      "answer": "C",
+      "explanation": "Cấu trúc kết quả với tính từ: so + adj (boring) + that + S + V."
+    },
+    {
+      "id": "b_gram_21",
+      "num": 21,
+      "prompt": "<b>Câu 21:</b> It was ________ an exciting thriller that I couldn't take my eyes off the screen for two hours.",
+      "options": [
+        "so    B. such    C. very    D. too"
+      ],
+      "answer": "B",
+      "explanation": "Cấu trúc kết quả với cụm danh từ đếm được số ít: such + a/an + adj + N + that."
+    },
+    {
+      "id": "b_gram_22",
+      "num": 22,
+      "prompt": "<b>Câu 22:</b> The box of books was ________ heavy for the little boy to carry upstairs by himself.",
+      "options": [
+        "so    B. enough    C. too    D. such"
+      ],
+      "answer": "C",
+      "explanation": "Cấu trúc: too + adj (heavy) + for sb + to V (quá nặng đến mức cậu bé không tự bê được)."
+    },
+    {
+      "id": "b_gram_23",
+      "num": 23,
+      "prompt": "<b>Câu 23:</b> Mr. Dawson, ________ car was stolen from outside his house last night, has just reported the crime to the police.",
+      "options": [
+        "who    B. whom    C. which    D. whose"
+      ],
+      "answer": "D",
+      "explanation": "Đại từ quan hệ chỉ sở hữu đứng trước danh từ 'car': whose car."
+    },
+    {
+      "id": "b_gram_24",
+      "num": 24,
+      "prompt": "<b>Câu 24:</b> Hanoi, ________ is the capital of Vietnam, is famous for its historic architecture and delicious street food.",
+      "options": [
+        "that    B. which    C. where    D. what"
+      ],
+      "answer": "B",
+      "explanation": "MĐQH không xác định (sau danh từ riêng 'Hanoi,' có dấu phẩy) chỉ vật → dùng which (cấm dùng that)."
+    },
+    {
+      "id": "b_gram_25",
+      "num": 25,
+      "prompt": "<b>Câu 25:</b> Unless you ________ backup copies of your computer files regularly, you may lose important data when the system crashes.",
+      "options": [
+        "don't make    B. make    C. will make    D. made"
+      ],
+      "answer": "B",
+      "explanation": "Unless = If... not (Trừ khi bạn sao lưu dữ liệu...). Sau Unless dùng thì Hiện tại đơn khẳng định: make."
+    },
+    {
+      "id": "b_gram_26",
+      "num": 26,
+      "prompt": "<b>Câu 26:</b> If there ________ no green trees and rainforests on Earth, humans and animals wouldn't have enough oxygen to breathe.",
+      "options": [
+        "are    B. were    C. will be    D. have been"
+      ],
+      "answer": "B",
+      "explanation": "Câu điều kiện giả định loại 2: If there were no green trees..."
+    },
+    {
+      "id": "b_gram_27",
+      "num": 27,
+      "prompt": "<b>Câu 27:</b> All electronic devices must ________ off during take-off and landing.",
+      "options": [
+        "switch    B. be switched    C. switched    D. being switched"
+      ],
+      "answer": "B",
+      "explanation": "Câu bị động với động từ khuyết thiếu (Modal Passive): must + be + V3/ed → be switched."
+    },
+    {
+      "id": "b_gram_28",
+      "num": 28,
+      "prompt": "<b>Câu 28:</b> This is the first time I ________ such a breathtaking waterfall in the wild.",
+      "options": [
+        "ever saw    B. have ever seen    C. am ever seeing    D. had ever seen"
+      ],
+      "answer": "B",
+      "explanation": "Sau cấu trúc 'This is the first time...' luôn dùng thì Hiện tại hoàn thành: have ever seen."
+    },
+    {
+      "id": "b_gram_29",
+      "num": 29,
+      "prompt": "<b>Câu 29:</b> It has been nearly six months since we last ________ out for dinner together.",
+      "options": [
+        "go    B. went    C. have gone    D. had gone"
+      ],
+      "answer": "B",
+      "explanation": "Cấu trúc: It has been + [thời gian] + since + S + (last) + V2/ed (Quá khứ đơn) → went."
+    },
+    {
+      "id": "b_gram_30",
+      "num": 30,
+      "prompt": "<b>Câu 30:</b> My cousin is looking forward to ________ her new job at the international travel agency next Monday.<br/>---",
+      "options": [
+        "start    B. starting    C. started    D. be started"
+      ],
+      "answer": "B",
+      "explanation": "Cụm từ 'look forward to' có 'to' là giới từ nên theo sau là V-ing → starting."
+    }
+  ],
+  "writtenExercises": {
+    "wordFormation": [
+      {
+        "num": 1,
+        "prompt": "Winning the national scholarship was the greatest ________ (ACHIEVE) of her university life.",
+        "answers": [
+          "achievement"
+        ],
+        "hint": "Danh từ (sau tính từ so sánh nhất greatest) → thêm hậu tố -ment."
+      },
+      {
+        "num": 2,
+        "prompt": "Many young people dream of becoming an internet ________ (CELEBRATE), but sudden fame can be stressful.",
+        "answers": [
+          "celebrity"
+        ],
+        "hint": "Danh từ chỉ người nổi tiếng trên mạng → hậu tố -ity."
+      },
+      {
+        "num": 3,
+        "prompt": "The hotel concierge was extremely ________ (HELP) and arranged our airport taxi within five minutes.",
+        "answers": [
+          "helpful"
+        ],
+        "hint": "Tính từ mang nghĩa tích cực (hay giúp đỡ) → hậu tố -ful."
+      },
+      {
+        "num": 4,
+        "prompt": "Air and water ________ (POLLUTE) are becoming serious problems in many fast-growing cities.",
+        "answers": [
+          "pollution"
+        ],
+        "hint": "Danh từ sự ô nhiễm → hậu tố -ion."
+      },
+      {
+        "num": 5,
+        "prompt": "My new office chair is very ________ (COMFORT), so I can work for hours without back pain.",
+        "answers": [
+          "comfortable"
+        ],
+        "hint": "Tính từ (thoải mái, êm ái) → hậu tố -able."
+      },
+      {
+        "num": 6,
+        "prompt": "Christopher Nolan is one of the most creative film ________ (DIRECT) in modern cinema.",
+        "answers": [
+          "directors"
+        ],
+        "hint": "Sau 'one of the + so sánh nhất' là danh từ chỉ người số nhiều → directors."
+      },
+      {
+        "num": 7,
+        "prompt": "Leaving your smartphone on the café table while going to the restroom is very ________ (CARE).",
+        "answers": [
+          "careless"
+        ],
+        "hint": "Tính từ mang nghĩa bất cẩn → hậu tố -less."
+      },
+      {
+        "num": 8,
+        "prompt": "Many charities are working hard to provide food and shelter for ________ (HOME) people in winter.",
+        "answers": [
+          "homeless"
+        ],
+        "hint": "Tính từ chỉ người vô gia cư → hậu tố -less."
+      },
+      {
+        "num": 9,
+        "prompt": "The company placed an ________ (ADVERTISE) on social media looking for part-time English tutors.",
+        "answers": [
+          "advertisement",
+          "advert"
+        ],
+        "hint": "Danh từ bài quảng cáo (sau mạo từ 'an') → advertisement."
+      },
+      {
+        "num": 10,
+        "prompt": "To become a successful ________ (MUSIC), you need both natural talent and years of daily practice.",
+        "answers": [
+          "musician"
+        ],
+        "hint": "Danh từ chỉ người (nhạc sĩ/nhạc công) → hậu tố -ian."
+      }
+    ],
+    "prepositions": [
+      {
+        "num": 1,
+        "prompt": "Have you ever thought ________ moving to another city after graduation?",
+        "answers": [
+          "about",
+          "of"
+        ],
+        "hint": "think about / of + V-ing"
+      },
+      {
+        "num": 2,
+        "prompt": "After studying abroad for four years, she finally went back ________ her hometown to work.",
+        "answers": [
+          "to"
+        ],
+        "hint": "go back to = trở về đâu"
+      },
+      {
+        "num": 3,
+        "prompt": "Never give ________ your dreams, even when you encounter difficult challenges.",
+        "answers": [
+          "up"
+        ],
+        "hint": "give up = từ bỏ"
+      },
+      {
+        "num": 4,
+        "prompt": "Could you look ________ my cat for three days while I am away on a business trip?",
+        "answers": [
+          "after"
+        ],
+        "hint": "look after = chăm sóc"
+      },
+      {
+        "num": 5,
+        "prompt": "The store manager promised to look ________ the customer's complaint about the faulty product right away.",
+        "answers": [
+          "into"
+        ],
+        "hint": "look into = xem xét, điều tra"
+      },
+      {
+        "num": 6,
+        "prompt": "Please remember to give ________ the reference books you borrowed from the university library before Friday.",
+        "answers": [
+          "back"
+        ],
+        "hint": "give back = trả lại"
+      },
+      {
+        "num": 7,
+        "prompt": "He turned ________ the job offer at the bank because the working hours were too long.",
+        "answers": [
+          "down"
+        ],
+        "hint": "turn down = từ chối"
+      },
+      {
+        "num": 8,
+        "prompt": "How often do you keep ________ touch with your old high school classmates?",
+        "answers": [
+          "in"
+        ],
+        "hint": "keep in touch with = giữ liên lạc"
+      },
+      {
+        "num": 9,
+        "prompt": "Many first-year students still rely ________ their parents for tuition fees and living expenses.",
+        "answers": [
+          "on",
+          "upon"
+        ],
+        "hint": "rely on = dựa vào, phụ thuộc vào"
+      },
+      {
+        "num": 10,
+        "prompt": "Thanks to her determination, she finally succeeded ________ getting a B1 English certificate.",
+        "answers": [
+          "in"
+        ],
+        "hint": "succeed in + V-ing = thành công trong việc gì"
+      }
+    ],
+    "pronouns": [
+      {
+        "num": 1,
+        "prompt": "Lucas bought a new acoustic guitar last month, and <b><u>Lucas</u></b> plays <b><u>the new acoustic guitar</u></b> every evening in <b><u>Lucas's</u></b> dormitory room.<br/><i>Điền 3 đại từ cách nhau bởi dấu phẩy (ví dụ: he, it, his):</i>",
+        "answers": [
+          "he, it, his",
+          "he,it,his"
+        ],
+        "hint": "Lucas (chủ ngữ) → he; the new acoustic guitar (tân ngữ số ít) → it; Lucas's (sở hữu) → his."
+      },
+      {
+        "num": 2,
+        "prompt": "Many university students use social networking sites to keep in touch with friends, but <b><u>social networking sites</u></b> can distract <b><u>university students</u></b> from <b><u>university students'</u></b> studies.<br/><i>Điền 3 đại từ cách nhau bởi dấu phẩy:</i>",
+        "answers": [
+          "they, them, their",
+          "they,them,their"
+        ],
+        "hint": "sites (chủ ngữ) → they; students (tân ngữ) → them; students' (sở hữu) → their."
+      },
+      {
+        "num": 3,
+        "prompt": "My sister and I visited Da Nang last summer. <b><u>Da Nang</u></b> is a clean coastal city <b><u>in Da Nang</u></b> tourists can swim and enjoy fresh seafood.<br/><i>Điền 2 từ cách nhau bởi dấu phẩy:</i>",
+        "answers": [
+          "it, where",
+          "it,where"
+        ],
+        "hint": "Da Nang → It; in Da Nang (trạng từ quan hệ chỉ nơi chốn) → where."
+      },
+      {
+        "num": 4,
+        "prompt": "Too many people drive private cars into the city centre during rush hour, and <b><u>driving private cars into the city centre during rush hour</u></b> causes terrible traffic congestion.<br/><i>Điền 1 đại từ chỉ định thay cho cả mệnh đề trước:</i>",
+        "answers": [
+          "this",
+          "that",
+          "it"
+        ],
+        "hint": "Dùng đại từ chỉ định 'this' (hoặc 'that'/'it') để thay cho cả hành động phía trước."
+      },
+      {
+        "num": 5,
+        "prompt": "Anna wanted to buy the red trainers in the sale, but <b><u>the red trainers</u></b> weren't big enough for <b><u>Anna</u></b>.<br/><i>Điền 2 đại từ cách nhau bởi dấu phẩy:</i>",
+        "answers": [
+          "they, her",
+          "they,her"
+        ],
+        "hint": "the red trainers (số nhiều) → they; for Anna (tân ngữ) → her."
+      }
+    ],
+    "errorCorrection": [
+      {
+        "num": 1,
+        "prompt": "My father <b><u>was used to</u></b> smoke twenty cigarettes a day, but he gave it up three years ago. (Nhập từ sửa lại đúng):",
+        "answers": [
+          "used to"
+        ],
+        "hint": "Thói quen trong quá khứ đi với V nguyên thể (smoke) → dùng 'used to' (bỏ was)."
+      },
+      {
+        "num": 2,
+        "prompt": "The academic adviser suggested that Lien <b><u>takes</u></b> an extra English writing course this semester. (Nhập từ sửa lại đúng):",
+        "answers": [
+          "take",
+          "should take"
+        ],
+        "hint": "Thể giả định (Subjunctive) sau 'suggested that + S' → dùng V nguyên thể 'take' hoặc 'should take'."
+      },
+      {
+        "num": 3,
+        "prompt": "Mr. Harrison, <b><u>that</u></b> lives on the third floor of our building, is a retired history professor. (Nhập từ sửa lại đúng):",
+        "answers": [
+          "who"
+        ],
+        "hint": "MĐQH không xác định (có dấu phẩy) chỉ người → bắt buộc dùng 'who', không dùng 'that'."
+      },
+      {
+        "num": 4,
+        "prompt": "We couldn't find a seat in the cafeteria because there were <b><u>too much</u></b> students having lunch at noon. (Nhập từ sửa lại đúng):",
+        "answers": [
+          "too many"
+        ],
+        "hint": "'students' là danh từ đếm được số nhiều → dùng 'too many'."
+      },
+      {
+        "num": 5,
+        "prompt": "Travelling by coach is not as expensive <b><u>than</u></b> travelling by plane, though it takes much longer. (Nhập từ sửa lại đúng):",
+        "answers": [
+          "as"
+        ],
+        "hint": "So sánh bằng/không bằng: not as + adj + as."
+      },
+      {
+        "num": 6,
+        "prompt": "Most international students look forward to <b><u>return</u></b> home to see their families during the summer holidays. (Nhập từ sửa lại đúng):",
+        "answers": [
+          "returning"
+        ],
+        "hint": "look forward to + V-ing → returning."
+      },
+      {
+        "num": 7,
+        "prompt": "You had better <b><u>not to forget</u></b> your passport and boarding pass when you go to the airport tomorrow! (Nhập từ sửa lại đúng):",
+        "answers": [
+          "not forget"
+        ],
+        "hint": "had better (not) + V nguyên thể không 'to' → not forget."
+      },
+      {
+        "num": 8,
+        "prompt": "Over two hundred bicycles <b><u>stole</u></b> from the university parking area last year. (Nhập từ sửa lại đúng):",
+        "answers": [
+          "were stolen"
+        ],
+        "hint": "Câu bị động ở thì quá khứ đơn với chủ ngữ số nhiều (bicycles) → were stolen."
+      },
+      {
+        "num": 9,
+        "prompt": "My grandmother <b><u>doesn't no longer</u></b> live in the countryside because she has moved in with us. (Nhập từ sửa lại đúng):",
+        "answers": [
+          "no longer lives",
+          "doesn't live"
+        ],
+        "hint": "'no longer' dùng trong câu khẳng định: 'no longer lives'."
+      },
+      {
+        "num": 10,
+        "prompt": "The tourist asked the hotel concierge where <b><u>was the nearest cash machine</u></b>. (Nhập cụm từ sửa lại đúng):",
+        "answers": [
+          "the nearest cash machine was"
+        ],
+        "hint": "Câu hỏi tường thuật không đảo ngữ: where + S + V → the nearest cash machine was."
+      }
+    ],
+    "sentenceTransformation": [
+      {
+        "num": 1,
+        "prompt": "When Minh was a high school student, he played video games every night, but now he doesn't. <i>(Dùng <b>used to</b>)</i><br/>→ Minh ...",
+        "answers": [
+          "used to play video games every night",
+          "used to play video games every night when he was a high school student"
+        ],
+        "displayAnswer": "Minh used to play video games every night (when he was a high school student)."
+      },
+      {
+        "num": 2,
+        "prompt": "At first, waking up at 5:30 a.m. was difficult for Mai, but now it is normal for her. <i>(Dùng <b>used to</b>)</i><br/>→ Mai is now ...",
+        "answers": [
+          "used to waking up at 5:30 a.m",
+          "used to waking up at 5:30 am"
+        ],
+        "displayAnswer": "Mai is now used to waking up at 5:30 a.m."
+      },
+      {
+        "num": 3,
+        "prompt": "David saved a portion of his salary every month because he wanted to buy a new motorbike. <i>(Dùng <b>in order to</b>)</i><br/>→ David saved a portion of his salary every month ...",
+        "answers": [
+          "in order to buy a new motorbike"
+        ],
+        "displayAnswer": "David saved a portion of his salary every month in order to buy a new motorbike."
+      },
+      {
+        "num": 4,
+        "prompt": "\"I think we should install more recycling bins around the campus,\" the student leader said. <i>(Dùng <b>suggested that</b>)</i><br/>→ The student leader suggested that ...",
+        "answers": [
+          "they install more recycling bins around the campus",
+          "they should install more recycling bins around the campus",
+          "we install more recycling bins around the campus",
+          "we should install more recycling bins around the campus"
+        ],
+        "displayAnswer": "The student leader suggested that they (should) install more recycling bins around the campus."
+      },
+      {
+        "num": 5,
+        "prompt": "It is essential for every passenger to show their boarding pass at the gate. <i>(Dùng <b>It is essential that...</b>)</i><br/>→ It is essential that every passenger ...",
+        "answers": [
+          "show their boarding pass at the gate",
+          "should show their boarding pass at the gate"
+        ],
+        "displayAnswer": "It is essential that every passenger (should) show their boarding pass at the gate."
+      },
+      {
+        "num": 6,
+        "prompt": "People use the Internet all over the world to search for information and communicate. <i>(Chuyển sang <b>câu bị động</b>)</i><br/>→ The Internet ...",
+        "answers": [
+          "is used all over the world to search for information and communicate"
+        ],
+        "displayAnswer": "The Internet is used all over the world to search for information and communicate."
+      },
+      {
+        "num": 7,
+        "prompt": "The police arrested the two bank robbers at the railway station yesterday morning. <i>(Chuyển sang <b>câu bị động</b>)</i><br/>→ The two bank robbers ...",
+        "answers": [
+          "were arrested by the police at the railway station yesterday morning",
+          "were arrested at the railway station yesterday morning by the police"
+        ],
+        "displayAnswer": "The two bank robbers were arrested by the police at the railway station yesterday morning."
+      },
+      {
+        "num": 8,
+        "prompt": "The girl is my best friend. You met her brother at the English club yesterday. <i>(Nối câu dùng <b>whose</b>)</i><br/>→ The girl ...",
+        "answers": [
+          "whose brother you met at the English club yesterday is my best friend"
+        ],
+        "displayAnswer": "The girl whose brother you met at the English club yesterday is my best friend."
+      },
+      {
+        "num": 9,
+        "prompt": "This apartment is too small for our family of five to live in comfortably. <i>(Dùng <b>enough</b>)</i><br/>→ This apartment is not ...",
+        "answers": [
+          "big enough for our family of five to live in comfortably",
+          "large enough for our family of five to live in comfortably"
+        ],
+        "displayAnswer": "This apartment is not big/large enough for our family of five to live in comfortably."
+      },
+      {
+        "num": 10,
+        "prompt": "In my opinion, action movies are not as interesting as science-fiction movies. <i>(Dùng <b>more ... than</b>)</i><br/>→ In my opinion, science-fiction movies are ...",
+        "answers": [
+          "more interesting than action movies"
+        ],
+        "displayAnswer": "In my opinion, science-fiction movies are more interesting than action movies."
+      },
+      {
+        "num": 11,
+        "prompt": "No other mountain in Vietnam is higher than Fansipan. <i>(Dùng <b>so sánh nhất</b>)</i><br/>→ Fansipan is ...",
+        "answers": [
+          "the highest mountain in vietnam"
+        ],
+        "displayAnswer": "Fansipan is the highest mountain in Vietnam."
+      },
+      {
+        "num": 12,
+        "prompt": "I like shopping at traditional markets more than buying clothes online. <i>(Dùng <b>prefer ... to ...</b>)</i><br/>→ I prefer ...",
+        "answers": [
+          "shopping at traditional markets to buying clothes online"
+        ],
+        "displayAnswer": "I prefer shopping at traditional markets to buying clothes online."
+      },
+      {
+        "num": 13,
+        "prompt": "I prefer to cycle to the university rather than wait for a crowded bus. <i>(Dùng <b>would rather</b>)</i><br/>→ I would rather ...",
+        "answers": [
+          "cycle to the university than wait for a crowded bus"
+        ],
+        "displayAnswer": "I would rather cycle to the university than wait for a crowded bus."
+      },
+      {
+        "num": 14,
+        "prompt": "Please don't play loud music in the dormitory room after 11:00 p.m. <i>(Dùng <b>I'd rather you...</b>)</i><br/>→ I'd rather you ...",
+        "answers": [
+          "didn't play loud music in the dormitory room after 11:00 p.m",
+          "did not play loud music in the dormitory room after 11:00 p.m",
+          "didn't play loud music in the dormitory room after 11:00 pm"
+        ],
+        "displayAnswer": "I'd rather you didn't play loud music in the dormitory room after 11:00 p.m."
+      },
+      {
+        "num": 15,
+        "prompt": "You should apologize to the teacher for arriving late right now. <i>(Dùng <b>It's high time</b>)</i><br/>→ It's high time you ...",
+        "answers": [
+          "apologized to the teacher for arriving late",
+          "apologised to the teacher for arriving late"
+        ],
+        "displayAnswer": "It's high time you apologized to the teacher for arriving late."
+      },
+      {
+        "num": 16,
+        "prompt": "The last time I went to the cinema was three months ago. <i>(Dùng <b>haven't + V3/ed + for</b>)</i><br/>→ I haven't ...",
+        "answers": [
+          "been to the cinema for three months",
+          "gone to the cinema for three months",
+          "been to the cinema for 3 months"
+        ],
+        "displayAnswer": "I haven't been/gone to the cinema for three months."
+      },
+      {
+        "num": 17,
+        "prompt": "My uncle doesn't work as a newspaper journalist anymore. <i>(Dùng <b>no longer</b>)</i><br/>→ My uncle ...",
+        "answers": [
+          "no longer works as a newspaper journalist"
+        ],
+        "displayAnswer": "My uncle no longer works as a newspaper journalist."
+      },
+      {
+        "num": 18,
+        "prompt": "\"I have already booked two tickets for the rock concert tomorrow,\" Sarah told Tom. <i>(Chuyển sang <b>câu tường thuật</b>)</i><br/>→ Sarah told Tom that ...",
+        "answers": [
+          "she had already booked two tickets for the rock concert the next day",
+          "she had already booked two tickets for the rock concert the following day"
+        ],
+        "displayAnswer": "Sarah told Tom that she had already booked two tickets for the rock concert the next/following day."
+      },
+      {
+        "num": 19,
+        "prompt": "\"Where can I exchange foreign currency near the hotel?\" the tourist asked the receptionist. <i>(Chuyển sang <b>câu tường thuật</b>)</i><br/>→ The tourist asked the receptionist where ...",
+        "answers": [
+          "he could exchange foreign currency near the hotel",
+          "she could exchange foreign currency near the hotel",
+          "they could exchange foreign currency near the hotel"
+        ],
+        "displayAnswer": "The tourist asked the receptionist where he/she could exchange foreign currency near the hotel."
+      },
+      {
+        "num": 20,
+        "prompt": "I don't know the director's email address, so I can't send him my film script. <i>(Dùng <b>Câu điều kiện loại 2</b>)</i><br/>→ If I ...",
+        "answers": [
+          "knew the director's email address, i would send him my film script",
+          "knew the director's email address, i could send him my film script"
+        ],
+        "displayAnswer": "If I knew the director's email address, I would/could send him my film script."
+      }
+    ]
+  },
+  "listeningSections": [
+    {
+      "id": "list_1",
+      "title": "Bài Nghe 1 (PET Part 4 – True/False): Radio Programme – A Big Life Change",
+      "audioScript": "Welcome to Changing Lives! Today our guest is Emma Clarke. Five years ago, Emma used to work as a marketing manager in London. She earned a high salary, but she worked twelve hours a day and felt exhausted. So, she made a big decision to give up her city job and buy a small organic farm in Wales. At first, it was very difficult for her to get used to waking up at 5:00 a.m. in cold weather. However, now she loves her outdoor lifestyle. Her farm uses solar panels for electricity, and she says country life is much healthier and less stressful than city life.",
+      "questions": [
+        {
+          "id": "l1_1",
+          "num": 1,
+          "prompt": "Emma used to work as a marketing manager in London.",
+          "options": [
+            "True (Đúng)",
+            "False (Sai)"
+          ],
+          "answer": "A",
+          "explanation": "Trong bài nghe: 'Emma used to work as a marketing manager in London.'"
+        },
+        {
+          "id": "l1_2",
+          "num": 2,
+          "prompt": "She decided to quit her office job because her salary was too low.",
+          "options": [
+            "True (Đúng)",
+            "False (Sai)"
+          ],
+          "answer": "B",
+          "explanation": "Sai. Cô ấy có mức lương cao (earned a high salary), nhưng nghỉ vì làm việc 12 tiếng/ngày quá kiệt sức (exhausted)."
+        },
+        {
+          "id": "l1_3",
+          "num": 3,
+          "prompt": "At first, it was easy for her to get used to waking up at 5:00 a.m. on the farm.",
+          "options": [
+            "True (Đúng)",
+            "False (Sai)"
+          ],
+          "answer": "B",
+          "explanation": "Sai. Ban đầu việc dậy lúc 5h sáng rất khó khăn (very difficult for her to get used to)."
+        },
+        {
+          "id": "l1_4",
+          "num": 4,
+          "prompt": "Her organic farm uses solar panels to produce clean electricity.",
+          "options": [
+            "True (Đúng)",
+            "False (Sai)"
+          ],
+          "answer": "A",
+          "explanation": "Đúng. 'Her farm uses solar panels for electricity.'"
+        },
+        {
+          "id": "l1_5",
+          "num": 5,
+          "prompt": "Emma believes that life in the countryside is healthier and less stressful than city life.",
+          "options": [
+            "True (Đúng)",
+            "False (Sai)"
+          ],
+          "answer": "A",
+          "explanation": "Đúng. '...country life is much healthier and less stressful than city life.'"
+        }
+      ]
+    },
+    {
+      "id": "list_2",
+      "title": "Bài Nghe 2 (PET Part 1 & 2 – Multiple Choice): Shopping, Complaining & Campus Facilities",
+      "audioScript": "Conversation 1. Shop assistant: Can I help you? Customer: Yes, I really like this blue jacket, and it's 30% off in the sale! This one is a large, though. Have you got it in a medium so I can try it on? Shop assistant: Sure, the fitting room is over there. Customer: Great, if it fits, I'll pay by credit card. Conversation 2. Receptionist: Reception, how can I help you? Guest: Hello, I'm calling from Room 305. I'm afraid there's a problem with the air conditioning. It's making a loud noise and blowing warm air. Receptionist: I'm terribly sorry about that, sir. I'll send a technician up in ten minutes, or if you prefer, we can move you to Room 410 right away. Conversation 3. Student: Excuse me, could you tell me where the Student Welfare Office is? Staff: Yes, go up the stairs to the second floor. It's right opposite the main lecture theatre.",
+      "questions": [
+        {
+          "id": "l2_6",
+          "num": 6,
+          "prompt": "<b>Conversation 1 (In a clothes shop):</b> Why doesn't the customer buy the blue jacket right away?",
+          "options": [
+            "It is too small for him.",
+            "It is too expensive and not on sale.",
+            "The one on the rack is a large, and he wants to try on a medium size first."
+          ],
+          "answer": "C",
+          "explanation": "Khách nói: 'This one is a large, though. Have you got it in a medium so I can try it on?'"
+        },
+        {
+          "id": "l2_7",
+          "num": 7,
+          "prompt": "<b>Conversation 1:</b> How will the customer pay if the jacket fits him?",
+          "options": [
+            "In cash.",
+            "By credit card.",
+            "By bank transfer."
+          ],
+          "answer": "B",
+          "explanation": "Khách nói: 'Great, if it fits, I'll pay by credit card.'"
+        },
+        {
+          "id": "l2_8",
+          "num": 8,
+          "prompt": "<b>Conversation 2 (At a hotel reception desk):</b> What problem is the guest in Room 305 complaining about?",
+          "options": [
+            "The wireless internet keeps disconnecting.",
+            "The air conditioning is making a loud noise and blowing warm air.",
+            "The street outside his window is too noisy."
+          ],
+          "answer": "B",
+          "explanation": "Khách phàn nàn: '...there's a problem with the air conditioning. It's making a loud noise and blowing warm air.'"
+        },
+        {
+          "id": "l2_9",
+          "num": 9,
+          "prompt": "<b>Conversation 2:</b> What solutions does the receptionist offer the guest?",
+          "options": [
+            "Sending a technician up in ten minutes or moving the guest to Room 410 immediately.",
+            "Giving a 50% refund on the hotel bill.",
+            "Offering two free tickets to a local concert."
+          ],
+          "answer": "A",
+          "explanation": "Lễ tân đề nghị cử kỹ thuật viên lên trong 10 phút hoặc đổi sang phòng 410 ngay."
+        },
+        {
+          "id": "l2_10",
+          "num": 10,
+          "prompt": "<b>Conversation 3 (At the university campus):</b> Where is the Student Welfare Office located?",
+          "options": [
+            "Next to the cafeteria on the ground floor.",
+            "Opposite the main lecture theatre on the second floor.",
+            "Behind the photocopy room."
+          ],
+          "answer": "B",
+          "explanation": "Nhân viên chỉ đường: '...second floor. It's right opposite the main lecture theatre.'"
+        }
+      ]
+    },
+    {
+      "id": "list_3",
+      "title": "Bài Nghe 3 (PET Part 3 – Gap-Filling): Discussion on Social Media & Internet Fame",
+      "audioScript": "David: Hey Sophie, have you seen this video? This young guitarist uploaded a song from his bedroom and became famous overnight on YouTube! Sophie: That's lucky for him, David, but honestly, I think people spend too much time on social media nowadays. If young people stay glued to their screens all day, they will lose face-to-face communication skills. David: I see what you mean, but the Internet also makes a positive difference. For example, it helps small businesses advertise their products without spending too much money. Sophie: That's true, however, I still worry about fake news and cyberbullying. David: Fair point. Personally, if I were a famous vlogger, I would make videos about nature and wildlife protection to educate people.",
+      "fillQuestions": [
+        {
+          "id": "l3_11",
+          "num": 11,
+          "prompt": "David has just watched a video by a young guitarist who became ________ overnight on YouTube.",
+          "answers": [
+            "famous"
+          ],
+          "hint": "Tính từ: nổi tiếng (became famous overnight)."
+        },
+        {
+          "id": "l3_12",
+          "num": 12,
+          "prompt": "Sophie thinks that spending too much time online makes young people lose ________ communication skills.",
+          "answers": [
+            "face-to-face",
+            "face to face"
+          ],
+          "hint": "Giao tiếp trực tiếp mặt đối mặt (face-to-face)."
+        },
+        {
+          "id": "l3_13",
+          "num": 13,
+          "prompt": "David argues that social media helps small businesses ________ their products without spending too much money.",
+          "answers": [
+            "advertise"
+          ],
+          "hint": "Động từ: quảng cáo sản phẩm (advertise)."
+        },
+        {
+          "id": "l3_14",
+          "num": 14,
+          "prompt": "Sophie agrees that the Internet is useful, but she still worries about fake news and ________.",
+          "answers": [
+            "cyberbullying"
+          ],
+          "hint": "Danh từ: nạn bắt nạt trên mạng (cyberbullying)."
+        },
+        {
+          "id": "l3_15",
+          "num": 15,
+          "prompt": "If David were a famous vlogger, he would make videos about ________ and wildlife protection.",
+          "answers": [
+            "nature"
+          ],
+          "hint": "Danh từ: thiên nhiên (nature)."
+        }
+      ]
+    }
+  ],
+  "readingSections": [
+    {
+      "id": "read_1",
+      "title": "Bài Đọc 1 (Cambridge PET Reading Part 1): Short Notices, Signs & Messages (5 câu)",
+      "passage": "Đọc các biển báo, tin nhắn và thông báo ngắn ở từng câu hỏi bên dưới và chọn đáp án đúng nhất (A, B hoặc C).",
+      "questions": [
+        {
+          "id": "r1_1",
+          "num": 1,
+          "prompt": "<div class='notice-box'><b>UNIVERSITY LIBRARY NOTICE</b><br/>All borrowed books must be returned to the ground-floor reception desk before June 15th. A fine of 5,000 VND per day will be charged for any late returns.</div><b>What does the notice say?</b>",
+          "options": [
+            "Students cannot borrow any books from the library until June 15th.",
+            "You will have to pay extra money if you give back library books after June 15th.",
+            "It costs 5,000 VND a day to borrow books from the ground-floor reception desk."
+          ],
+          "answer": "B",
+          "explanation": "A fine of 5,000 VND per day will be charged for any late returns = Phải nộp phạt nếu trả sách muộn sau 15/6."
+        },
+        {
+          "id": "r1_2",
+          "num": 2,
+          "prompt": "<div class='notice-box'><b>SUMMER SALE – CITY FASHION SHOP</b><br/>Everything reduced by up to 50%! Please note: Sale items can be exchanged for a different size within 7 days with a receipt, but no cash refunds are given.</div><b>What is true about items bought in the sale?</b>",
+          "options": [
+            "You can get your money back if you return the clothes within a week.",
+            "You can change an item for another size if you keep your receipt.",
+            "All items in the shop cost half price only if you pay in cash."
+          ],
+          "answer": "B",
+          "explanation": "Sale items can be exchanged for a different size within 7 days with a receipt (được đổi cỡ nếu giữ biên lai, không hoàn tiền mặt)."
+        },
+        {
+          "id": "r1_3",
+          "num": 3,
+          "prompt": "<div class='notice-box'><b>Hi Mark,</b><br/>I'm still stuck in traffic congestion on the ring road! The bus hasn't moved for twenty minutes. You'd better go into the cinema without me—I'll meet you inside as soon as I arrive. Sorry! – <b>Julia</b></div><b>Why is Julia sending this text message to Mark?</b>",
+          "options": [
+            "To suggest watching a different movie tomorrow night.",
+            "To complain that the cinema tickets are too expensive.",
+            "To let him know she will be late because of heavy traffic and tell him not to wait outside."
+          ],
+          "answer": "C",
+          "explanation": "Julia báo bị kẹt xe (stuck in traffic congestion) nên khuyên Mark cứ vào rạp trước (go into the cinema without me)."
+        },
+        {
+          "id": "r1_4",
+          "num": 4,
+          "prompt": "<div class='notice-box'><b>STUDENT ACCOMMODATION OFFICE</b><br/>The lift in Block C is currently out of order. A technician has been called and it will be repaired by 4:00 p.m. today. We apologize for the inconvenience.</div><b>What does this notice mean?</b>",
+          "options": [
+            "Residents in Block C have to use the stairs until the lift is fixed this afternoon.",
+            "Students should call a technician if they want to use the lift after 4:00 p.m.",
+            "The Accommodation Office in Block C is closed all day today."
+          ],
+          "answer": "A",
+          "explanation": "Thang máy tòa C đang hỏng (out of order) đến 4h chiều mới sửa xong nên sinh viên phải đi thang bộ."
+        },
+        {
+          "id": "r1_5",
+          "num": 5,
+          "prompt": "<div class='notice-box'><b>GREEN CAMPUS CAMPAIGN</b><br/>Bring your own reusable cup to the university cafeteria and get a 15% discount on all hot drinks! Let's work together to cut down on single-use plastic cups.</div><b>What is the purpose of this announcement?</b>",
+          "options": [
+            "To inform students that hot drinks at the cafeteria are 15% more expensive.",
+            "To encourage students to reduce plastic waste by offering cheaper drinks if they use their own cups.",
+            "To sell reusable plastic cups at the university cafeteria."
+          ],
+          "answer": "B",
+          "explanation": "Giảm giá 15% đồ uống nóng cho sinh viên mang bình/cốc cá nhân để giảm rác thải nhựa dùng một lần."
+        }
+      ]
+    },
+    {
+      "id": "read_2",
+      "title": "Bài Đọc 2 (Cloze Test - Units 7 & 11): Studying Abroad & Keeping in Touch (8 câu)",
+      "passage": "Studying abroad is a life-changing decision <b>(6) ________</b> many university students dream about. Moving to a new country allows you to experience a different culture, improve your foreign language skills, and become more independent. However, in the first few weeks, international students often find it hard to <b>(7) ________</b> living far away from their families and eating unfamiliar food. They may feel lonely or <b>(8) ________</b> when everything around them seems strange.<br/><br/>Fortunately, modern technology has made keeping in touch much <b>(9) ________</b> than it used to be in the past. Thirty years ago, students had to write letters that took weeks to arrive, or make international phone calls that cost <b>(10) ________</b> money. Today, if you miss your parents or friends, you <b>(11) ________</b> simply make a free video call or send instant messages on social networking sites. Nevertheless, educational advisers suggest that students <b>(12) ________</b> spend all their free time online talking to people back home. Instead, they should join university clubs and use campus <b>(13) ________</b> such as the sports centre and library in order to make new friends locally.",
+      "questions": [
+        {
+          "id": "r2_6",
+          "num": 6,
+          "prompt": "Chỗ trống (6):",
+          "options": [
+            "who",
+            "which",
+            "where",
+            "whose"
+          ],
+          "answer": "B",
+          "explanation": "Đại từ quan hệ thay cho danh từ chỉ vật 'a life-changing decision' → which."
+        },
+        {
+          "id": "r2_7",
+          "num": 7,
+          "prompt": "Chỗ trống (7):",
+          "options": [
+            "used to",
+            "use to",
+            "get used to",
+            "be used for"
+          ],
+          "answer": "C",
+          "explanation": "find it hard to + get used to + V-ing (khó thích nghi/làm quen với việc sống xa nhà)."
+        },
+        {
+          "id": "r2_8",
+          "num": 8,
+          "prompt": "Chỗ trống (8):",
+          "options": [
+            "confused",
+            "helpful",
+            "famous",
+            "polluted"
+          ],
+          "answer": "A",
+          "explanation": "feel lonely or confused (cảm thấy cô đơn hoặc bối rối khi mọi thứ xa lạ)."
+        },
+        {
+          "id": "r2_9",
+          "num": 9,
+          "prompt": "Chỗ trống (9):",
+          "options": [
+            "easy",
+            "easier",
+            "easiest",
+            "more easy"
+          ],
+          "answer": "B",
+          "explanation": "So sánh hơn với 'than': much easier than."
+        },
+        {
+          "id": "r2_10",
+          "num": 10,
+          "prompt": "Chỗ trống (10):",
+          "options": [
+            "too many",
+            "enough",
+            "too much",
+            "very"
+          ],
+          "answer": "C",
+          "explanation": "money là danh từ không đếm được, mang nghĩa tốn quá nhiều tiền → too much money."
+        },
+        {
+          "id": "r2_11",
+          "num": 11,
+          "prompt": "Chỗ trống (11):",
+          "options": [
+            "can",
+            "would",
+            "could",
+            "had to"
+          ],
+          "answer": "A",
+          "explanation": "Câu điều kiện loại 1 ở hiện tại (Today, if you miss..., you can...)."
+        },
+        {
+          "id": "r2_12",
+          "num": 12,
+          "prompt": "Chỗ trống (12):",
+          "options": [
+            "don't",
+            "not",
+            "didn't",
+            "wouldn't"
+          ],
+          "answer": "B",
+          "explanation": "Thể giả định phủ định sau 'suggest that + S + (should) + not + V(bare)'."
+        },
+        {
+          "id": "r2_13",
+          "num": 13,
+          "prompt": "Chỗ trống (13):",
+          "options": [
+            "problems",
+            "crimes",
+            "facilities",
+            "receipts"
+          ],
+          "answer": "C",
+          "explanation": "campus facilities = cơ sở vật chất trong khuôn viên trường (như trung tâm thể thao, thư viện)."
+        }
+      ]
+    },
+    {
+      "id": "read_3",
+      "title": "Bài Đọc 3 (Reading Comprehension - Units 9 & 10): Green Cities for the Future (5 câu)",
+      "passage": "<b>GREEN CITIES: MAKING URBAN LIFE BETTER FOR THE FUTURE</b><br/><br/>More than half of the world's population now lives in cities, and this number is growing every year. While big cities offer great job opportunities, exciting nightlife, and modern public facilities, they also face serious problems such as traffic congestion, air pollution, and a lack of green spaces. However, several cities around the world are proving that urban areas can be both <b>vibrant</b> and environmentally friendly.<br/><br/>Copenhagen, the capital of Denmark, is often voted one of the best and greenest cities in the world. Over 60% of its residents commute to work or university by bicycle every day. They do this not only to stay healthy, but also because the city has built hundreds of kilometres of safe, separate cycle lanes. In addition, old industrial areas near the harbour have been cleaned up so that citizens can swim in the clean water during the summer.<br/><br/>Another inspiring example is Singapore, which is famous as a \"City in a Garden.\" Although land is very limited and the population is crowded, the government requires new high-rise buildings to include rooftop gardens and vertical green walls. These plants help reduce the temperature inside buildings, clean the air, and provide a home for urban wildlife. Furthermore, strict laws and heavy fines are used to prevent littering and vandalism, making Singapore one of the cleanest and safest places to live.<br/><br/>Experts say that if more cities invest in renewable energy, public transport, and green architecture now, future generations will enjoy a much higher quality of life.",
+      "questions": [
+        {
+          "id": "r3_14",
+          "num": 14,
+          "prompt": "What is the main purpose of the passage?",
+          "options": [
+            "To complain about the high cost of living in Copenhagen and Singapore.",
+            "To show how some cities are solving urban problems through green initiatives.",
+            "To persuade young people to move from big cities back to the countryside.",
+            "To explain why bicycles are more expensive than cars in Denmark."
+          ],
+          "answer": "B",
+          "explanation": "Bài đọc giới thiệu cách Copenhagen và Singapore giải quyết các vấn đề đô thị bằng các sáng kiến sống xanh."
+        },
+        {
+          "id": "r3_15",
+          "num": 15,
+          "prompt": "According to paragraph 2, why do so many people in Copenhagen ride bicycles to work or school?",
+          "options": [
+            "Because public transport is out of order.",
+            "Because cars are completely banned in Denmark.",
+            "Because they want to keep fit and the city has safe, convenient cycle lanes.",
+            "Because the government pays them money to cycle."
+          ],
+          "answer": "C",
+          "explanation": "'They do this not only to stay healthy, but also because the city has built hundreds of kilometres of safe, separate cycle lanes.'"
+        },
+        {
+          "id": "r3_16",
+          "num": 16,
+          "prompt": "What does the word <b>\"vibrant\"</b> in paragraph 1 most likely mean?",
+          "options": [
+            "Full of life, energy, and activity.",
+            "Quiet, empty, and boring.",
+            "Polluted and dangerous.",
+            "Old-fashioned and cheap."
+          ],
+          "answer": "A",
+          "explanation": "vibrant = sôi động, tràn đầy sức sống và năng lượng."
+        },
+        {
+          "id": "r3_17",
+          "num": 17,
+          "prompt": "How does Singapore deal with the problem of limited land for green spaces?",
+          "options": [
+            "It cuts down rainforests to build more parks.",
+            "It requires new tall buildings to integrate gardens on roofs and walls.",
+            "It moves half of its citizens to neighboring islands.",
+            "It closes all factories in the city."
+          ],
+          "answer": "B",
+          "explanation": "'...the government requires new high-rise buildings to include rooftop gardens and vertical green walls.'"
+        },
+        {
+          "id": "r3_18",
+          "num": 18,
+          "prompt": "Which of the following is <b>NOT</b> mentioned as a reason why Singapore is clean and safe?",
+          "options": [
+            "Strict laws against littering.",
+            "Heavy fines for vandalism.",
+            "Green plants on high-rise buildings.",
+            "Free electric cars for every university student."
+          ],
+          "answer": "D",
+          "explanation": "Thông tin 'Free electric cars for every university student' hoàn toàn không được nhắc đến trong bài."
+        }
+      ]
+    },
+    {
+      "id": "read_4",
+      "title": "Bài Đọc 4 (Reading Comprehension - Units 8 & 12): The Reality of Internet Fame (5 câu)",
+      "passage": "<b>A LUCKY BREAK: THE REALITY OF INTERNET FAME</b><br/><br/>In the past, if someone wanted to become a famous actor or singer, they had to spend years studying at drama school, attending auditions, and waiting for a film director or music producer to discover them. Today, thanks to video-sharing websites and social media, ordinary people can achieve a \"lucky break\" and become famous overnight from their own bedrooms.<br/><br/>Take the story of Lucas Mendez, a 21-year-old university student who used to work part-time as a waiter in a small café. Last year, Lucas filmed himself playing an acoustic guitar song that he had written in his dormitory room. He uploaded the three-minute video before going to sleep. When he woke up the next morning, the video had already been viewed over two million times. Within a month, a major record company offered him a contract, and his song reached number one on the music download charts.<br/><br/>However, internet celebrity is not always as wonderful as it looks on screen. In a recent interview, Lucas told reporters that sudden fame had completely changed his daily life. \"At first, I was amazed and excited because I could earn enough money to help my parents and focus on music full-time,\" he said. \"But soon I realized that I no longer had any privacy. Everywhere I go, people take photos of me, and if I make even a small mistake, strangers write rude comments online. If I knew how stressful <b>it</b> would be, I would prepare myself more carefully before posting my videos.\"",
+      "questions": [
+        {
+          "id": "r4_19",
+          "num": 19,
+          "prompt": "How did people become famous in the past compared to today?",
+          "options": [
+            "It was much faster and easier in the past.",
+            "They needed years of training and had to be discovered by industry professionals.",
+            "They only needed to post a short video from their bedroom.",
+            "They had to pay a lot of money to cinema directors."
+          ],
+          "answer": "B",
+          "explanation": "Trong đoạn 1: 'they had to spend years studying at drama school, attending auditions, and waiting for a film director or music producer to discover them.'"
+        },
+        {
+          "id": "r4_20",
+          "num": 20,
+          "prompt": "What did Lucas Mendez use to do before he became famous?",
+          "options": [
+            "He was a full-time music producer.",
+            "He was a hotel concierge.",
+            "He was a university student and worked part-time as a waiter.",
+            "He was a professional film extra."
+          ],
+          "answer": "C",
+          "explanation": "'...a 21-year-old university student who used to work part-time as a waiter in a small café.'"
+        },
+        {
+          "id": "r4_21",
+          "num": 21,
+          "prompt": "What happened the morning after Lucas uploaded his guitar video?",
+          "options": [
+            "His account was deleted by mistake.",
+            "The video had received more than two million views.",
+            "No one had watched his video yet.",
+            "He lost his guitar at the café."
+          ],
+          "answer": "B",
+          "explanation": "'When he woke up the next morning, the video had already been viewed over two million times.'"
+        },
+        {
+          "id": "r4_22",
+          "num": 22,
+          "prompt": "What is the main disadvantage of fame that Lucas mentions?",
+          "options": [
+            "He doesn't earn enough money to buy new instruments.",
+            "His parents no longer talk to him.",
+            "He has lost his personal privacy and faces negative comments online.",
+            "He has to wake up at 5:00 a.m. every day."
+          ],
+          "answer": "C",
+          "explanation": "'But soon I realized that I no longer had any privacy... strangers write rude comments online.'"
+        },
+        {
+          "id": "r4_23",
+          "num": 23,
+          "prompt": "What does the pronoun <b>\"it\"</b> in the last sentence (<i>\"If I knew how stressful <b>it</b> would be...\"</i>) refer to?",
+          "options": [
+            "Working at a small café.",
+            "Studying at university.",
+            "Sudden internet fame.",
+            "Buying an acoustic guitar."
+          ],
+          "answer": "C",
+          "explanation": "Đại từ 'it' chỉ sự nổi tiếng bất ngờ trên mạng (sudden internet fame)."
+        }
+      ]
+    }
+  ],
+  "writingTopics": [
+    {
+      "id": "w_u7",
+      "unit": "Unit 7.2",
+      "title": "Topic 1: A Decision That Changed Your Life (Một quyết định thay đổi cuộc đời)",
+      "prompt": "Write a paragraph or short essay (120–150 words) about an important decision that changed your life (e.g., moving to university, learning a new skill, changing your lifestyle).",
+      "checklist": [
+        "Sử dụng cấu trúc 'used to + V' (thói quen cũ)",
+        "Sử dụng 'get used to / be used to + V-ing' (sự thích nghi)",
+        "Sử dụng từ nối chỉ mục đích, nguyên nhân, kết quả (in order to, because, as a result)",
+        "Độ dài đạt chuẩn 120 – 150 từ"
+      ],
+      "template": "[Moving away from home to study at university] was the most important decision that completely changed my life. Before making this decision, I used to [rely completely on my parents for cooking and daily schedules]. However, I decided to [live in the university dormitory] in order to [become more independent and save travelling time]. At first, it was quite difficult for me to get used to [sharing a room with strangers and managing my own monthly budget], and I sometimes felt lonely. Fortunately, with the help of my friendly roommates, I gradually got used to [cooking my own meals and balancing my study time]. As a result, this decision has made me much more confident, responsible, and ready for my future career.",
+      "modelEssay": "Moving away from my hometown to live in the university dormitory at Hong Duc University was the most important decision that changed my life. Before entering university, I used to rely completely on my parents for cooking, housework, and daily schedules. However, I decided to move into the campus dormitory in order to become more independent and save travelling time. At first, it was quite difficult for me to get used to sharing a room with three strangers and managing my own monthly budget. I sometimes felt lonely and missed my family. Fortunately, my roommates were very friendly and helpful. After a few months, I got used to cooking simple meals, balancing my study schedule, and joining student clubs. As a result, this decision has made me much more confident, responsible, and ready for my future career. (141 words)"
+    },
+    {
+      "id": "w_u8",
+      "unit": "Unit 8.2",
+      "title": "Topic 2: An Opinion Piece on Salaries & Jobs (Quan điểm về Tiền lương & Nghề nghiệp)",
+      "prompt": "Write an opinion piece (120–150 words) about which jobs in society should be paid higher salaries and explain why.",
+      "checklist": [
+        "Sử dụng Mệnh đề quan hệ (who, which, that)",
+        "Sử dụng từ chỉ lượng (too much, too many, enough)",
+        "Sử dụng Cụm động từ (look after, give up) & Thể giả định (It is essential that...)",
+        "Độ dài đạt chuẩn 120 – 150 từ"
+      ],
+      "template": "Nowadays, people often debate which jobs in society deserve higher pay. In my opinion, [school teachers and hospital nurses], who play a vital role in our community, should be paid much higher salaries. Firstly, these professionals have to do too much stressful work and often work too many overtime hours every week. For example, they have to look after [dozens of patients or large classes of students] every day. Secondly, many of them currently do not earn enough money to support their families comfortably, which forces some talented people to give up their careers. In conclusion, if we want better healthcare and education in the future, it is essential that the government pay these workers a fair salary that matches their dedication.",
+      "modelEssay": "Nowadays, people often debate which jobs in society deserve higher pay. In my opinion, school teachers and hospital nurses, who work tirelessly to educate children and save people's lives, should be paid much higher salaries. Firstly, both teachers and nurses have to do too much stressful work and often work too many overtime hours every week. For example, nurses have to look after dozens of sick patients during night shifts, while teachers spend hours preparing lessons and marking exams at home. Secondly, many of them currently do not earn enough money to support their families comfortably, which forces some talented people to give up their careers. In conclusion, if we want better healthcare and education in the future, it is essential that the government pay these workers a higher salary that matches their dedication. (138 words)"
+    },
+    {
+      "id": "w_u9",
+      "unit": "Unit 9.1",
+      "title": "Topic 3: Views on the Environment & Green Living (Quan điểm về Bảo vệ Môi trường)",
+      "prompt": "Write a paragraph or short essay (120–150 words) about your views on environmental problems in your area and suggest practical green solutions.",
+      "checklist": [
+        "Sử dụng cấu trúc So sánh hơn & So sánh nhất (more polluted than, the most urgent...)",
+        "Sử dụng đúng मạo từ (the environment) và V-ing / to V (avoid using, decide to recycle)",
+        "Sử dụng cấu trúc 'It is high time + S + V2/ed' và 'had better + V'",
+        "Độ dài đạt chuẩn 120 – 150 từ"
+      ],
+      "template": "Today, protecting the environment has become one of the most urgent challenges facing our community. Over the last few years, the air in many cities has become much more polluted than it used to be because there are too many private vehicles. In addition, millions of single-use plastic bags are thrown away every day, which harms wildlife. To solve these problems, it is high time we took practical action. Firstly, citizens should avoid using plastic bags when shopping and decide to recycle paper, glass, and plastic bottles at home. Secondly, we had better use public transport or ride bicycles for short trips, and the government should invest more in renewable energy like solar power. Together, we can make our planet greener and cleaner.",
+      "modelEssay": "Today, protecting the environment has become one of the most urgent challenges facing our community. Over the last few years, the air in many cities has become much more polluted than it used to be because there are too many private cars and motorbikes on the roads. In addition, millions of single-use plastic bags and cups are thrown away every day, which destroys natural habitats and harms wildlife. To solve these serious problems, it is high time we took practical action in our daily lives. Firstly, citizens should avoid using plastic bags when going shopping and decide to recycle paper, glass, and plastic bottles at home. Secondly, we had better use public transport or ride bicycles for short trips, and the government should invest more in renewable energy like solar power. Together, we can make our planet greener and cleaner. (143 words)"
+    },
+    {
+      "id": "w_u10",
+      "unit": "Unit 10.1 & 10.3",
+      "title": "Topic 4: A Formal Email Complaining about Facility Problems (Thư trang trọng phàn nàn & góp ý)",
+      "prompt": "Write a formal email (120–150 words) to the university management or city council complaining about facility problems and suggesting improvements.",
+      "checklist": [
+        "Đúng văn phong Formal Email (Dear Sir or Madam, ... Yours faithfully,)",
+        "Sử dụng từ vựng sự cố (out of order, keep crashing, broken) & Câu bị động",
+        "Sử dụng cấu trúc 'It is high time + S + V2/ed' và 'I would suggest that...'",
+        "Độ dài đạt chuẩn 120 – 150 từ"
+      ],
+      "template": "Dear Sir or Madam,\nI am writing this email to express my concern about several facility problems in our [university study centre] and to suggest some practical improvements.\nCurrently, the air conditioning on the second floor is out of order, making the room extremely hot in the afternoon. Furthermore, the wireless internet connection keeps crashing whenever there are too many students studying online, and two machines in the photocopy room have been broken since last week. In my opinion, it is high time the maintenance department looked into these issues. I would suggest that you send a technician to repair the air conditioning and upgrade the Wi-Fi system as soon as possible.\nThank you for your attention to this matter. I look forward to hearing from you soon.\nYours faithfully,\n[Your Name]",
+      "modelEssay": "Dear Sir or Madam,\nI am writing this email to express my concern about several facility problems in our university study centre and to suggest some practical improvements before the final examination period begins.\nCurrently, the air conditioning on the second floor of the study centre is out of order, making the room extremely hot and uncomfortable in the afternoon. Furthermore, the wireless internet connection keeps crashing whenever there are too many students studying online, and two machines in the photocopy room have been broken since last week. In my opinion, it is high time the maintenance department looked into these issues. I would suggest that you send a technician to repair the air conditioning and upgrade the Wi-Fi system as soon as possible.\nThank you for your attention to this matter. I look forward to hearing from you soon.\nYours faithfully,\nLe Minh Hoang (146 words)"
+    },
+    {
+      "id": "w_u11",
+      "unit": "Unit 11.1 – 11.3",
+      "title": "Topic 5: Advantages & Disadvantages of Social Media / The Internet (Lợi ích & Tác hại của MXH)",
+      "prompt": "Write a short essay (120–150 words) giving your opinion on the advantages and disadvantages of using social media / the Internet for university students.",
+      "checklist": [
+        "Sử dụng thì Hiện tại hoàn thành (has become / has changed)",
+        "Sử dụng Câu điều kiện loại 1 (If students spend / rely..., they will...)",
+        "Sử dụng linh hoạt Đại từ (they, them, which) để tránh lặp từ",
+        "Độ dài đạt chuẩn 120 – 150 từ"
+      ],
+      "template": "In modern society, social media has become an essential part of university students' daily lives, bringing both advantages and disadvantages. On the positive side, platforms like Facebook and Zalo make it much easier for us to keep in touch with distant friends and family members via free video calls. Moreover, students can use them to join online study groups, share learning materials, and look for job opportunities. However, social media also has serious drawbacks if we do not use it wisely. Many young people spend too much time scrolling through short videos, which wastes valuable study time. If students rely too much on virtual communication, they will gradually lose their face-to-face social skills and feel lonely. In conclusion, social media is a useful tool, but we had better limit our screen time every day.",
+      "modelEssay": "In modern society, social media has become an essential part of university students' daily lives, bringing both advantages and disadvantages. On the positive side, platforms like Facebook and Zalo make it much easier for us to keep in touch with distant friends and family members via free video calls. Moreover, students can use them to join online study groups, share learning materials, and look for job opportunities. However, social media also has serious drawbacks if we do not use it wisely. Many young people spend too much time scrolling through short videos, which wastes valuable study time and causes eye strain. If students rely too much on virtual communication, they will gradually lose their face-to-face social skills and feel lonely in real life. In conclusion, social media is a useful tool, but we had better limit our screen time every day. (144 words)"
+    },
+    {
+      "id": "w_u12",
+      "unit": "Unit 12.2",
+      "title": "Topic 6: A Famous Person You Admire & Being Famous (Viết về một người nổi tiếng)",
+      "prompt": "Write a short profile/essay (120–150 words) about a famous person you admire and explain what you would do if you were famous.",
+      "checklist": [
+        "Sử dụng các từ có hậu tố Suffixes (famous, successful, celebrity, popularity, achievements, helpful)",
+        "Sử dụng 'used to + V' và Hiện tại hoàn thành",
+        "Sử dụng Câu điều kiện giả định loại 2 (If I were as famous as..., I would...)",
+        "Độ dài đạt chuẩn 120 – 150 từ"
+      ],
+      "template": "A famous person who I truly admire is [My Tam], one of the most successful and respected [pop singers] in Vietnam. Before becoming a national celebrity, she used to practice singing for hours every day. Thanks to her natural talent and hard work, she has achieved great popularity over the last twenty years with dozens of hit songs. What I admire most about her is not just her musical achievements, but her kindness and helpful attitude toward poor people. She regularly organizes charity projects to give scholarships to disadvantaged students. If I were as famous and wealthy as she is, I would also use my influence to help homeless children and support education. All in all, she is a wonderful role model who inspires me to never give up my dreams.",
+      "modelEssay": "A famous person who I truly admire is My Tam, one of the most successful and respected pop singers in Vietnam. Before becoming a national celebrity, she used to practice singing and playing the guitar for hours every day at the music conservatory. Thanks to her natural talent and hard work, she has achieved great popularity over the last twenty years with dozens of hit songs and sold-out concerts. What I admire most about her is not just her musical achievements, but her kindness and helpful attitude toward disadvantaged people. She regularly organizes charity projects to build houses and give scholarships to poor students. If I were as famous and wealthy as she is, I would also use my influence to help homeless children and support community education. All in all, she is a wonderful role model who inspires me deeply. (143 words)"
+    }
+  ],
+  "mockExam": {
+    "title": "ĐỀ THI THỬ KẾT THÚC HỌC PHẦN: TIẾNG ANH 3 (MÃ HP: 133033)",
+    "durationMinutes": 60,
+    "audioScriptA": "Adviser: Good morning, Study Abroad Office. How can I help you? Liam: Hi, my name's Liam. I'd like to find out some information about the six-month student exchange programme in Melbourne, Australia. Has the application deadline passed yet? Adviser: No, you still have time! The deadline is this Friday at 4:00 p.m. And here's some good news: if you submit your application before Friday, you are guaranteed a room in the Melbourne campus dormitory. Liam: That's wonderful! What about the facilities there? Do exchange students have to pay to use the gym or the library? Adviser: No, all campus facilities, including the main library and the sports centre, are completely free of charge for exchange students. Also, I strongly suggest that you talk to some third-year students who went to Melbourne last year—they can give you great tips!",
+    "audioScriptB": "Reporter: Welcome back to Eco-News. Two years ago, the coastal town of Greenbay launched an ambitious project called 'Plastic-Free Town'. At the start of the project, all local supermarkets and clothes shops stopped giving out single-use plastic carrier bags. In addition, fifteen local cafés agreed to offer a 10% discount to any customer who brings their own reusable coffee cup. The results so far have been amazing: volunteers who clean the coast say that plastic litter on the town's beaches has dropped by over 60%! Looking ahead, the town council has decided to install free water refill stations in all public parks next summer so tourists and residents won't need to buy plastic water bottles.",
+    "readingClozePassage": "Many people dream of earning more money, winning the lottery, or becoming rich overnight. However, psychologists who have looked <b>(26) ________</b> the relationship between money and happiness say that wealth alone does not guarantee a joyful life. Of course, it is important to earn <b>(27) ________</b> money to pay for basic needs such as housing, healthy food, healthcare, and education. If people don't have enough income to pay their monthly bills, they <b>(28) ________</b> feel worried and stressed.<br/><br/>On the other hand, once our basic needs <b>(29) ________</b> met, buying more expensive clothes, luxury cars, or the latest gadgets only brings temporary excitement. Research shows that people who spend their money on experiences—such as travelling with family, learning a new skill, or helping others—are much <b>(30) ________</b> than those who only focus on buying material things.",
+    "readingCompPassage": "<b>THE CONCIERGE: MAKING THE IMPOSSIBLE POSSIBLE</b><br/><br/>If you stay at a top international hotel and need someone to book a table at a fully booked restaurant, get front-row tickets to a sold-out concert, or find a pair of running shoes at midnight, who do you call? The answer is the hotel concierge. The word <i>concierge</i> comes from a French phrase meaning \"keeper of the candles,\" which originally referred to a servant who looked after visiting guests in medieval castles.<br/><br/>Today, a hotel concierge is a highly skilled professional whose job is to handle every request a guest might have, as long as it is legal. Maria Santos, who has worked as the head concierge at a five-star hotel in Madrid for twelve years, says no two days are ever the same. \"Yesterday, an American businessman told me he had left his passport in a taxi just three hours before his flight,\" Maria explained. \"We contacted the city taxi radio network immediately, tracked down the driver, and got the passport back to the guest thirty minutes before check-in closed!\"<br/><br/>To be a successful concierge, you need excellent communication skills, patience, a friendly attitude, and a wide network of local contacts across the city. Although many travellers now use smartphone apps and search engines to look for tourist information, Maria believes technology will never completely replace her job. \"An app can give you a list of ten restaurants,\" she says, \"but it cannot personally call the chef to prepare a special birthday cake for your wife.\"",
+    "part1Questions": [
+      {
+        "id": "m_1",
+        "num": 1,
+        "points": 0.2,
+        "prompt": "Chọn từ có phần gạch chân phát âm khác: A. <b><u>k</u></b>nife | B. <b><u>k</u></b>nee | C. <b><u>k</u></b>nowledge | D. <b><u>k</u></b>itchen",
+        "options": [
+          "knife",
+          "knee",
+          "knowledge",
+          "kitchen"
+        ],
+        "answer": "D",
+        "explanation": "'kitchen' phát âm là /k/, các từ còn lại có âm 'k' câm."
+      },
+      {
+        "id": "m_2",
+        "num": 2,
+        "points": 0.2,
+        "prompt": "Chọn từ có phần gạch chân phát âm khác: A. price<b><u>s</u></b> | B. chang<b><u>es</u></b> | C. dish<b><u>es</u></b> | D. note<b><u>s</u></b>",
+        "options": [
+          "prices",
+          "changes",
+          "dishes",
+          "notes"
+        ],
+        "answer": "D",
+        "explanation": "'notes' phát âm là /s/, các từ còn lại phát âm là /ɪz/."
+      },
+      {
+        "id": "m_3",
+        "num": 3,
+        "points": 0.2,
+        "prompt": "Chọn từ có vị trí trọng âm khác: A. pollution | B. director | C. celebrity | D. wildlife",
+        "options": [
+          "pollution",
+          "director",
+          "celebrity",
+          "wildlife"
+        ],
+        "answer": "D",
+        "explanation": "'wildlife nhấn âm 1; po'llution, di'rector, ce'lebrity nhấn âm 2."
+      },
+      {
+        "id": "m_4",
+        "num": 4,
+        "points": 0.2,
+        "prompt": "My sister ________ drink coffee, but now she drinks two cups every morning at the office.",
+        "options": [
+          "didn't use to",
+          "wasn't used to",
+          "didn't used to",
+          "isn't used to"
+        ],
+        "answer": "A",
+        "explanation": "Phủ định của used to: didn't use to + V(bare)."
+      },
+      {
+        "id": "m_5",
+        "num": 5,
+        "points": 0.2,
+        "prompt": "We are looking for an apartment ________ has at least two bedrooms and a balcony near the university.",
+        "options": [
+          "who",
+          "where",
+          "which",
+          "whose"
+        ],
+        "answer": "C",
+        "explanation": "MĐQH chỉ vật làm chủ ngữ (an apartment) → which."
+      },
+      {
+        "id": "m_6",
+        "num": 6,
+        "points": 0.2,
+        "prompt": "Many young people can't afford to buy a house in the city centre because it costs ________ money.",
+        "options": [
+          "too many",
+          "too much",
+          "enough",
+          "very"
+        ],
+        "answer": "B",
+        "explanation": "money không đếm được → too much money."
+      },
+      {
+        "id": "m_7",
+        "num": 7,
+        "points": 0.2,
+        "prompt": "The health expert recommended that office workers ________ at least thirty minutes of exercise every day.",
+        "options": [
+          "takes",
+          "took",
+          "take",
+          "taking"
+        ],
+        "answer": "C",
+        "explanation": "Thể giả định (Subjunctive): recommended that + S + (should) + V(bare) → take."
+      },
+      {
+        "id": "m_8",
+        "num": 8,
+        "points": 0.2,
+        "prompt": "You'd better ________ your umbrella with you today; the weather forecast says it's going to rain heavily.",
+        "options": [
+          "take",
+          "to take",
+          "taking",
+          "took"
+        ],
+        "answer": "A",
+        "explanation": "had better ('d better) + V(bare) → take."
+      },
+      {
+        "id": "m_9",
+        "num": 9,
+        "points": 0.2,
+        "prompt": "Over 500 new bicycles ________ by the university for campus transport last semester.",
+        "options": [
+          "bought",
+          "are bought",
+          "were bought",
+          "have bought"
+        ],
+        "answer": "C",
+        "explanation": "Bị động quá khứ đơn (last semester) số nhiều → were bought."
+      },
+      {
+        "id": "m_10",
+        "num": 10,
+        "points": 0.2,
+        "prompt": "If I ________ you, I would apply for that internship at the media company immediately.",
+        "options": [
+          "am",
+          "were",
+          "will be",
+          "had been"
+        ],
+        "answer": "B",
+        "explanation": "Câu điều kiện loại 2: If I were you..."
+      },
+      {
+        "id": "m_11",
+        "num": 11,
+        "points": 0.2,
+        "prompt": "Have you received a reply to your formal email from the accommodation office ________?",
+        "options": [
+          "still",
+          "already",
+          "no longer",
+          "yet"
+        ],
+        "answer": "D",
+        "explanation": "Cuối câu hỏi thì Hiện tại hoàn thành → yet."
+      },
+      {
+        "id": "m_12",
+        "num": 12,
+        "points": 0.2,
+        "prompt": "The film became a global ________ and earned over one billion dollars at the box office worldwide.",
+        "options": [
+          "extra",
+          "soundtrack",
+          "blockbuster",
+          "receipt"
+        ],
+        "answer": "C",
+        "explanation": "blockbuster = bộ phim bom tấn ăn khách."
+      },
+      {
+        "id": "m_13",
+        "num": 13,
+        "points": 0.2,
+        "prompt": "Anyone who drops litter on the streets in this city has to pay a heavy ________ of $200.",
+        "options": [
+          "fine",
+          "bargain",
+          "loan",
+          "refund"
+        ],
+        "answer": "A",
+        "explanation": "pay a fine = nộp tiền phạt."
+      },
+      {
+        "id": "m_14",
+        "num": 14,
+        "points": 0.2,
+        "prompt": "<b>Tourist:</b> \"Excuse me, could you tell me how to get to the central registration desk?\"<br/><b>Student:</b> \"________________\"",
+        "options": [
+          "I totally disagree with you.",
+          "Sure, go straight down this corridor and it's on your left, opposite the library.",
+          "No, I'm just looking, thanks.",
+          "I'm sorry, it's out of order."
+        ],
+        "answer": "B",
+        "explanation": "Trả lời chỉ đường lịch sự trong khuôn viên trường."
+      },
+      {
+        "id": "m_15",
+        "num": 15,
+        "points": 0.2,
+        "prompt": "<b>Waiter:</b> \"Would you like me to bring you the dessert menu now?\"<br/><b>Customer:</b> \"________________\"",
+        "options": [
+          "Yes, please. That would be great.",
+          "No, it doesn't fit me.",
+          "It could be a tiger.",
+          "You'd better not be late."
+        ],
+        "answer": "A",
+        "explanation": "Đáp lại lời đề nghị phục vụ (Offer): 'Yes, please. That would be great.'"
+      }
+    ],
+    "part2Questions": [
+      {
+        "id": "m_16",
+        "num": 16,
+        "points": 0.2,
+        "section": "A",
+        "prompt": "Liam wants to apply for a six-month exchange programme in Melbourne, Australia.",
+        "options": [
+          "True (Đúng)",
+          "False (Sai)"
+        ],
+        "answer": "A",
+        "explanation": "Đúng (six-month student exchange programme in Melbourne)."
+      },
+      {
+        "id": "m_17",
+        "num": 17,
+        "points": 0.2,
+        "section": "A",
+        "prompt": "The application deadline has already passed.",
+        "options": [
+          "True (Đúng)",
+          "False (Sai)"
+        ],
+        "answer": "B",
+        "explanation": "Sai. Hạn chót là thứ Sáu tuần này (No, you still have time! The deadline is this Friday)."
+      },
+      {
+        "id": "m_18",
+        "num": 18,
+        "points": 0.2,
+        "section": "A",
+        "prompt": "All international students are guaranteed a room in the campus dormitory if they apply before Friday.",
+        "options": [
+          "True (Đúng)",
+          "False (Sai)"
+        ],
+        "answer": "A",
+        "explanation": "Đúng (guaranteed a room in the Melbourne campus dormitory)."
+      },
+      {
+        "id": "m_19",
+        "num": 19,
+        "points": 0.2,
+        "section": "A",
+        "prompt": "Students can use the university sports centre and library free of charge.",
+        "options": [
+          "True (Đúng)",
+          "False (Sai)"
+        ],
+        "answer": "A",
+        "explanation": "Đúng (completely free of charge for exchange students)."
+      },
+      {
+        "id": "m_20",
+        "num": 20,
+        "points": 0.2,
+        "section": "A",
+        "prompt": "The adviser suggests that Liam should talk to students who went to Melbourne last year.",
+        "options": [
+          "True (Đúng)",
+          "False (Sai)"
+        ],
+        "answer": "A",
+        "explanation": "Đúng (suggest that you talk to some third-year students who went to Melbourne last year)."
+      },
+      {
+        "id": "m_21",
+        "num": 21,
+        "points": 0.2,
+        "section": "B",
+        "prompt": "When was the \"Plastic-Free Town\" project launched in Greenbay?",
+        "options": [
+          "Two years ago.",
+          "Five years ago.",
+          "Six months ago."
+        ],
+        "answer": "A",
+        "explanation": "Two years ago, the coastal town of Greenbay launched..."
+      },
+      {
+        "id": "m_22",
+        "num": 22,
+        "points": 0.2,
+        "section": "B",
+        "prompt": "What did local supermarkets and shops stop giving to customers?",
+        "options": [
+          "Paper receipts.",
+          "Single-use plastic bags.",
+          "Glass bottles."
+        ],
+        "answer": "B",
+        "explanation": "stopped giving out single-use plastic carrier bags."
+      },
+      {
+        "id": "m_23",
+        "num": 23,
+        "points": 0.2,
+        "section": "B",
+        "prompt": "If customers bring their own reusable cups to local cafés, what do they get?",
+        "options": [
+          "A 10% discount on their drinks.",
+          "A free sandwich.",
+          "A free cloth bag."
+        ],
+        "answer": "A",
+        "explanation": "offer a 10% discount to any customer who brings their own reusable coffee cup."
+      },
+      {
+        "id": "m_24",
+        "num": 24,
+        "points": 0.2,
+        "section": "B",
+        "prompt": "How much plastic waste has been reduced on the town's beaches so far?",
+        "options": [
+          "About 25%.",
+          "Over 60%.",
+          "Nearly 100%."
+        ],
+        "answer": "B",
+        "explanation": "plastic litter on the town's beaches has dropped by over 60%."
+      },
+      {
+        "id": "m_25",
+        "num": 25,
+        "points": 0.2,
+        "section": "B",
+        "prompt": "What is the town council planning to do next summer?",
+        "options": [
+          "Build a new shopping mall.",
+          "Install free water refill stations in all public parks.",
+          "Increase the bus fare for tourists."
+        ],
+        "answer": "B",
+        "explanation": "install free water refill stations in all public parks next summer."
+      }
+    ],
+    "part3Questions": [
+      {
+        "id": "m_26",
+        "num": 26,
+        "points": 0.3,
+        "section": "A",
+        "prompt": "Chỗ trống (26):",
+        "options": [
+          "after",
+          "into",
+          "up",
+          "down"
+        ],
+        "answer": "B",
+        "explanation": "look into = nghiên cứu, tìm hiểu về mối quan hệ giữa tiền bạc và hạnh phúc."
+      },
+      {
+        "id": "m_27",
+        "num": 27,
+        "points": 0.3,
+        "section": "A",
+        "prompt": "Chỗ trống (27):",
+        "options": [
+          "too many",
+          "too much",
+          "enough",
+          "very"
+        ],
+        "answer": "C",
+        "explanation": "earn enough money to pay for basic needs (kiếm đủ tiền)."
+      },
+      {
+        "id": "m_28",
+        "num": 28,
+        "points": 0.3,
+        "section": "A",
+        "prompt": "Chỗ trống (28):",
+        "options": [
+          "will",
+          "would",
+          "had",
+          "used to"
+        ],
+        "answer": "A",
+        "explanation": "Câu điều kiện có thật loại 1: If people don't have..., they will feel..."
+      },
+      {
+        "id": "m_29",
+        "num": 29,
+        "points": 0.3,
+        "section": "A",
+        "prompt": "Chỗ trống (29):",
+        "options": [
+          "is",
+          "was",
+          "are",
+          "have"
+        ],
+        "answer": "C",
+        "explanation": "Bị động hiện tại đơn với chủ ngữ số nhiều 'our basic needs': are met."
+      },
+      {
+        "id": "m_30",
+        "num": 30,
+        "points": 0.3,
+        "section": "A",
+        "prompt": "Chỗ trống (30):",
+        "options": [
+          "happy",
+          "happier",
+          "happiest",
+          "more happy"
+        ],
+        "answer": "B",
+        "explanation": "So sánh hơn với 'than': much happier than."
+      },
+      {
+        "id": "m_31",
+        "num": 31,
+        "points": 0.3,
+        "section": "B",
+        "prompt": "What is the main topic of the article?",
+        "options": [
+          "How to build a five-star hotel in Madrid.",
+          "The history, duties, and value of a hotel concierge.",
+          "Why smartphone travel apps are better than hotel staff.",
+          "A story about an American tourist who missed his flight."
+        ],
+        "answer": "B",
+        "explanation": "Bài đọc nói về lịch sử, công việc và giá trị của người làm nghề concierge khách sạn."
+      },
+      {
+        "id": "m_32",
+        "num": 32,
+        "points": 0.3,
+        "section": "B",
+        "prompt": "Where does the word <i>\"concierge\"</i> originate from?",
+        "options": [
+          "An English word for a taxi driver.",
+          "A Spanish expression for a tour guide.",
+          "A French phrase meaning someone who looked after guests in castles.",
+          "An Italian word for a restaurant manager."
+        ],
+        "answer": "C",
+        "explanation": "comes from a French phrase meaning 'keeper of the candles', which originally referred to a servant who looked after visiting guests in medieval castles."
+      },
+      {
+        "id": "m_33",
+        "num": 33,
+        "points": 0.3,
+        "section": "B",
+        "prompt": "How did Maria help the American businessman?",
+        "options": [
+          "She drove him to the airport in her own car.",
+          "She helped him find the taxi driver and recover his lost passport in time for his flight.",
+          "She lent him money to buy a new plane ticket.",
+          "She booked him a room for another week."
+        ],
+        "answer": "B",
+        "explanation": "Liên hệ mạng lưới radio taxi, tìm tài xế và lấy lại hộ chiếu trước giờ đóng quầy check-in 30 phút."
+      },
+      {
+        "id": "m_34",
+        "num": 34,
+        "points": 0.3,
+        "section": "B",
+        "prompt": "According to the passage, which of the following qualities is <b>NEEDED</b> to be a good concierge?",
+        "options": [
+          "Being a famous movie star.",
+          "Knowing how to cook birthday cakes.",
+          "Having strong communication skills, patience, and good local contacts.",
+          "Working only two hours a day."
+        ],
+        "answer": "C",
+        "explanation": "excellent communication skills, patience, a friendly attitude, and a wide network of local contacts."
+      },
+      {
+        "id": "m_35",
+        "num": 35,
+        "points": 0.3,
+        "section": "B",
+        "prompt": "Why does Maria believe smartphone apps will not replace concierges?",
+        "options": [
+          "Because tourists no longer use smartphones when travelling.",
+          "Because apps cannot provide personalized human care and special arrangements.",
+          "Because hotel Wi-Fi is always out of order.",
+          "Because apps are too expensive to download."
+        ],
+        "answer": "B",
+        "explanation": "Ứng dụng không thể trực tiếp gọi cho bếp trưởng để chuẩn bị bánh sinh nhật đặc biệt như con người."
+      }
+    ],
+    "part4Rewrites": [
+      {
+        "id": "m_36",
+        "num": 36,
+        "points": 0.2,
+        "prompt": "\"I have never tried windsurfing before,\" David said.<br/>→ David said that ...",
+        "answers": [
+          "he had never tried windsurfing before"
+        ],
+        "displayAnswer": "David said that he had never tried windsurfing before."
+      },
+      {
+        "id": "m_37",
+        "num": 37,
+        "points": 0.2,
+        "prompt": "People speak English in many countries around the world.<br/>→ English ...",
+        "answers": [
+          "is spoken in many countries around the world"
+        ],
+        "displayAnswer": "English is spoken in many countries around the world."
+      },
+      {
+        "id": "m_38",
+        "num": 38,
+        "points": 0.2,
+        "prompt": "I don't have a car, so I have to take the bus to work every morning.<br/>→ If I ...",
+        "answers": [
+          "had a car, i wouldn't have to take the bus to work every morning",
+          "had a car, i would not have to take the bus to work every morning",
+          "had a car, i would drive to work every morning"
+        ],
+        "displayAnswer": "If I had a car, I wouldn't have to take the bus to work every morning."
+      },
+      {
+        "id": "m_39",
+        "num": 39,
+        "points": 0.2,
+        "prompt": "It's 11:30 p.m. now; the children should go to bed right away.<br/>→ It's high time the children ...",
+        "answers": [
+          "went to bed",
+          "went to bed right away"
+        ],
+        "displayAnswer": "It's high time the children went to bed (right away)."
+      }
+    ]
+  }
+};
+
+</script>
+  <script>
+const STORAGE_KEY = "hdu_english3_133033_progress_v2";
+
+let state = {
+  currentTab: "theory",
+  unitFilter: "ALL",
+  writtenSubTab: "wordFormation",
+  mcqAnswers: {},      // { questionId: "A" | "B" | "C" | "D" }
+  textAnswers: {},     // { questionId: { value: "...", isCorrect: true/false } }
+  essays: {},          // { topicId: "essay text..." }
+  mockSubmitted: false,
+  mockScore: null
+};
+
+// Load saved progress from localStorage
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      state = { ...state, ...parsed };
+    }
+  } catch (e) {
+    console.warn("Could not read localStorage:", e);
+  }
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {
+    console.warn("Could not save to localStorage:", e);
+  }
+  updateProgressUI();
+}
+
+function normalizeStr(s) {
+  return (s || "")
+    .toLowerCase()
+    .replace(/[.?!]+$/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+// Speech Synthesis for Listening sections
+function speakText(text, rate = 0.95) {
+  if (!("speechSynthesis" in window)) {
+    alert("Trình duyệt của bạn không hỗ trợ đọc giọng nói tự động. Hãy bật hiện Transcript để đọc bài nghe.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "en-US";
+  utter.rate = rate;
+  window.speechSynthesis.speak(utter);
+}
+
+function stopAudio() {
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+}
+
+// Compute stats for all sections
+function computeStats() {
+  const D = window.COURSE_DATA;
+  let totalDone = 0;
+  let totalCorrect = 0;
+
+  const countMcqList = (list) => {
+    let done = 0, corr = 0;
+    list.forEach(q => {
+      const ans = state.mcqAnswers[q.id];
+      if (ans) {
+        done++;
+        if (ans === q.answer) corr++;
+      }
+    });
+    return { done, corr, total: list.length };
+  };
+
+  const pronStats = countMcqList(D.pronunciationQuestions);
+  const unitStats = countMcqList(D.unitMcqQuestions);
+  const bGramStats = countMcqList(D.bGrammarQuestions);
+
+  // Written (55 items)
+  let wDone = 0, wCorr = 0, wTotal = 0;
+  Object.keys(D.writtenExercises).forEach(cat => {
+    D.writtenExercises[cat].forEach(item => {
+      wTotal++;
+      const id = `w_${cat}_${item.num}`;
+      if (state.textAnswers[id] && state.textAnswers[id].value) {
+        wDone++;
+        if (state.textAnswers[id].isCorrect) wCorr++;
+      }
+    });
+  });
+
+  // Listening (15 items)
+  let lDone = 0, lCorr = 0, lTotal = 15;
+  D.listeningSections.forEach(sec => {
+    if (sec.questions) {
+      sec.questions.forEach(q => {
+        if (state.mcqAnswers[q.id]) {
+          lDone++;
+          if (state.mcqAnswers[q.id] === q.answer) lCorr++;
+        }
+      });
+    }
+    if (sec.fillQuestions) {
+      sec.fillQuestions.forEach(fq => {
+        if (state.textAnswers[fq.id] && state.textAnswers[fq.id].value) {
+          lDone++;
+          if (state.textAnswers[fq.id].isCorrect) lCorr++;
+        }
+      });
+    }
+  });
+
+  // Reading (23 items)
+  let rList = [];
+  D.readingSections.forEach(sec => { rList = rList.concat(sec.questions); });
+  const readStats = countMcqList(rList);
+
+  // Writing topics (6 essays)
+  let essayDone = 0;
+  D.writingTopics.forEach(t => {
+    const txt = (state.essays[t.id] || "").trim();
+    const words = txt ? txt.split(/\s+/).length : 0;
+    if (words >= 50) essayDone++;
+  });
+
+  // Mock Exam (39 questions + 1 essay)
+  const mMcqs = [].concat(D.mockExam.part1Questions, D.mockExam.part2Questions, D.mockExam.part3Questions);
+  const mStats = countMcqList(mMcqs);
+  let mRwDone = 0, mRwCorr = 0;
+  D.mockExam.part4Rewrites.forEach(rw => {
+    if (state.textAnswers[rw.id] && state.textAnswers[rw.id].value) {
+      mRwDone++;
+      if (state.textAnswers[rw.id].isCorrect) mRwCorr++;
+    }
+  });
+
+  totalDone = pronStats.done + unitStats.done + bGramStats.done + wDone + lDone + readStats.done + mStats.done + mRwDone;
+  totalCorrect = pronStats.corr + unitStats.corr + bGramStats.corr + wCorr + lCorr + readStats.corr + mStats.corr + mRwCorr;
+  const grandTotal = pronStats.total + unitStats.total + bGramStats.total + wTotal + lTotal + readStats.total + 39;
+
+  return {
+    pron: pronStats,
+    unit_mcq: unitStats,
+    b_gram: bGramStats,
+    written: { done: wDone, corr: wCorr, total: wTotal },
+    listening: { done: lDone, corr: lCorr, total: lTotal },
+    reading: readStats,
+    writing: { done: essayDone, total: D.writingTopics.length },
+    mock: { done: mStats.done + mRwDone, corr: mStats.corr + mRwCorr, total: 39 },
+    totalDone,
+    totalCorrect,
+    grandTotal
+  };
+}
+
+function updateProgressUI() {
+  const st = computeStats();
+  document.getElementById("badge-pron").textContent = `${st.pron.done}/${st.pron.total}`;
+  document.getElementById("badge-unit_mcq").textContent = `${st.unit_mcq.done}/${st.unit_mcq.total}`;
+  document.getElementById("badge-b_gram").textContent = `${st.b_gram.done}/${st.b_gram.total}`;
+  document.getElementById("badge-written").textContent = `${st.written.done}/${st.written.total}`;
+  document.getElementById("badge-listening").textContent = `${st.listening.done}/${st.listening.total}`;
+  document.getElementById("badge-reading").textContent = `${st.reading.done}/${st.reading.total}`;
+  document.getElementById("badge-writing").textContent = `${st.writing.done}/${st.writing.total}`;
+  document.getElementById("badge-mock").textContent = `${st.mock.done}/${st.mock.total}`;
+
+  const pct = st.grandTotal ? Math.round((st.totalDone / st.grandTotal) * 100) : 0;
+  const acc = st.totalDone ? Math.round((st.totalCorrect / st.totalDone) * 100) : 0;
+
+  document.getElementById("overall-pct").textContent = `${pct}%`;
+  document.getElementById("overall-bar").style.width = `${pct}%`;
+  document.getElementById("overall-detail").textContent = `Đã làm: ${st.totalDone} / ${st.grandTotal} câu • Đúng: ${st.totalCorrect}`;
+  document.getElementById("stat-done").textContent = `Đã hoàn thành: ${st.totalDone} / ${st.grandTotal} câu`;
+  document.getElementById("stat-acc").textContent = `Tỷ lệ đúng: ${acc}% (${st.totalCorrect} câu)`;
+}
+
+// Render MCQ card
+function renderMcqCard(q) {
+  const letters = ["A", "B", "C", "D"];
+  const userAns = state.mcqAnswers[q.id];
+  const isAnswered = Boolean(userAns);
+  const isCorrect = userAns === q.answer;
+
+  const cardClass = isAnswered ? (isCorrect ? "q-card correct" : "q-card wrong") : "q-card";
+  let optsHtml = "";
+  q.options.forEach((optText, idx) => {
+    const letter = letters[idx];
+    let btnClass = "opt-btn";
+    if (isAnswered) {
+      if (userAns === letter) {
+        btnClass += isCorrect ? " selected-correct" : " selected-wrong";
+      } else if (letter === q.answer) {
+        btnClass += " show-answer";
+      }
+    }
+    optsHtml += `<button class="${btnClass}" onclick="selectMcq('${q.id}', '${letter}')">
+      <b>${letter}.</b> <span>${optText}</span>
+    </button>`;
+  });
+
+  const fbClass = isAnswered ? (isCorrect ? "feedback-box show ok" : "feedback-box show err") : "feedback-box";
+  const fbTitle = isCorrect ? "✔ Chính xác!" : `✘ Chưa đúng. Đáp án đúng là ${q.answer}.`;
+
+  return `<div class="${cardClass}" id="card-${q.id}">
+    <div class="q-prompt">${q.unit ? `<span class="stat-pill" style="padding:2px 8px; font-size:0.75rem; margin-right:6px;">${q.unit}</span>` : ""}${q.prompt}</div>
+    <div class="options-grid">${optsHtml}</div>
+    <div class="${fbClass}">
+      <b>${fbTitle}</b> ${q.explanation || ""}
+    </div>
+  </div>`;
+}
+
+window.selectMcq = function(qId, letter) {
+  state.mcqAnswers[qId] = letter;
+  saveState();
+  renderCurrentTab();
+};
+
+// Render Written / Gap-fill Card
+function renderWrittenCard(id, num, promptHtml, validAnswers, hintOrDisplay) {
+  const saved = state.textAnswers[id];
+  const val = saved ? saved.value : "";
+  const isChecked = saved && saved.value !== "";
+  const isCorrect = saved && saved.isCorrect;
+
+  const cardClass = isChecked ? (isCorrect ? "q-card correct" : "q-card wrong") : "q-card";
+  const fbClass = isChecked ? (isCorrect ? "feedback-box show ok" : "feedback-box show err") : "feedback-box";
+  const ansListStr = validAnswers.join(" / ");
+
+  return `<div class="${cardClass}">
+    <div class="q-prompt"><b>Câu ${num}:</b> ${promptHtml}</div>
+    <div class="input-row">
+      <input type="text" class="text-input" id="input-${id}" value="${val.replace(/"/g, '&quot;')}" placeholder="Nhập câu trả lời của bạn..." onkeydown="if(event.key==='Enter') checkWritten('${id}')" />
+      <button class="btn" onclick="checkWritten('${id}')">Kiểm tra</button>
+    </div>
+    <div class="${fbClass}">
+      <b>${isCorrect ? "✔ Chính xác!" : "✘ Chưa khớp đáp án."}</b>
+      <div><b>Đáp án chuẩn:</b> ${hintOrDisplay || ansListStr}</div>
+    </div>
+  </div>`;
+}
+
+function getWrittenItemById(id) {
+  const D = window.COURSE_DATA;
+  // Check writtenExercises
+  for (const cat of Object.keys(D.writtenExercises)) {
+    for (const item of D.writtenExercises[cat]) {
+      if (`w_${cat}_${item.num}` === id) return item;
+    }
+  }
+  // Check listening gap fill
+  for (const sec of D.listeningSections) {
+    if (sec.fillQuestions) {
+      for (const fq of sec.fillQuestions) {
+        if (fq.id === id) return fq;
+      }
+    }
+  }
+  // Check mock exam rewrites
+  for (const rw of D.mockExam.part4Rewrites) {
+    if (rw.id === id) return rw;
+  }
+  return null;
+}
+
+window.checkWritten = function(id) {
+  const inp = document.getElementById(`input-${id}`);
+  if (!inp) return;
+  const userVal = inp.value.trim();
+  const item = getWrittenItemById(id);
+  if (!item) return;
+
+  const normUser = normalizeStr(userVal);
+  const isCorrect = item.answers.some(ans => normalizeStr(ans) === normUser);
+
+  state.textAnswers[id] = { value: userVal, isCorrect };
+  saveState();
+  renderCurrentTab();
+};
+
+// Render Tabs
+function renderCurrentTab() {
+  const D = window.COURSE_DATA;
+  const area = document.getElementById("content-area");
+  const titleEl = document.getElementById("section-title");
+  const subEl = document.getElementById("section-sub");
+
+  if (state.currentTab === "theory") {
+    titleEl.textContent = "1. Hệ Thống Lý Thuyết Trọng Tâm (Units 7 – 12)";
+    subEl.textContent = "Tóm tắt toàn bộ ngữ pháp Speakout Pre-Intermediate B1 & Ngữ pháp trình độ B";
+    let html = "";
+    D.unitsTheory.forEach(u => {
+      html += `<div class="card">
+        <h2>${u.title}</h2>
+        <h3>A. Ngữ pháp cốt lõi (Grammar)</h3>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          ${u.grammar.map(g => `<div style="background:#f8fafc; padding:10px 14px; border-left:3px solid var(--primary-light); border-radius:4px;">${g}</div>`).join("")}
+        </div>
+        <h3>B. Từ vựng theo chủ đề (Vocabulary)</h3>
+        <ul style="padding-left:20px;">
+          ${u.vocab.map(v => `<li style="margin-bottom:4px;">${v}</li>`).join("")}
+        </ul>
+        <h3>C. Ngữ âm & Giao tiếp (Pronunciation & Function)</h3>
+        <div style="background:var(--primary-bg); padding:10px 14px; border-radius:6px; font-size:0.92rem;">${u.pronunciation}</div>
+      </div>`;
+    });
+    area.innerHTML = html;
+  }
+
+  else if (state.currentTab === "pron") {
+    titleEl.textContent = "2. Chuyên Đề Ngữ Âm, Trọng Âm & Ngữ Điệu Giao Tiếp (30 Câu - CLO1)";
+    subEl.textContent = "Bao gồm phát âm đuôi -s/-es, âm câm (Silent letters), trọng âm từ & ngữ âm Speakout (Weak forms, Multi-word verb stress)";
+    area.innerHTML = D.pronunciationQuestions.map(renderMcqCard).join("");
+  }
+
+  else if (state.currentTab === "unit_mcq") {
+    titleEl.textContent = "3. Trắc Nghiệm Từ Vựng, Ngữ Pháp & Giao Tiếp Theo Bài (60 Câu - CLO1)";
+    subEl.textContent = "Chọn Unit bên dưới để lọc bài tập hoặc luyện toàn bộ 60 câu";
+    const units = ["ALL", "Unit 7", "Unit 8", "Unit 9", "Unit 10", "Unit 11", "Unit 12"];
+    let filterHtml = `<div class="filter-bar">` + units.map(u =>
+      `<button class="filter-btn ${state.unitFilter === u ? 'active' : ''}" onclick="setUnitFilter('${u}')">${u === 'ALL' ? 'Tất cả (60 câu)' : u}</button>`
+    ).join("") + `</div>`;
+
+    const filtered = state.unitFilter === "ALL"
+      ? D.unitMcqQuestions
+      : D.unitMcqQuestions.filter(q => q.unit === state.unitFilter);
+
+    area.innerHTML = filterHtml + filtered.map(renderMcqCard).join("");
+  }
+
+  else if (state.currentTab === "b_gram") {
+    titleEl.textContent = "4. Trọng Tâm Ngữ Pháp Trình Độ B Phân Loại Cao (30 Câu - CLO1)";
+    subEl.textContent = "Xoáy sâu vào các cấu trúc Subjunctives, Would rather / Prefer / Had better / It's high time, Reported Questions & Passive";
+    area.innerHTML = D.bGrammarQuestions.map(renderMcqCard).join("");
+  }
+
+  else if (state.currentTab === "written") {
+    titleEl.textContent = "5. Bài Tập Tự Luận Từ Vựng, Đại Từ & Viết Lại Câu (55 Câu - CLO1 & CLO4)";
+    subEl.textContent = "Nhập đáp án vào ô trống và bấm Kiểm tra (hoặc phím Enter) để chấm điểm tự động";
+    const tabs = [
+      { id: "wordFormation", label: "4A. Word Formation (10 câu)" },
+      { id: "prepositions", label: "4B. Giới từ & Cụm ĐT (10 câu)" },
+      { id: "pronouns", label: "4C. Đại từ liên kết (5 câu)" },
+      { id: "errorCorrection", label: "4D. Sửa lỗi sai (10 câu)" },
+      { id: "sentenceTransformation", label: "4E. Viết lại câu (20 câu)" }
+    ];
+    let navHtml = `<div class="filter-bar">` + tabs.map(t =>
+      `<button class="filter-btn ${state.writtenSubTab === t.id ? 'active' : ''}" onclick="setWrittenSubTab('${t.id}')">${t.label}</button>`
+    ).join("") + `</div>`;
+
+    const list = D.writtenExercises[state.writtenSubTab] || [];
+    const cardsHtml = list.map(item =>
+      renderWrittenCard(
+        `w_${state.writtenSubTab}_${item.num}`,
+        item.num,
+        item.prompt,
+        item.answers,
+        item.displayAnswer ? `${item.displayAnswer}` : `${item.answers.join(" / ")} — <i>(${item.hint})</i>`
+      )
+    ).join("");
+    area.innerHTML = navHtml + cardsHtml;
+  }
+
+  else if (state.currentTab === "listening") {
+    titleEl.textContent = "6. Luyện Kỹ Năng Nghe Hiểu Chuẩn Speakout & PET B1 (15 Câu - CLO2)";
+    subEl.textContent = "Bấm nút '🔊 Nghe Audio' để nghe giọng đọc tiếng Anh tự động hoặc xem Transcript để phân tích từ khóa";
+    let html = "";
+    D.listeningSections.forEach((sec, idx) => {
+      const safeScript = sec.audioScript.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+      html += `<div class="card">
+        <h2>${sec.title}</h2>
+        <div class="audio-panel">
+          <div>
+            <b>🎧 Audio Player (Giọng đọc chuẩn B1)</b>
+            <div style="font-size:0.82rem; color:var(--muted);">Có thể nghe tốc độ chuẩn hoặc tốc độ chậm 0.8x</div>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn" onclick="speakText('${safeScript}', 0.95)">🔊 Nghe Audio (1.0x)</button>
+            <button class="btn btn-outline" onclick="speakText('${safeScript}', 0.78)">🐢 Nghe Chậm (0.8x)</button>
+            <button class="btn btn-outline" onclick="stopAudio()">⏹ Dừng</button>
+            <button class="btn btn-outline" onclick="toggleTranscript('tr-${sec.id}')">📄 Hiện/Ẩn Transcript</button>
+          </div>
+        </div>
+        <div id="tr-${sec.id}" class="passage-box" style="display:none;">
+          <b>Audio Transcript:</b><br/>${sec.audioScript}
+        </div>
+        ${sec.questions ? sec.questions.map(renderMcqCard).join("") : ""}
+        ${sec.fillQuestions ? sec.fillQuestions.map(fq =>
+          renderWrittenCard(fq.id, fq.num, fq.prompt, fq.answers, `${fq.answers[0]} — <i>(${fq.hint})</i>`)
+        ).join("") : ""}
+      </div>`;
+    });
+    area.innerHTML = html;
+  }
+
+  else if (state.currentTab === "reading") {
+    titleEl.textContent = "7. Luyện Kỹ Năng Đọc Hiểu Chuẩn Cambridge PET B1 (23 Câu - CLO3)";
+    subEl.textContent = "Bao gồm Đọc biển báo/thông báo ngắn (PET Part 1), Đọc điền từ Cloze Text và Đọc hiểu bài báo B1";
+    let html = "";
+    D.readingSections.forEach(sec => {
+      html += `<div class="card">
+        <h2>${sec.title}</h2>
+        <div class="passage-box">${sec.passage}</div>
+        ${sec.questions.map(renderMcqCard).join("")}
+      </div>`;
+    });
+    area.innerHTML = html;
+  }
+
+  else if (state.currentTab === "writing") {
+    titleEl.textContent = "8. Luyện Viết Đoạn Văn & Thư Trang Trọng 120–150 Từ (6 Chủ Đề - CLO4)";
+    subEl.textContent = "Có khung mẫu câu (Writing Templates), bộ đếm số từ tự động (chuẩn 120–150 từ) và bài mẫu đạt 10/10 điểm";
+    let html = "";
+    D.writingTopics.forEach(t => {
+      const savedText = state.essays[t.id] || "";
+      const words = savedText.trim() ? savedText.trim().split(/\s+/).length : 0;
+      const wordColor = (words >= 120 && words <= 160) ? "var(--success)" : (words > 0 ? "var(--warning)" : "var(--muted)");
+
+      html += `<div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+          <h2>${t.title}</h2>
+          <span class="stat-pill">${t.unit}</span>
+        </div>
+        <p style="margin:8px 0 12px; font-weight:600;">Đề bài: ${t.prompt}</p>
+        <div style="background:#f8fafc; padding:12px 16px; border-radius:8px; margin-bottom:12px; font-size:0.88rem;">
+          <b>✔ Tiêu chí cần có trong bài (Checklist Rubric 2):</b>
+          <ul style="padding-left:20px; margin-top:4px;">
+            ${t.checklist.map(c => `<li>${c}</li>`).join("")}
+          </ul>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+          <button class="btn btn-outline" onclick="insertTemplate('${t.id}')">📋 Chèn Khung Mẫu Câu (Template) Vào Ô Viết</button>
+          <button class="btn btn-outline" onclick="toggleTranscript('model-${t.id}')">👁 Xem Bài Viết Mẫu Đạt 10/10</button>
+        </div>
+        <div id="model-${t.id}" class="passage-box" style="display:none;">
+          <b>Bài viết mẫu chuẩn B1 (140+ từ):</b><br/>
+          <div style="white-space:pre-line; margin-top:6px;">${t.modelEssay}</div>
+        </div>
+        <textarea class="writing-area" id="essay-${t.id}" placeholder="Viết bài của bạn tại đây (hệ thống tự động lưu khi bạn gõ)..." oninput="updateEssay('${t.id}')">${savedText}</textarea>
+        <div class="word-count-bar">
+          <span id="wc-${t.id}" style="color:${wordColor};">Số từ hiện tại: ${words} từ (Mục tiêu CLO4: 120 – 150 từ)</span>
+          <span style="color:var(--success); font-size:0.82rem;">✔ Đã tự động lưu</span>
+        </div>
+      </div>`;
+    });
+    area.innerHTML = html;
+  }
+
+  else if (state.currentTab === "mock") {
+    titleEl.textContent = "9. Đề Thi Thử Kết Thúc Học Phần Chuẩn Ma Trận (10.0 Điểm)";
+    subEl.textContent = "Cấu trúc: Phần 1 (CLO1: 3.0đ) • Phần 2 (CLO2: 2.0đ) • Phần 3 (CLO3: 3.0đ) • Phần 4 (CLO4: 2.0đ)";
+    const M = D.mockExam;
+    const safeAudioA = M.audioScriptA.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    const safeAudioB = M.audioScriptB.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+
+    // Compute current mock score out of 8.8 automated points + 1.2 essay points
+    let autoPoints = 0;
+    [].concat(M.part1Questions, M.part2Questions, M.part3Questions).forEach(q => {
+      if (state.mcqAnswers[q.id] === q.answer) autoPoints += q.points;
+    });
+    M.part4Rewrites.forEach(rw => {
+      if (state.textAnswers[rw.id] && state.textAnswers[rw.id].isCorrect) autoPoints += rw.points;
+    });
+    const mockEssayText = (state.essays["mock_essay"] || "").trim();
+    const mockWords = mockEssayText ? mockEssayText.split(/\s+/).length : 0;
+    const essayPoints = mockWords >= 120 ? 1.2 : (mockWords >= 60 ? 0.6 : 0);
+    const totalScore = (autoPoints + essayPoints).toFixed(1);
+
+    let html = `<div class="card" style="background:var(--primary-bg); border-color:#93c5fd;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>
+          <h2 style="margin-bottom:4px;">BẢNG ĐIỂM ĐỀ THI THỬ HIỆN TẠI: ${totalScore} / 10.0 ĐIỂM</h2>
+          <p style="font-size:0.88rem; color:var(--text);">Điểm Trắc nghiệm & Viết lại câu: <b>${autoPoints.toFixed(1)} / 8.8đ</b> • Điểm Bài viết đoạn văn (120–150 từ): <b>${essayPoints.toFixed(1)} / 1.2đ</b></p>
+        </div>
+      </div>
+    </div>`;
+
+    // Part 1
+    html += `<div class="card">
+      <h2>PART 1: PRONUNCIATION, VOCABULARY, GRAMMAR & COMMUNICATION (CLO1 – 3.0 POINTS)</h2>
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:14px;">15 câu × 0.2 điểm = 3.0 điểm</p>
+      ${M.part1Questions.map(renderMcqCard).join("")}
+    </div>`;
+
+    // Part 2
+    html += `<div class="card">
+      <h2>PART 2: LISTENING COMPREHENSION (CLO2 – 2.0 POINTS)</h2>
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:14px;">10 câu × 0.2 điểm = 2.0 điểm</p>
+      <div class="audio-panel">
+        <b>🎧 Section A (Questions 16–20): Study Abroad Office Conversation</b>
+        <div style="display:flex; gap:8px;">
+          <button class="btn" onclick="speakText('${safeAudioA}', 0.95)">🔊 Nghe Section A</button>
+          <button class="btn btn-outline" onclick="stopAudio()">⏹ Dừng</button>
+          <button class="btn btn-outline" onclick="toggleTranscript('tr-mock-a')">📄 Transcript A</button>
+        </div>
+      </div>
+      <div id="tr-mock-a" class="passage-box" style="display:none;">${M.audioScriptA}</div>
+      ${M.part2Questions.filter(q => q.section === "A").map(renderMcqCard).join("")}
+
+      <div class="audio-panel" style="margin-top:20px;">
+        <b>🎧 Section B (Questions 21–25): Radio Report – Plastic-Free Town</b>
+        <div style="display:flex; gap:8px;">
+          <button class="btn" onclick="speakText('${safeAudioB}', 0.95)">🔊 Nghe Section B</button>
+          <button class="btn btn-outline" onclick="stopAudio()">⏹ Dừng</button>
+          <button class="btn btn-outline" onclick="toggleTranscript('tr-mock-b')">📄 Transcript B</button>
+        </div>
+      </div>
+      <div id="tr-mock-b" class="passage-box" style="display:none;">${M.audioScriptB}</div>
+      ${M.part2Questions.filter(q => q.section === "B").map(renderMcqCard).join("")}
+    </div>`;
+
+    // Part 3
+    html += `<div class="card">
+      <h2>PART 3: READING COMPREHENSION (CLO3 – 3.0 POINTS)</h2>
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:14px;">10 câu × 0.3 điểm = 3.0 điểm</p>
+      <h3>Section A (Questions 26–30): Cloze Test</h3>
+      <div class="passage-box">${M.readingClozePassage}</div>
+      ${M.part3Questions.filter(q => q.section === "A").map(renderMcqCard).join("")}
+
+      <h3 style="margin-top:20px;">Section B (Questions 31–35): Reading Comprehension</h3>
+      <div class="passage-box">${M.readingCompPassage}</div>
+      ${M.part3Questions.filter(q => q.section === "B").map(renderMcqCard).join("")}
+    </div>`;
+
+    // Part 4
+    html += `<div class="card">
+      <h2>PART 4: WRITING (CLO4 – 2.0 POINTS)</h2>
+      <h3>Section A (0.8 points – 4 câu × 0.2 điểm): Sentence Transformation</h3>
+      ${M.part4Rewrites.map(rw => renderWrittenCard(rw.id, rw.num, rw.prompt, rw.answers, rw.displayAnswer)).join("")}
+
+      <h3 style="margin-top:20px;">Section B (1.2 points): Paragraph / Short Essay Writing (120–150 words)</h3>
+      <p style="font-size:0.92rem; margin-bottom:8px;">
+        Chọn 1 trong 2 đề sau và viết đoạn văn/bài luận ngắn khoảng 120–150 từ:<br/>
+        • <b>Option 1:</b> Write a short essay giving your opinion on the advantages and disadvantages of using social media / the Internet for university students.<br/>
+        • <b>Option 2:</b> Write a short paragraph/essay about an important decision or change in your life and how it affected you.
+      </p>
+      <textarea class="writing-area" id="essay-mock_essay" placeholder="Nhập bài viết thi thử của bạn (viết đủ 120 từ trở lên để được cộng 1.2 điểm vào tổng điểm thi thử)..." oninput="updateEssay('mock_essay')">${mockEssayText}</textarea>
+      <div class="word-count-bar">
+        <span id="wc-mock_essay">Số từ hiện tại: ${mockWords} từ (Đủ 120 từ = 1.2 điểm)</span>
+        <span style="color:var(--success); font-size:0.82rem;">✔ Đã tự động lưu</span>
+      </div>
+    </div>`;
+
+    area.innerHTML = html;
+  }
+}
+
+window.setUnitFilter = function(u) {
+  state.unitFilter = u;
+  saveState();
+  renderCurrentTab();
+};
+
+window.setWrittenSubTab = function(sub) {
+  state.writtenSubTab = sub;
+  saveState();
+  renderCurrentTab();
+};
+
+window.toggleTranscript = function(elId) {
+  const el = document.getElementById(elId);
+  if (el) {
+    el.style.display = el.style.display === "none" ? "block" : "none";
+  }
+};
+
+window.updateEssay = function(topicId) {
+  const ta = document.getElementById(`essay-${topicId}`);
+  if (!ta) return;
+  state.essays[topicId] = ta.value;
+  const words = ta.value.trim() ? ta.value.trim().split(/\s+/).length : 0;
+  const wcEl = document.getElementById(`wc-${topicId}`);
+  if (wcEl) {
+    wcEl.textContent = `Số từ hiện tại: ${words} từ (Mục tiêu CLO4: 120 – 150 từ)`;
+    wcEl.style.color = (words >= 120 && words <= 160) ? "var(--success)" : "var(--warning)";
+  }
+  saveState();
+};
+
+window.insertTemplate = function(topicId) {
+  const D = window.COURSE_DATA;
+  const topic = D.writingTopics.find(t => t.id === topicId);
+  if (!topic) return;
+  const ta = document.getElementById(`essay-${topicId}`);
+  if (ta) {
+    ta.value = topic.template;
+    updateEssay(topicId);
+  }
+};
+
+// Export / Import / Reset Progress
+window.exportProgress = function() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `tien_do_tieng_anh_3_${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+window.importProgress = function(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const imported = JSON.parse(e.target.result);
+      state = { ...state, ...imported };
+      saveState();
+      renderCurrentTab();
+      alert("Đã khôi phục tiến độ học tập thành công!");
+    } catch (err) {
+      alert("File tiến độ không hợp lệ!");
+    }
+  };
+  reader.readAsText(file);
+};
+
+window.resetAllProgress = function() {
+  if (confirm("Bạn có chắc chắn muốn xóa toàn bộ tiến độ để làm lại từ đầu không?")) {
+    state.mcqAnswers = {};
+    state.textAnswers = {};
+    state.essays = {};
+    saveState();
+    renderCurrentTab();
+  }
+};
+
+// Setup navigation
+document.addEventListener("DOMContentLoaded", () => {
+  loadState();
+  document.querySelectorAll(".nav-item").forEach(item => {
+    item.addEventListener("click", () => {
+      stopAudio();
+      document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+      item.classList.add("active");
+      state.currentTab = item.getAttribute("data-tab");
+      saveState();
+      renderCurrentTab();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  // Restore active tab highlight
+  const activeNav = document.querySelector(`.nav-item[data-tab="${state.currentTab}"]`);
+  if (activeNav) {
+    document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+    activeNav.classList.add("active");
+  }
+
+  updateProgressUI();
+  renderCurrentTab();
+});
+
+</script>
+</body>
+</html>
