@@ -10,7 +10,11 @@ let cloudConfig = {
   googleClientId: "",
   localWhitelist: [
     { email: "leviethoainam287@gmail.com", name: "Giảng viên Lê Viết Hoài Nam", role: "teacher", status: "active" },
-    { email: "leviethoainam297@gmail.com", name: "Giảng viên Lê Viết Hoài Nam", role: "teacher", status: "active" }
+    { email: "leviethoainam297@gmail.com", name: "Giảng viên Lê Viết Hoài Nam", role: "teacher", status: "active" },
+    { email: "bichvn0110@gmail.com", name: "Nguyễn Thị Ngọc Bích", role: "student", status: "active" },
+    { email: "hatrang3399@gmail.com", name: "Lê Trần Hà Trang", role: "student", status: "active" },
+    { email: "nguyenthithuha2005ns@gmail.com", name: "Nguyễn Thị Thu Hà", role: "student", status: "active" },
+    { email: "leyenvy05022005@gmail.com", name: "Lê Yến Vy", role: "student", status: "active" }
   ],
   cloudStudentsProgress: []
 };
